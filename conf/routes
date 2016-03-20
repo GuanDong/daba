@@ -6,42 +6,28 @@ GET     /public/                                staticDir:public
 
 # 首页
 GET     /                                       Application.index
-# 微信接口
-GET     /weixin                                       Application.index
-# 登录
-GET     /login/{openId}                                  UserController.getUser
 # 菜品列表
-GET     /products                                       Application.index
-# 菜品评论
-GET     /products/comments                                       Application.index
+GET     /products                                       ProductsC.list
 # 查看菜品
-GET     /products/{id}                                       Application.index
+GET     /products/{id}                                  ProductsC.detail
 # 创建订单
-POST    /my/orders                                       Application.index
+POST     /my/orders                                     MyC.createOrder
+# 查看订单
+GET     /my/orders/{id}                                    MyC.viewOrder
 # 修改订单
-PUT     /my/order/{no}                                       Application.index
-# 订单支付
-PATCH   /my/order/{no}                                       Application.index
-# 取消我的订单
-DELETE  /my/order/{no}                                       Application.index
-# 查看我的订单
-GET     /my/orders/{no}                                       Application.index
+PUT     /my/orders/{id}                                    MyC.modifyOrder
+# 取消订单
+DELETE     /my/orders/{id}                                 MyC.cancelOrder
 # 发表评论
 POST    /my/comments                                       Application.index
-# 我的订单列表
-GET     /my/orders                                       Application.index
-# 领取优惠券
-POST    /my/coupons/{id}                                       Application.index
-# 我的优惠券
-GET     /my/coupons                                       Application.index
 # 个人中心
-GET     /my                                       Application.index
+GET     /my                                       MyC.index
 # 优惠券列表
-GET     /coupons                                       CouponController.getEffectiveCoupons
+GET     /coupons                                       CouponsC.list
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+# *       /{controller}/{action}                  {controller}.{action}

@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <title>达巴瓦拉</title>
-  <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/0.4.0/weui.css"/>
-  <link rel="stylesheet" href="/public/css/frozen.css"/>
+  <title>&{'appName'}</title>
+	<link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+  <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
 </head>
 <body>
 <footer class="weui_tabbar ui-footer ui-footer-btn">
 	<a href="javascript:;" class="weui_tabbar_item weui_tabbar_item_on ui-border-r">
 		<div class="weui_tabbar_icon">
-			<img src="/public/images/actor.jpeg" alt="">
+			<img src="@{'/public/images/actor.jpeg'}" alt="">
 		</div>
 		<p class="weui_tabbar_label">首页</p>
 	</a>
 	<a href="javascript:;" class="weui_tabbar_item ui-border-r">
 		<div class="weui_tabbar_icon">
-			<img src="/public/images/actor.jpeg" alt="">
+			<img src="@{'/public/images/actor.jpeg'}" alt="">
 		</div>
 		<p class="weui_tabbar_label">个人中心</p>
 	</a>
 	<a href="javascript:;" class="weui_tabbar_item">
 		<div class="weui_tabbar_icon">
-			<img src="/public/images/actor.jpeg" alt="">
+			<img src="@{'/public/images/actor.jpeg'}" alt="">
 		</div>
 		<p class="weui_tabbar_label">关于我们</p>
 	</a>
@@ -31,7 +31,7 @@
 <section class="ui-container">
 	<div class="weui_media_box weui_media_appmsg">
 		<div class="weui_media_hd">
-			<img class="ui-avatar" src="/public/images/actor.jpeg" alt="">
+			<img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
 		</div>
 		<div class="weui_media_bd">
 			<h4 class="weui_media_title">笑尽英雄</h4>
@@ -44,9 +44,9 @@
     </div>
 	</div>
 	<div class="weui_panel_bd weui_cells weui_cells_access">
-		<a href="about.html" class="weui_cell weui_media_box weui_media_appmsg">
+		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
 			<div class="weui_media_hd">
-				<img class="weui_media_appmsg_thumb" src="./images/tfzg.jpg" alt="">
+				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
 			</div>
 			<div class="weui_media_bd">
 				<h4 class="weui_media_title">土匪猪肝</h4>
@@ -56,9 +56,9 @@
 				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
 			</span>
 		</a>
-		<a href="about.html" class="weui_cell weui_media_box weui_media_appmsg">
+		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
 			<div class="weui_media_hd">
-				<img class="weui_media_appmsg_thumb" src="./images/tfzg.jpg" alt="">
+				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
 			</div>
 			<div class="weui_media_bd">
 				<h4 class="weui_media_title">土匪猪肝</h4>
@@ -71,5 +71,5 @@
 	</div>
 </section>
 </body>
-<script src="http://res.wx.qq.com/open/libs/zepto/1.1.6/zepto.js"></script>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
 </html>

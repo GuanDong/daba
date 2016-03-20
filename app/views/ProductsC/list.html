@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+  <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
+</head>
+<body>
+<footer class="ui-footer ">
+    <ul class="ui-tiled ui-border-t">
+        <li class="ui-border-r">
+			<a href="@{Application.index()}">
+				<h1 class="icon-home ui-txt-red"></h1>
+				<h5 class="ui-txt-info">首页</h5>
+            </a>
+		</li>
+        <li class="ui-border-r">
+            <a href="@{MyC.index()}">
+				<h1 class="icon-user ui-txt-red"></h1>
+				<h5 class="ui-txt-info">个人中心</h5>
+            </a>
+		</li>
+        <li>
+            <a href="@{'/public/about.html'}">
+				<h1 class="icon-info ui-txt-red"></h1>
+				<h5 class="ui-txt-info">关于我们</h5>
+            </a>
+		</li>
+    </ul>
+</footer>
+<section class="ui-container">
+    <div class="weui_media_box weui_media_appmsg">
+        <div class="weui_media_hd">
+            <img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
+        </div>
+        <div class="weui_media_bd">
+            <h4 class="weui_media_title">笑尽英雄</h4>
+            <p class="weui_media_desc">努力加餐饭，快来准备明天的午餐吧！</p>
+        </div>
+    </div>
+	<div class="weui_media_box weui_media_appmsg">
+		<div class="weui_media_hd">
+			<img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
+		</div>
+		<div class="weui_media_bd">
+			<h4 class="weui_media_title">笑尽英雄</h4>
+			<p class="weui_media_desc">努力加餐饭，快来准备明天的午餐吧！</p>
+		</div>
+	</div>
+	<div class="ui-tooltips ui-tooltips-warn">
+    <div class="ui-tooltips-cnt ui-border-b">
+        <i></i>试行期间，每天仅售100份，还剩66份。
+    </div>
+	</div>
+	<div class="weui_panel_bd weui_cells weui_cells_access">
+		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
+			<div class="weui_media_hd">
+				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
+			</div>
+			<div class="weui_media_bd">
+				<h4 class="weui_media_title">土匪猪肝</h4>
+				<p class="weui_media_desc">材材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<料：青椒、红椒、新鲜猪肝、姜丝、葱。</p>
+			</div>
+			<span class="weui_cell_ft">
+				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
+			</span>
+		</a>
+		#{list items:productList, as:'product'}
+            <a href="@{ProductsC.detail(product.id)}" class="weui_cell weui_media_box weui_media_appmsg">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" src="@{ProductsC.viewAvatar(product.id)}" alt="">
+                </div>
+                <div class="weui_media_bd">
+                    <h4 class="weui_media_title">${product.name}</h4>
+                    <p class="weui_media_desc">${product.desc}</p>
+                </div>
+			<span class="weui_cell_ft">
+				<h4 class="weui_media_title" style="color: #de7c23;">${product.price}元</h4>
+			</span>
+            </a>
+            <a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
+                </div>
+                <div class="weui_media_bd">
+                    <h4 class="weui_media_title">土匪猪肝</h4>
+                    <p class="weui_media_desc">材料：青椒、红椒、新鲜猪肝、姜丝、葱。</p>
+                </div>
+			<span class="weui_cell_ft">
+				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
+			</span>
+            </a>
+		#{/list}
+	</div>
+</section>
+</body>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+</html>

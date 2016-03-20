@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="huhu_contact_info_v")
-public class AccountContact extends GenericModel {
+public class ContactM extends GenericModel {
 
     @Id
     @Column(name="row_id")

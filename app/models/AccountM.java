@@ -3,36 +3,36 @@ package models;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.Table;
+import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import play.db.jpa.GenericModel;
 
 @Entity
-public class Order extends GenericModel {
+@Table(name="huhu_account_info_v")
+public class AccountM extends GenericModel {
 
     @Id
-    public String rowid;
+    @Column(name="row_id")
+    public String id;
 
-    public String openid;
+    @Column(name="integration_id")
+    public String openId;
 
+    @Column(name="alias_name")
     public String name;
 
+    @Column(name="city")
     public String city;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created")
     public Date createdDate;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="last_updated_by")
-    public Account lastUpdatedBy;
-
-    @OrderBy("lastUpdatedDate DESC")
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="last_upd")
     public Date lastUpdatedDate;
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="huhu_prod_list_v")
-public class Product extends GenericModel {
+public class ProductM extends GenericModel {
 
     @Id
     @Column(name="row_id")
