@@ -1,0 +1,47 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# 首页
+GET     /                                       Application.index
+# 微信接口
+GET     /weixin                                       Application.index
+# 登录
+GET     /login/{openId}                                  UserController.getUser
+# 菜品列表
+GET     /products                                       Application.index
+# 菜品评论
+GET     /products/comments                                       Application.index
+# 查看菜品
+GET     /products/{id}                                       Application.index
+# 创建订单
+POST    /my/orders                                       Application.index
+# 修改订单
+PUT     /my/order/{no}                                       Application.index
+# 订单支付
+PATCH   /my/order/{no}                                       Application.index
+# 取消我的订单
+DELETE  /my/order/{no}                                       Application.index
+# 查看我的订单
+GET     /my/orders/{no}                                       Application.index
+# 发表评论
+POST    /my/comments                                       Application.index
+# 我的订单列表
+GET     /my/orders                                       Application.index
+# 领取优惠券
+POST    /my/coupons/{id}                                       Application.index
+# 我的优惠券
+GET     /my/coupons                                       Application.index
+# 个人中心
+GET     /my                                       Application.index
+# 优惠券列表
+GET     /coupons                                       CouponController.getEffectiveCoupons
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
