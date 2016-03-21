@@ -25,7 +25,7 @@ public class ProductM extends GenericModel {
     @Column(name="product_level")
     public Integer laLevel;
 
-    @Column(name="prod_hot")
+    @Column(name="prod_hod")
     public Integer hotLevel;
 
     @Column(name="prod_eva")

@@ -22,7 +22,7 @@ public class ContactM extends GenericModel {
     @Column(name="cell_ph_num")
     public String tel;
 
-    @Column(name="main_flag")
+    @Column(name="main_flg")
     public String mainFlag;
 
     @Temporal(TemporalType.TIMESTAMP)

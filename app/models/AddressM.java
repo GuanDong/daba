@@ -37,7 +37,7 @@ public class AddressM extends GenericModel {
     @Column(name="longitude")
     public Double longitude;
 
-    @Column(name="main_flag")
+    @Column(name="main_flg")
     public String mainFlag;
 
     @Temporal(TemporalType.TIMESTAMP)

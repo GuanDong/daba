@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="huhu_price_list_v")
+@Table(name="huhu_price_list_info_v")
 public class ProductPriceM extends GenericModel {
 
     @Id
