@@ -1,75 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <title>&{'appName'}</title>
-	<link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
-  <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
+    <style>
+        .stamp * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+        }
+
+        .stamp {
+            width: 387px;
+            height: 140px;
+            padding: 0 10px;
+            margin-bottom: 50px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stamp:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 10px;
+            right: 10px;
+
+            z-index: -1;
+        }
+
+        .stamp:after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+            z-index: -2;
+        }
+
+        .stamp i {
+            position: absolute;
+            left: 20%;
+            top: 45px;
+            height: 190px;
+            width: 390px;
+            background-color: rgba(255, 255, 255, .15);
+            transform: rotate(-30deg);
+        }
+
+        .stamp .par {
+            float: left;
+            padding: 16px 15px;
+            width: 220px;
+            border-right: 2px dashed rgba(255, 255, 255, .3);
+            text-align: left;
+        }
+
+        .stamp .par p {
+            color: #fff;
+            font-size: 16px;
+            line-height: 21px;
+        }
+
+        .stamp .par span {
+            font-size: 50px;
+            color: #fff;
+            margin-right: 5px;
+            line-height: 65px;
+        }
+
+        .stamp .par .sign {
+            font-size: 34px;
+        }
+
+        .stamp .par sub {
+            position: relative;
+            top: -5px;
+            color: rgba(255, 255, 255, .8);
+        }
+
+        .stamp .copy {
+            display: inline-block;
+            padding: 21px 14px;
+            width: 100px;
+            vertical-align: text-bottom;
+            font-size: 30px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            line-height: initial;
+        }
+
+        .stamp .copy p {
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .stamp01 {
+            background: #F39B00;
+            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);
+            background-size: 15px 15px;
+            background-position: 9px 3px;
+        }
+
+        .stamp01:before {
+            background-color: #F39B00;
+        }
+
+        .stamp01 .copy{
+            padding: 10px 6px 10px 12px;
+            font-size: 24px;
+        }
+        .stamp01 .copy p{
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        .stamp01 .copy a{
+            background-color:#fff;
+            color:#333;
+            font-size: 14px;
+            text-decoration:none;
+            padding:5px 10px;
+            border-radius:3px;
+            display: block;
+        }
+
+        .stamp02 {
+            background: #B3B3B3;
+            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #B3B3B3 5px);
+            background-size: 15px 15px;
+            background-position: 9px 3px;
+        }
+
+        .stamp02:before {
+            background-color: #B3B3B3;
+        }
+    </style>
 </head>
 <body>
-<footer class="weui_tabbar ui-footer ui-footer-btn">
-	<a href="javascript:;" class="weui_tabbar_item weui_tabbar_item_on ui-border-r">
-		<div class="weui_tabbar_icon">
-			<img src="@{'/public/images/actor.jpeg'}" alt="">
-		</div>
-		<p class="weui_tabbar_label">首页</p>
-	</a>
-	<a href="javascript:;" class="weui_tabbar_item ui-border-r">
-		<div class="weui_tabbar_icon">
-			<img src="@{'/public/images/actor.jpeg'}" alt="">
-		</div>
-		<p class="weui_tabbar_label">个人中心</p>
-	</a>
-	<a href="javascript:;" class="weui_tabbar_item">
-		<div class="weui_tabbar_icon">
-			<img src="@{'/public/images/actor.jpeg'}" alt="">
-		</div>
-		<p class="weui_tabbar_label">关于我们</p>
-	</a>
-</footer>
-<section class="ui-container">
-	<div class="weui_media_box weui_media_appmsg">
-		<div class="weui_media_hd">
-			<img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
-		</div>
-		<div class="weui_media_bd">
-			<h4 class="weui_media_title">笑尽英雄</h4>
-			<p class="weui_media_desc">努力加餐饭，快来准备明天的午餐吧！</p>
-		</div>
-	</div>
-	<div class="ui-tooltips ui-tooltips-warn">
-    <div class="ui-tooltips-cnt ui-border-b">
-        <i></i>试行期间，每天仅售100份，还剩66份。
-    </div>
-	</div>
-	<div class="weui_panel_bd weui_cells weui_cells_access">
-		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
-			<div class="weui_media_hd">
-				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
-			</div>
-			<div class="weui_media_bd">
-				<h4 class="weui_media_title">土匪猪肝</h4>
-				<p class="weui_media_desc">材材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<材料：青椒、红椒、新鲜猪肝、姜丝、葱。<料：青椒、红椒、新鲜猪肝、姜丝、葱。</p>
-			</div>
-			<span class="weui_cell_ft">
-				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
-			</span>
-		</a>
-		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
-			<div class="weui_media_hd">
-				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
-			</div>
-			<div class="weui_media_bd">
-				<h4 class="weui_media_title">土匪猪肝</h4>
-				<p class="weui_media_desc">材料：青椒、红椒、新鲜猪肝、姜丝、葱。</p>
-			</div>
-			<span class="weui_cell_ft">
-				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
-			</span>
-		</a>
-	</div>
-</section>
+
+<div class="stamp stamp02">
+    <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
+        <p>订单满100.00元</p></div>
+    <div class="copy">副券<p>2015-08-13<br>2016-08-13</p></div>
+    <i></i>
+</div>
+<div class="stamp stamp01">
+    <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
+        <p>订单满100.00元</p></div>
+    <div class="copy">副券<p>2015-08-13<br>2016-08-13</p><a href="#">立即使用</a></div>
+    <i></i>
+</div>
+
 </body>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 </html>
