@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <style>
-        .stamp * {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
-        }
+        /*.stamp * {*/
+            /*padding: 0;*/
+            /*margin: 0;*/
+            /*list-style: none;*/
+            /*font-family: "Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;*/
+        /*}*/
 
         .stamp {
-            width: 90%;
+            width: 100%;
             height: 100%;
-            padding: 0 10px;
-            margin-bottom: 1em;
+            padding: 0 0.625em;
+            margin-bottom: 3.125em;
 
             position: relative;
             overflow: hidden;
@@ -29,8 +29,8 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 10px;
-            right: 10px;
+            left: 0.625em;
+            right: 0.625em;
 
             z-index: -1;
         }
@@ -38,61 +38,61 @@
         .stamp:after {
             content: '';
             position: absolute;
-            left: 10px;
-            top: 10px;
-            right: 10px;
-            bottom: 10px;
-            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+            left: 0.625em;
+            top: 0.625em;
+            right: 0.625em;
+            bottom: 0.625em;
+            box-shadow: 0 0 1.25em 1px rgba(0, 0, 0, 0.5);
             z-index: -2;
         }
 
         .stamp i {
             position: absolute;
             left: 20%;
-            top: 45px;
-            height: 190px;
-            width: 390px;
+            top: 2.813em;
+            height: 100%;
+            width: 100%;
             background-color: rgba(255, 255, 255, .15);
             transform: rotate(-30deg);
         }
 
         .stamp .par {
             float: left;
-            padding: 16px 15px;
+            padding: 1em 0.938em;
             width: 60%;
-            border-right: 2px dashed rgba(255, 255, 255, .3);
+            border-right: 0.123em dashed rgba(255, 255, 255, .3);
             text-align: left;
         }
 
         .stamp .par p {
             color: #fff;
             font-size: 1em;
-            line-height: 21px;
+            line-height: 1.313em;
         }
 
         .stamp .par span {
-            font-size: 3em;
+            font-size: 3.125em;
             color: #fff;
-            margin-right: 5px;
-            line-height: 65px;
+            margin-right: 0.313em;
+            line-height: 4.063em;
         }
 
         .stamp .par .sign {
-            font-size: 2em;
+            font-size: 2.125em;
         }
 
         .stamp .par sub {
             position: relative;
-            top: -5px;
+            top: -0.313em;
             color: rgba(255, 255, 255, .8);
         }
 
         .stamp .copy {
             display: inline-block;
-            padding: 21px 14px;
+            padding: 1.313em 0.875em;
             width: 33%;
             vertical-align: text-bottom;
-            font-size: 2em;
+            font-size: 1.875em;
             color: rgb(255, 255, 255);
             text-align: center;
             line-height: initial;
@@ -100,14 +100,14 @@
 
         .stamp .copy p {
             font-size: 1em;
-            margin-top: 15px;
+            margin-top: 0.938em;
         }
 
         .stamp01 {
             background: #F39B00;
-            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);
-            background-size: 15px 15px;
-            background-position: 9px 3px;
+            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 0.313em, #F39B00 0.313em);
+            background-size: 0.938em 0.938em;
+            background-position: 0.563em 0.188em;
         }
 
         .stamp01:before {
@@ -115,29 +115,28 @@
         }
 
         .stamp01 .copy{
-            padding: 10px 6px 10px 12px;
+            padding: 0.625em 0.375em 0.625em 0.75em;
             font-size: 1.5em;
         }
         .stamp01 .copy p{
-            font-size: 1em;
-            margin-top: 5px;
-            margin-bottom: 8px;
+            font-size: 0.875em;
+            margin-top: 0.313em;
+            margin-bottom: 0.5em;
         }
         .stamp01 .copy a{
             background-color:#fff;
             color:#333;
-            font-size: 1em;
+            font-size: 0.875em;
             text-decoration:none;
-            padding:5px 10px;
-            /*border-radius:3px;*/
+            padding:0.313em 0.615em;
             display: block;
         }
 
         .stamp02 {
             background: #B3B3B3;
-            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #B3B3B3 5px);
-            background-size: 15px 15px;
-            background-position: 9px 3px;
+            background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 0.313em, #B3B3B3 0.313em);
+            background-size: 0.938em 0.938em;
+            background-position: 0.563em 0.188em;
         }
 
         .stamp02:before {
@@ -146,12 +145,6 @@
     </style>
 </head>
 <body>
-<div class="stamp stamp01">
-    <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
-        <p>订单满100.00元</p></div>
-    <div class="copy">副券<p>2015-08-13<br>2016-08-13</p><a href="#">立即使用</a></div>
-    <i></i>
-</div>
 <div class="stamp stamp02">
     <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
         <p>订单满100.00元</p></div>
@@ -161,7 +154,7 @@
 <div class="stamp stamp01">
     <div class="par"><p>XXXXXX折扣店</p><sub class="sign">￥</sub><span>50.00</span><sub>优惠券</sub>
         <p>订单满100.00元</p></div>
-    <div class="copy">副券<p>2015-08-13<br>2016-08-13</p><span>立即使用</span></div>
+    <div class="copy">副券<p>2015-08-13<br>2016-08-13</p><a href="#">立即使用</a></div>
     <i></i>
 </div>
 
