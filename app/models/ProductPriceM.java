@@ -19,17 +19,35 @@ public class ProductPriceM extends GenericModel {
     @Column(name="prod_id")
     public String productId;
 
+    @Column(name="name")
+    public String productName;
+
+    @Column(name="part_num")
+    public String productNo;
+
+    @Column(name="dest_text")
+    public String productDesc;
+
+    @Column(name="product_level")
+    public Integer laLevel;
+
+    @Column(name="prod_hod")
+    public Integer hotLevel;
+
+    @Column(name="prod_eva")
+    public Integer evaLevel;
+
     @Column(name="std_pri_unit")
     public Float stdPrice;
 
     @Column(name="promo_pri")
-    public Float promoPri;
+    public Float promoPrice;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="eff_start_dt")
     public Date startDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="eff_end_dt")
     public Date endDate;
 

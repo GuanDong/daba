@@ -19,6 +19,20 @@ public class AccountCouponM extends GenericModel {
     @Column(name="coupon_id")
     public String couponId;
 
+    @Column(name="name")
+    public String couponName;
+
+    @Column(name="desc_text")
+    public String couponDesc;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="start_date")
+    public Date startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="end_date")
+    public Date endtDate;
+
     @Column(name="usg_flg")
     public String useFlag;
 

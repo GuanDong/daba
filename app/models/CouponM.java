@@ -19,11 +19,13 @@ public class CouponM extends GenericModel {
     @Column(name="desc_text")
     public String desc;
 
-    @Column(name="effective_date")
-    public String effectiveDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="start_date")
+    public Date startDate;
 
-    @Column(name="src_flg")
-    public String srcFlag;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="end_date")
+    public Date endtDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created")
