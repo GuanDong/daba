@@ -6,6 +6,14 @@ GET     /public/                                staticDir:public
 
 # 首页
 GET     /                                       Application.index
+
+# 首页
+GET     /weixin/token                                       Application.token
+# 首页
+GET     /weixin/follow                                       Application.follow
+# 首页
+GET     /weixin/unfollow                                       Application.unfollow
+
 # 菜品列表
 GET     /products                                       ProductsC.list
 # 查看菜品

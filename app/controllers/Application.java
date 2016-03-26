@@ -30,7 +30,8 @@ public class Application extends Controller {
         // 返回echostr，表示接入成功，否则接入失败
         if (StringUtils.isBlank(signature)) {
             error("wechat param not found");
-        } else if (WeiXinUtils.checkSignature(signature,timestamp,
+        }
+        if (WeiXinUtils.checkSignature(signature,timestamp,
                 nonce)) {
             renderText(echostr);
         }
