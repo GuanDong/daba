@@ -19,7 +19,7 @@ public class OrderM extends GenericModel {
     @Id
     public String id;
 
-    public String openid;
+    public String no;
 
     public String name;
 

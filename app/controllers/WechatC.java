@@ -1,16 +1,16 @@
 package controllers;
 
+import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.*;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
+import me.chanjar.weixin.mp.bean.*;
+import models.AccountM;
+import models.OrderM;
 import org.apache.commons.lang.StringUtils;
 import play.Play;
 import play.mvc.Before;
 import play.mvc.Controller;
-import utils.WeiXinUtils;
 
 import java.util.Map;
 
@@ -55,18 +55,21 @@ public class WechatC extends Controller {
                 //关注
                 .rule()
                 .async(false)
-                .event("subscribe")
+                .event(WxConsts.EVT_SUBSCRIBE)
                 .handler(new SubscrbeHandler())
                 .end()
                 //取消关注
                 .rule()
                 .async(true)
-                .event("unsubscribe")
+                .event(WxConsts.EVT_UNSUBSCRIBE)
                 .handler(new UnSubscrbeHandler())
                 .end();
 
     }
 
+    /*
+     * 微信消息路由
+     */
     public static void index() {
         String signature = params.get("signature");     // 微信加密签名
         String echostr = params.get("echostr");         // 随机字符串
@@ -104,9 +107,26 @@ public class WechatC extends Controller {
         error("不可识别的加密类型");
     }
 
-    public static void notice() {
-        render();
+    /*
+     * 服务端推送消息
+     */
+    public static void notice(String toUserId, String templateId, String orderId) throws WxErrorException {
+
+        AccountM user = AccountM.findById(toUserId);
+        OrderM order = OrderM.findById(orderId);
+
+        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+        templateMessage.setToUser(user.openId);
+        templateMessage.setTemplateId(templateId);
+        templateMessage.setUrl("/my/order/" + orderId);
+//        templateMessage.setTopColor(...);
+        templateMessage.getDatas().add(new WxMpTemplateData("name", user.name, "green"));
+        templateMessage.getDatas().add(new WxMpTemplateData("orderNo", order.no, "green"));
+
+        wxMpService.templateSend(templateMessage);
+        renderText("Ok");
     }
+
 
     /*
      * 微信消息处理
