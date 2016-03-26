@@ -8,9 +8,9 @@ GET     /public/                                staticDir:public
 GET     /                                       Application.index
 
 # 首页
-GET     /weixin/token                                       Application.token
+GET     /wechat_token                                       Application.token
 # 首页
-GET     /weixin/follow                                       Application.follow
+GET     /wechat                                       Application.follow
 # 首页
 GET     /weixin/unfollow                                       Application.unfollow
 
