@@ -6,21 +6,27 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="huhu_prod_list_v")
+@Table(name="huhu_price_list_info_v")
 public class ProductM extends GenericModel {
 
     @Id
     @Column(name="row_id")
     public String id;
 
+    @Column(name="pri_lst_id")
+    public String priceId;
+
+    @Column(name="prod_id")
+    public String productId;
+
     @Column(name="name")
-    public String name;
+    public String productName;
 
     @Column(name="part_num")
-    public String partNum;
+    public String productNo;
 
     @Column(name="dest_text")
-    public String desc;
+    public String productDesc;
 
     @Column(name="product_level")
     public Integer laLevel;
@@ -30,6 +36,20 @@ public class ProductM extends GenericModel {
 
     @Column(name="prod_eva")
     public Integer evaLevel;
+
+    @Column(name="std_pri_unit")
+    public Float stdPrice;
+
+    @Column(name="promo_pri")
+    public Float promoPrice;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="eff_start_dt")
+    public Date startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="eff_end_dt")
+    public Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created")
