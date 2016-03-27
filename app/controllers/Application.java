@@ -30,7 +30,7 @@ public class Application extends Controller {
             }
         }
 
-        redirect(WechatC.callBackOpenIdUrl(request.url, null));
+        redirect(WechatC.callBackOpenIdUrl(Application.BASE_URL + request.url, null));
     }
 
     public static void index() {
