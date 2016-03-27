@@ -87,7 +87,6 @@ public class WechatC extends Controller {
         String timestamp = params.get("timestamp");     // 时间戳
         String nonce = params.get("nonce");             // 随机数
 
-        Logger.info("1");
         if (!wxMpService.checkSignature(timestamp, nonce, signature)) {
             // 消息签名不正确，说明不是公众平台发过来的消息
             error("非法请求");
@@ -97,12 +96,10 @@ public class WechatC extends Controller {
             renderText(echostr);
         }
 
-        Logger.info("2");
         String encryptType = StringUtils.isBlank(params.get("encrypt_type")) ?
                 "raw" :
                 params.get("encrypt_type");
 
-        Logger.info("3");
         if ("raw".equals(encryptType)) {
             // 明文传输的消息
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
@@ -110,7 +107,7 @@ public class WechatC extends Controller {
             renderXml(outMessage.toXml());
         }
 
-        Logger.info("4, %s, %s", params.get("body"), IO.readContentAsString(request.body));
+        Logger.info("weixin post: %s", params.get("body"));
         if ("aes".equals(encryptType)) {
             // 是aes加密的消息
             String msgSignature = params.get("msg_signature");
@@ -119,7 +116,6 @@ public class WechatC extends Controller {
             renderXml(outMessage.toEncryptedXml(wxMpConfigStorage));
         }
 
-        Logger.info("5");
         error("不可识别的加密类型");
     }
 
