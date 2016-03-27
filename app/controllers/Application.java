@@ -3,6 +3,7 @@ package controllers;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.AccountM;
 import org.apache.commons.lang.StringUtils;
+import play.Logger;
 import play.Play;
 import play.cache.Cache;
 import play.mvc.*;
@@ -15,7 +16,7 @@ public class Application extends Controller {
     public static void processOAuth() throws WxErrorException {
         String code = params.get("code");
         String state = params.get("state");
-
+        Logger.info("code: %s, state: %s", code, state);
         if (StringUtils.equals(state, "auth") && !StringUtils.isBlank(code)){
             String openId = WechatC.getOpenIdByCode(code);
             AccountM account = AccountM.find("byOpenId", openId).first();
@@ -37,8 +38,8 @@ public class Application extends Controller {
         if (authInfo != null){
             return;
         }
-
-        redirect(WechatC.callBackOpenIdUrl(Application.BASE_URL + request.url, null));
+        Logger.info("base: %s, url: %s", Application.BASE_URL, request.url);
+        redirect(WechatC.callBackOpenIdUrl(Application.BASE_URL + request.url, "auth"));
     }
 
     public static void index() {

@@ -6,6 +6,8 @@ GET     /public/                                staticDir:public
 
 # 首页
 GET     /                                       Application.index
+# 订阅
+GET     /subscribe                                       Application.subscribe
 
 # 微信消息
 GET     /wechat                                 WechatC.index
