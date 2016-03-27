@@ -191,8 +191,7 @@ public class WechatC extends Controller {
     @Util
     public static String getOpenIdByCode(String code) throws WxErrorException {
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
-        WxMpUser wxMpUser = wxMpService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
-        return wxMpUser.getOpenId();
+        return wxMpOAuth2AccessToken.getOpenId();
     }
 
     @Util
