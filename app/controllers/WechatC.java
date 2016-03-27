@@ -111,7 +111,7 @@ public class WechatC extends Controller {
             renderXml(outMessage.toXml());
         }
 
-        Logger.info("4, %s", IO.readContent(request.body));
+        Logger.info("4, %s", IO.readContentAsString(request.body));
         if ("aes".equals(encryptType)) {
             // 是aes加密的消息
             String msgSignature = params.get("msg_signature");
