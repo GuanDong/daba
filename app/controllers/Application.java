@@ -2,10 +2,13 @@ package controllers;
 
 import models.AccountM;
 import org.apache.commons.lang.StringUtils;
+import play.Play;
 import play.cache.Cache;
 import play.mvc.*;
 
 public class Application extends Controller {
+
+    public static String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 
     @Before(unless = "subcribe")
     public static void checkLogin(){
