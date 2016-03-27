@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.Gson;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.WxMenu;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -10,11 +11,14 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import models.AccountM;
 import models.OrderM;
 import org.apache.commons.lang.StringUtils;
+import play.Logger;
 import play.Play;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Util;
+import soap.HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -141,11 +145,20 @@ public class WechatC extends Controller {
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 
             WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
-            AccountM accountM = new AccountM();
-            accountM.openId = user.getOpenId();
-            accountM.name = user.getNickname();
-            accountM.city = user.getCity();
-            accountM.save();
+
+            HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input account = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input();
+            account.setIntegrationid(user.getOpenId());
+            account.setAliasname(user.getNickname());
+            account.setLoc(user.getCity());
+
+            Logger.debug("subscribe user: %s", new Gson().toJson(account));
+
+            try {
+                HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub stub = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub();
+                stub.createdAccount(account);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
 
             WxMpXmlOutTextMessage m
                     = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
