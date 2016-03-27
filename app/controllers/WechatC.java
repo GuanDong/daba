@@ -1,17 +1,22 @@
 package controllers;
 
 import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.bean.WxMenu;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.*;
 import me.chanjar.weixin.mp.bean.*;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import models.AccountM;
 import models.OrderM;
 import org.apache.commons.lang.StringUtils;
 import play.Play;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WechatC extends Controller {
@@ -134,9 +139,18 @@ public class WechatC extends Controller {
     public static class SubscrbeHandler implements WxMpMessageHandler {
         @Override
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
+
+            WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
+            AccountM accountM = new AccountM();
+            accountM.openId = user.getOpenId();
+            accountM.name = user.getNickname();
+            accountM.city = user.getCity();
+            accountM.save();
+
             WxMpXmlOutTextMessage m
                     = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
                     .toUser(wxMpXmlMessage.getFromUserName()).build();
+
             return m;
         }
     };
@@ -150,5 +164,55 @@ public class WechatC extends Controller {
             return m;
         }
     };
+
+
+    /*
+     * 工具函数
+     */
+    @Util
+    public static String callBackOpenIdUrl(String url, String status){
+        return wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_BASE, status);
+    }
+
+    @Util
+    public static void createMenu() throws WxErrorException {
+        WxMenu wxMenu = new WxMenu();
+        List<WxMenu.WxMenuButton> buttons = new ArrayList<WxMenu.WxMenuButton>();
+        wxMenu.setButtons(buttons);
+
+        WxMenu.WxMenuButton button1 = new WxMenu.WxMenuButton();
+        buttons.add(button1);
+        button1.setName("订餐");
+        button1.setType(WxConsts.BUTTON_VIEW);
+        button1.setUrl(callBackOpenIdUrl("/", null));
+
+
+        WxMenu.WxMenuButton button2 = new WxMenu.WxMenuButton();
+        buttons.add(button2);
+        button2.setName("我的订单");
+        button2.setType(WxConsts.BUTTON_VIEW);
+        button2.setUrl(callBackOpenIdUrl("/my/orders", null));
+
+
+        WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
+        buttons.add(button3);
+        button3.setName("评价");
+        List<WxMenu.WxMenuButton> subButtons = new ArrayList<WxMenu.WxMenuButton>();
+        button3.setSubButtons(subButtons);
+
+        WxMenu.WxMenuButton button4 = new WxMenu.WxMenuButton();
+        subButtons.add(button4);
+        button4.setName("点赞");
+        button4.setType(WxConsts.BUTTON_VIEW);
+        button4.setUrl(callBackOpenIdUrl("/my/comments", "good"));
+
+        WxMenu.WxMenuButton button5 = new WxMenu.WxMenuButton();
+        subButtons.add(button5);
+        button5.setName("吐槽");
+        button5.setType(WxConsts.BUTTON_VIEW);
+        button5.setUrl(callBackOpenIdUrl("/my/comments", "bad"));
+
+        wxMpService.menuCreate(wxMenu);
+    }
 
 }
