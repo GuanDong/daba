@@ -72,7 +72,7 @@ public class WechatC extends Controller {
                 .end()
                 //取消关注
                 .rule()
-                .async(true)
+                .async(false)
                 .event(WxConsts.EVT_UNSUBSCRIBE)
                 .handler(new UnSubscrbeHandler())
                 .end();
