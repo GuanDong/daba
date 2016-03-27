@@ -145,6 +145,7 @@ public class WechatC extends Controller {
         @Override
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 
+            Logger.info("subscribe event");
             WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
 
             HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input account = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input();
@@ -152,13 +153,13 @@ public class WechatC extends Controller {
             account.setAliasname(user.getNickname());
             account.setLoc(user.getCity());
 
-            Logger.debug("subscribe user: %s", new Gson().toJson(account));
+            Logger.info("subscribe user: %s", new Gson().toJson(account));
 
             try {
                 HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub stub = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub();
                 stub.createdAccount(account);
             } catch (RemoteException e) {
-                e.printStackTrace();
+                Logger.error(e, "创建账号出错");;
             }
 
             WxMpXmlOutTextMessage m

@@ -30,7 +30,7 @@ public class Application extends Controller {
 
     }
 
-    @Before(unless = "subcribe", priority = 2)
+    @Before(unless = "subscribe", priority = 2)
     public static void checkLogin(){
 
         String authToken = session.getAuthenticityToken();
