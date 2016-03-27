@@ -13,11 +13,6 @@ public class Application extends Controller {
     public static String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 
     @Before(priority = 1)
-    public static void logurl() throws WxErrorException {
-        Logger.info("url: %s", request.url);
-    }
-
-    @Before(priority = 2)
     public static void processOAuth() throws WxErrorException {
         String code = params.get("code");
         String state = params.get("state");
@@ -35,7 +30,7 @@ public class Application extends Controller {
 
     }
 
-    @Before(unless = "subscribe", priority = 3)
+    @Before(unless = "subscribe", priority = 2)
     public static void checkLogin(){
 
         String authToken = session.getAuthenticityToken();

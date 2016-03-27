@@ -30,6 +30,12 @@ public class WechatC extends Controller {
     private static WxMpService wxMpService;
     private static WxMpMessageRouter wxMpMessageRouter;
 
+
+    @Before
+    public static void log() {
+        Logger.info("url: %s, body: %s", request.url);
+    }
+
     @Before
     public static void init() {
         if (wxMpConfigStorage != null || wxMpService != null || wxMpMessageRouter != null){
