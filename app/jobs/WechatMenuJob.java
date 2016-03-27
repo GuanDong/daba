@@ -9,6 +9,7 @@ public class WechatMenuJob extends Job {
 
     public void doJob() {
         try {
+            WechatC.init();
             WechatC.createMenu();
         } catch (WxErrorException e) {
             e.printStackTrace();
