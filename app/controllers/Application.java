@@ -24,7 +24,7 @@ public class Application extends Controller {
                 Cache.set(session.getAuthenticityToken(), new AuthenticityInfo(account.id, account.openId, account.name));
                 return;
             } else {
-                subcribe();
+                subscribe();
             }
         }
 
@@ -46,7 +46,7 @@ public class Application extends Controller {
         ProductsC.list(null);
     }
 
-    public static void subcribe() {
+    public static void subscribe() {
         renderText("请关注后订餐");
     }
 
