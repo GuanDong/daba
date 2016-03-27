@@ -14,11 +14,13 @@ import models.OrderM;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.Play;
+import play.libs.IO;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.Util;
 import soap.HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub;
 
+import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +111,7 @@ public class WechatC extends Controller {
             renderXml(outMessage.toXml());
         }
 
-        Logger.info("4");
+        Logger.info("4, %s", IO.readContent(request.body));
         if ("aes".equals(encryptType)) {
             // 是aes加密的消息
             String msgSignature = params.get("msg_signature");
