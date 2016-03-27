@@ -10,7 +10,7 @@ GET     /                                       Application.index
 GET     /subscribe                                       Application.subscribe
 
 # 微信消息
-GET     /wechat                                 WechatC.index
+*     /wechat                                 WechatC.index
 
 # 菜品列表
 GET     /products                                       ProductsC.list
