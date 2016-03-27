@@ -17,7 +17,6 @@ public class Application extends Controller {
     public static void processOAuth() throws WxErrorException {
         String code = params.get("code");
         String state = params.get("state");
-        Logger.info("code: %s, state: %s", code, state);
         if (StringUtils.equals(state, "auth") && !StringUtils.isBlank(code)){
             String openId = WechatC.getOpenIdByCode(code);
             AccountM account = AccountM.find("byOpenId", openId).first();
@@ -39,7 +38,6 @@ public class Application extends Controller {
         if (authInfo != null){
             return;
         }
-        Logger.info("base: %s, url: %s", BASE_URL, request.url);
         redirect(WechatC.callBackOpenIdUrl(BASE_URL + request.url, "auth"));
     }
 
