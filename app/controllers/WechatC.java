@@ -193,24 +193,29 @@ public class WechatC extends Controller {
         button2.setType(WxConsts.BUTTON_VIEW);
         button2.setUrl(callBackOpenIdUrl("/my/orders", null));
 
-
         WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
         buttons.add(button3);
         button3.setName("评价");
-        List<WxMenu.WxMenuButton> subButtons = new ArrayList<WxMenu.WxMenuButton>();
-        button3.setSubButtons(subButtons);
+        button3.setType(WxConsts.BUTTON_VIEW);
+        button3.setUrl(callBackOpenIdUrl("/my/comments", null));
 
-        WxMenu.WxMenuButton button4 = new WxMenu.WxMenuButton();
-        subButtons.add(button4);
-        button4.setName("点赞");
-        button4.setType(WxConsts.BUTTON_VIEW);
-        button4.setUrl(callBackOpenIdUrl("/my/comments", "good"));
-
-        WxMenu.WxMenuButton button5 = new WxMenu.WxMenuButton();
-        subButtons.add(button5);
-        button5.setName("吐槽");
-        button5.setType(WxConsts.BUTTON_VIEW);
-        button5.setUrl(callBackOpenIdUrl("/my/comments", "bad"));
+//        WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
+//        buttons.add(button3);
+//        button3.setName("评价");
+//        List<WxMenu.WxMenuButton> subButtons = new ArrayList<WxMenu.WxMenuButton>();
+//        button3.setSubButtons(subButtons);
+//
+//        WxMenu.WxMenuButton button4 = new WxMenu.WxMenuButton();
+//        subButtons.add(button4);
+//        button4.setName("点赞");
+//        button4.setType(WxConsts.BUTTON_VIEW);
+//        button4.setUrl(callBackOpenIdUrl("/my/comments", "good"));
+//
+//        WxMenu.WxMenuButton button5 = new WxMenu.WxMenuButton();
+//        subButtons.add(button5);
+//        button5.setName("吐槽");
+//        button5.setType(WxConsts.BUTTON_VIEW);
+//        button5.setUrl(callBackOpenIdUrl("/my/comments", "bad"));
 
         wxMpService.menuCreate(wxMenu);
     }
