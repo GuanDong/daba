@@ -106,7 +106,7 @@ public class WechatC extends Controller {
         Logger.info("3");
         if ("raw".equals(encryptType)) {
             // 明文传输的消息
-            WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(request.body);
+            WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
             renderXml(outMessage.toXml());
         }
@@ -115,7 +115,7 @@ public class WechatC extends Controller {
         if ("aes".equals(encryptType)) {
             // 是aes加密的消息
             String msgSignature = params.get("msg_signature");
-            WxMpXmlMessage inMessage = WxMpXmlMessage.fromEncryptedXml(request.body, wxMpConfigStorage, timestamp, nonce, msgSignature);
+            WxMpXmlMessage inMessage = WxMpXmlMessage.fromEncryptedXml(params.get("body"), wxMpConfigStorage, timestamp, nonce, msgSignature);
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
             renderXml(outMessage.toEncryptedXml(wxMpConfigStorage));
         }
