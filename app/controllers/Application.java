@@ -13,6 +13,11 @@ public class Application extends Controller {
     public static String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 
     @Before(priority = 1)
+    public static void logurl() throws WxErrorException {
+        Logger.info("url: %s", request.url);
+    }
+
+    @Before(priority = 2)
     public static void processOAuth() throws WxErrorException {
         String code = params.get("code");
         String state = params.get("state");
@@ -30,7 +35,7 @@ public class Application extends Controller {
 
     }
 
-    @Before(unless = "subscribe", priority = 2)
+    @Before(unless = "subscribe", priority = 3)
     public static void checkLogin(){
 
         String authToken = session.getAuthenticityToken();
@@ -38,8 +43,8 @@ public class Application extends Controller {
         if (authInfo != null){
             return;
         }
-        Logger.info("base: %s, url: %s", Application.BASE_URL, request.url);
-        redirect(WechatC.callBackOpenIdUrl(Application.BASE_URL + request.url, "auth"));
+        Logger.info("base: %s, url: %s", BASE_URL, request.url);
+        redirect(WechatC.callBackOpenIdUrl(BASE_URL + request.url, "auth"));
     }
 
     public static void index() {
