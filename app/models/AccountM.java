@@ -1,15 +1,9 @@
 package models;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import play.db.jpa.GenericModel;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="huhu_account_info_v")

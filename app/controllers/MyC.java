@@ -1,16 +1,12 @@
 package controllers;
 
-import com.google.gson.Gson;
-import play.Logger;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.With;
 import soap.HUHU_spcCreate_spcContact_spcWeb_spcServiceStub;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.RemoteException;
 
-import javax.xml.namespace.QName;
-
+@With(Application.class)
 public class MyC extends Controller {
 
     public static void index() {

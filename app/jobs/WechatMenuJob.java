@@ -2,7 +2,8 @@ package jobs;
 
 import controllers.WechatC;
 import me.chanjar.weixin.common.exception.WxErrorException;
-import play.jobs.*;
+import play.jobs.Job;
+import play.jobs.OnApplicationStart;
 
 @OnApplicationStart
 public class WechatMenuJob extends Job {

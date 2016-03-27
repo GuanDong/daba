@@ -1,13 +1,15 @@
 package controllers;
 
-import models.*;
 import org.apache.commons.lang.time.DateUtils;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
+import play.mvc.With;
 
 import java.io.File;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
+@With(Application.class)
 public class ProductsC extends Controller {
 
     public static void list(Date orderDay) {
