@@ -189,6 +189,8 @@ public class WechatC extends Controller {
 
     @Util
     public static void createMenu() throws WxErrorException {
+        String baseUrl = Play.configuration.getProperty("application.baseUrl");
+
         WxMenu wxMenu = new WxMenu();
         List<WxMenu.WxMenuButton> buttons = new ArrayList<WxMenu.WxMenuButton>();
         wxMenu.setButtons(buttons);
@@ -197,20 +199,20 @@ public class WechatC extends Controller {
         buttons.add(button1);
         button1.setName("订餐");
         button1.setType(WxConsts.BUTTON_VIEW);
-        button1.setUrl("http://120.24.68.64/");
+        button1.setUrl(baseUrl + "/");
 
 
         WxMenu.WxMenuButton button2 = new WxMenu.WxMenuButton();
         buttons.add(button2);
         button2.setName("我的订单");
         button2.setType(WxConsts.BUTTON_VIEW);
-        button2.setUrl("http://120.24.68.64/my/orders");
+        button2.setUrl(baseUrl + "/my/orders");
 
         WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
         buttons.add(button3);
         button3.setName("评价");
         button3.setType(WxConsts.BUTTON_VIEW);
-        button3.setUrl("http://120.24.68.64/my/comments");
+        button3.setUrl(baseUrl + "/my/comments");
 
 //        WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
 //        buttons.add(button3);
