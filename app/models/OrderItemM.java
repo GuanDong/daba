@@ -16,6 +16,9 @@ public class OrderItemM extends GenericModel {
     @Column(name="order_id")
     public String orderId;
 
+    @Column(name="accnt_id")
+    public String accountId;
+
     @Column(name="prod_id")
     public String productId;
 

@@ -28,6 +28,15 @@ public class OrderM extends GenericModel {
     @Column(name="desc_text")
     public String desc;
 
+    @Column(name="name")
+    public String contactName;
+
+    @Column(name="phone_num")
+    public String contactPhone;
+
+    @Column(name="addr_name")
+    public String address;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created")
     public Date createdDate;
