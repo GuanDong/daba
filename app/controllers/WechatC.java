@@ -163,7 +163,7 @@ public class WechatC extends Controller {
                 stub.createdAccount(account);
             } catch (RemoteException e) {
                 e.printStackTrace();
-                Logger.error(e, "创建账号出错");;
+                Logger.info(e, "创建账号出错");;
             }
 
             WxMpXmlOutTextMessage m
