@@ -100,6 +100,8 @@ public class WechatC extends Controller {
                 "raw" :
                 params.get("encrypt_type");
 
+        Logger.info("weixin post: %s", params.get("body"));
+
         if ("raw".equals(encryptType)) {
             // 明文传输的消息
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
@@ -107,7 +109,6 @@ public class WechatC extends Controller {
             renderXml(outMessage == null? null : outMessage.toXml());
         }
 
-        Logger.info("weixin post: %s", params.get("body"));
         if ("aes".equals(encryptType)) {
             // 是aes加密的消息
             String msgSignature = params.get("msg_signature");
