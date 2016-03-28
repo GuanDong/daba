@@ -6,23 +6,33 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="huhu_order_head_info_v")
 public class OrderM extends GenericModel {
 
     @Id
+    @Column(name="row_id")
     public String id;
 
+    @Column(name="order_num")
     public String no;
 
-    public String name;
+    @Column(name="accnt_id")
+    public String accountId;
 
-    public String city;
+    @Column(name="status_cd")
+    public String status;
+
+    @Column(name="order_amt")
+    public Float price;
+
+    @Column(name="desc_text")
+    public String desc;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created")
     public Date createdDate;
 
-    public String createdAccount;
-
-    @OrderBy("lastUpdatedDate DESC")
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="last_upd")
     public Date lastUpdatedDate;
 }

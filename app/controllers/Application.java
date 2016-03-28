@@ -3,7 +3,6 @@ package controllers;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.AccountM;
 import org.apache.commons.lang.StringUtils;
-import play.Logger;
 import play.Play;
 import play.cache.Cache;
 import play.mvc.Before;

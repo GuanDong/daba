@@ -17,29 +17,31 @@ GET     /products                                       ProductsC.list
 # 查看菜品
 GET     /products/{id}                                  ProductsC.detail
 # 创建联系人
-POST    /my/contacts                                    MyC.createContact
+POST    /contacts                                    MyC.createContact
 # 创建订单
-POST     /my/orders                                     MyC.createOrder
+POST     /orders                                     MyC.createOrder
 # 查看订单
-GET     /my/orders/{id}                                    MyC.viewOrder
+GET     /orders/{id}                                    MyC.viewOrder
 # 修改订单
-PUT     /my/orders/{id}                                    MyC.modifyOrder
+PUT     /orders                                   MyC.createOrder
+# 修改订单
+PUT     /payorders                                  MyC.payOrder
 # 取消订单
-DELETE     /my/orders/{id}                                 MyC.cancelOrder
+DELETE     /orders/{id}                                 MyC.cancelOrder
 # 发表评论
-POST    /my/comments                                       MyC.comments
+POST    /comments                                       MyC.evaluateProduct
 # 个人中心
 GET     /my                                       MyC.index
 # 优惠券列表
 GET     /coupons                                       CouponsC.list
 # 我的优惠券
-GET     /my/coupons                                       MyC.couponList
+GET     /users/{id}/coupons                                       MyC.couponList
 # 领取优惠券
-POST     /my/coupons                                       MyC.getCoupon
+POST     /coupons                                       MyC.takeCoupon
 # 我的地址
-GET     /my/address                                       MyC.addressList
+GET     /addresses                                  MyC.addressList
 # 创建地址
-POST     /my/address                                       MyC.createAddress
+POST     /addresses                                       MyC.createAddress
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
