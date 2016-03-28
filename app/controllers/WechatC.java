@@ -104,7 +104,7 @@ public class WechatC extends Controller {
             // 明文传输的消息
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
-            renderXml(outMessage.toXml());
+            renderXml(outMessage == null? null : outMessage.toXml());
         }
 
         Logger.info("weixin post: %s", params.get("body"));
@@ -113,7 +113,7 @@ public class WechatC extends Controller {
             String msgSignature = params.get("msg_signature");
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromEncryptedXml(params.get("body"), wxMpConfigStorage, timestamp, nonce, msgSignature);
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
-            renderXml(outMessage.toEncryptedXml(wxMpConfigStorage));
+            renderXml(outMessage == null? null : outMessage.toEncryptedXml(wxMpConfigStorage));
         }
 
         error("不可识别的加密类型");
