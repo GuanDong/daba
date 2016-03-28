@@ -162,6 +162,7 @@ public class WechatC extends Controller {
                 HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub stub = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub();
                 stub.createdAccount(account);
             } catch (RemoteException e) {
+                e.printStackTrace();
                 Logger.error(e, "创建账号出错");;
             }
 
