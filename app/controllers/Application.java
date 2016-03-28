@@ -8,6 +8,8 @@ import play.cache.Cache;
 import play.mvc.Before;
 import play.mvc.Controller;
 
+import java.io.Serializable;
+
 public class Application extends Controller {
 
     public static String BASE_URL = Play.configuration.getProperty("application.baseUrl");
@@ -56,7 +58,7 @@ public class Application extends Controller {
         render();
     }
 
-    public static class AuthenticityInfo {
+    public static class AuthenticityInfo implements Serializable{
         public String currentUserId;
         public String currentUserOpenId;
         public String currentUserName;
