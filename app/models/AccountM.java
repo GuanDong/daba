@@ -19,6 +19,12 @@ public class AccountM extends GenericModel {
     @Column(name="alias_name")
     public String name;
 
+    @Column(name="sex")
+    public String sex;
+
+    @Column(name="headimgurl")
+    public String headimgurl;
+
     @Column(name="city")
     public String city;
 

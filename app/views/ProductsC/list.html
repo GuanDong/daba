@@ -32,21 +32,12 @@
     </ul>
 </footer>
 <section class="ui-container">
-    <div class="weui_media_box weui_media_appmsg">
-        <div class="weui_media_hd">
-            <img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
-        </div>
-        <div class="weui_media_bd">
-            <h4 class="weui_media_title">笑尽英雄</h4>
-            <p class="weui_media_desc">努力加餐饭，快来准备明天的午餐吧！</p>
-        </div>
-    </div>
 	<div class="weui_media_box weui_media_appmsg">
 		<div class="weui_media_hd">
-			<img class="ui-avatar" src="@{'/public/images/actor.jpeg'}" alt="">
+            <img class="ui-avatar" src="${authInfo.headimgurl}" alt="">
 		</div>
 		<div class="weui_media_bd">
-			<h4 class="weui_media_title">笑尽英雄</h4>
+            <h4 class="weui_media_title">${authInfo.name}</h4>
 			<p class="weui_media_desc">努力加餐饭，快来准备明天的午餐吧！</p>
 		</div>
 	</div>
@@ -56,7 +47,7 @@
     </div>
 	</div>
 	<div class="weui_panel_bd weui_cells weui_cells_access">
-		<a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
+		<a href="@{ProductsC.detail(1)}" class="ui-avatar"="weui_cell weui_media_box weui_media_appmsg">
 			<div class="weui_media_hd">
 				<img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
 			</div>
