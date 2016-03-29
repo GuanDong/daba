@@ -8,6 +8,7 @@ import play.mvc.With;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import models.*;
 
 @With(Application.class)
 public class ProductsC extends Controller {
@@ -21,8 +22,9 @@ public class ProductsC extends Controller {
         DateUtils.setSeconds(orderDay, 0);
         DateUtils.setMilliseconds(orderDay, 0);
 
-        String sql = "select new beans.ProductInfo(p.id, p.name, p.desc, p.laLevel, p.hotLevel, p.evaLevel, pp.stdPrice) from ProductM p, ProductPriceM pp where pp.productId=p.id and pp.startDate <= :orderDay and pp.endDate>=:orderDay order by p.hotLevel desc";
-        List productList = JPA.em().createQuery(sql).setParameter("orderDay", orderDay).getResultList();
+        // String sql = "select new beans.ProductInfo(p.id, p.name, p.desc, p.laLevel, p.hotLevel, p.evaLevel, pp.stdPrice) from ProductM p, ProductPriceM pp where pp.productId=p.id and pp.startDate <= :orderDay and pp.endDate>=:orderDay order by p.hotLevel desc";
+        // List productList = JPA.em().createQuery(sql).setParameter("orderDay", orderDay).getResultList();
+        List<ProductM> productList = ProductM.find("startDate <= ? and endDate >= ? order by hotLevel desc", orderDay, orderDay).fetch();
         render(productList);
     }
 

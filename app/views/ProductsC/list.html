@@ -69,28 +69,16 @@
 			</span>
 		</a>
 		#{list items:productList, as:'product'}
-            <a href="@{ProductsC.detail(product.id)}" class="weui_cell weui_media_box weui_media_appmsg">
-                <div class="weui_media_hd">
-                    <img class="weui_media_appmsg_thumb" src="@{ProductsC.viewAvatar(product.id)}" alt="">
-                </div>
-                <div class="weui_media_bd">
-                    <h4 class="weui_media_title">${product.name}</h4>
-                    <p class="weui_media_desc">${product.desc}</p>
-                </div>
-			<span class="weui_cell_ft">
-				<h4 class="weui_media_title" style="color: #de7c23;">${product.price}元</h4>
-			</span>
-            </a>
-            <a href="@{ProductsC.detail(1)}" class="weui_cell weui_media_box weui_media_appmsg">
+            <a href="@{ProductsC.detail(product.productId)}" class="weui_cell weui_media_box weui_media_appmsg">
                 <div class="weui_media_hd">
                     <img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
                 </div>
                 <div class="weui_media_bd">
-                    <h4 class="weui_media_title">土匪猪肝</h4>
-                    <p class="weui_media_desc">材料：青椒、红椒、新鲜猪肝、姜丝、葱。</p>
+                    <h4 class="weui_media_title">${product.productName}</h4>
+                    <p class="weui_media_desc">${product.productDesc}</p>
                 </div>
 			<span class="weui_cell_ft">
-				<h4 class="weui_media_title" style="color: #de7c23;">18元</h4>
+				<h4 class="weui_media_title" style="color: #de7c23;">${product.stdPrice}元</h4>
 			</span>
             </a>
 		#{/list}
