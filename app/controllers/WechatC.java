@@ -155,7 +155,7 @@ public class WechatC extends Controller {
             account.setAliasname(user.getNickname());
             account.setLoc(user.getCity());
             account.setReserve1(user.getSex());
-            account.setReserve2(user.getHeadimgurl());
+            account.setReserve2(user.getHeadImgUrl());
 
             Logger.info("subscribe user: %s", new Gson().toJson(account));
 
