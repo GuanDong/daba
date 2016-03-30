@@ -152,10 +152,12 @@ public class WechatC extends Controller {
 
             HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input account = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input();
             account.setIntegrationid(user.getOpenId());
-            account.setAliasname(user.getNickname());
-            account.setLoc(user.getCity());
-            account.setReserve1(user.getSex());
-            account.setReserve2(user.getHeadImgUrl());
+            account.setAliasname(user.getCity());
+            account.setLoc(user.getHeadImgUrl());
+//            account.setAliasname(user.getNickname());
+//            account.setLoc(user.getCity());
+//            account.setReserve1(user.getSex());
+//            account.setReserve2(user.getHeadImgUrl());
 
             Logger.info("subscribe user: %s", new Gson().toJson(account));
 

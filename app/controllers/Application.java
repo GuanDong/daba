@@ -22,7 +22,7 @@ public class Application extends Controller {
             String openId = WechatC.getOpenIdByCode(code);
             AccountM account = AccountM.find("byOpenId", openId).first();
             if (account != null){
-                Cache.set(session.getAuthenticityToken(), new AuthenticityInfo(account.id, account.openId, account.name, account.headimgurl));
+                Cache.set(session.getAuthenticityToken(), new AuthenticityInfo(account.id, account.openId, account.city, account.name));
                 return;
             } else {
                 subscribe();
