@@ -14,33 +14,38 @@ public class Application extends Controller {
 
     public static String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 
-    @Before(priority = 1)
-    public static void processOAuth() throws WxErrorException {
-        String code = params.get("code");
-        String state = params.get("state");
-        if (StringUtils.equals(state, "auth") && !StringUtils.isBlank(code)){
-            String openId = WechatC.getOpenIdByCode(code);
-            AccountM account = AccountM.find("byOpenId", openId).first();
-            if (account != null){
-                Cache.set(session.getAuthenticityToken(), new AuthenticityInfo(account.id, account.openId, account.city, account.name));
-                return;
-            } else {
-                subscribe();
-            }
-        }
+//    @Before(priority = 1)
+//    public static void processOAuth() throws WxErrorException {
+//        String code = params.get("code");
+//        String state = params.get("state");
+//        if (StringUtils.equals(state, "auth") && !StringUtils.isBlank(code)){
+//            String openId = WechatC.getOpenIdByCode(code);
+//            AccountM account = AccountM.find("byOpenId", openId).first();
+//            if (account != null){
+//                Cache.set(session.getAuthenticityToken(), new AuthenticityInfo(account.id, account.openId, account.city, account.name));
+//                return;
+//            } else {
+//                subscribe();
+//            }
+//        }
+//
+//    }
+//
+//    @Before(unless = "subscribe", priority = 2)
+//    public static void checkLogin(){
+//
+//        String authToken = session.getAuthenticityToken();
+//        AuthenticityInfo authInfo = Cache.get(authToken, AuthenticityInfo.class);
+//        if (authInfo != null){
+//            renderArgs.put("authInfo", authInfo);
+//            return;
+//        }
+//        redirect(WechatC.callBackOpenIdUrl(BASE_URL + request.url, "auth"));
+//    }
 
-    }
-
-    @Before(unless = "subscribe", priority = 2)
+    @Before
     public static void checkLogin(){
-
-        String authToken = session.getAuthenticityToken();
-        AuthenticityInfo authInfo = Cache.get(authToken, AuthenticityInfo.class);
-        if (authInfo != null){
-            renderArgs.put("authInfo", authInfo);
-            return;
-        }
-        redirect(WechatC.callBackOpenIdUrl(BASE_URL + request.url, "auth"));
+        renderArgs.put("authInfo", new AuthenticityInfo("1", "o8K-Ts8IYGgigH2HXXC-Qusu62o0", "笑尽英雄", "http://wx.qlogo.cn/mmopen/6Nhfm3wL8UDfblOic9qGYepa3rsLVrY0u4DiaJAEz6k0QpzKKW5iag2TUlb6khK2mzqYThp05llYVdJAX3C3YrLPqo3DTUFTFQj/0"));
     }
 
     public static void index() {

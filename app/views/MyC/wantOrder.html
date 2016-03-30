@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+  <link rel="stylesheet" href="@{'/public/css/frozen.css'}"/>
+</head>
+<body style="background-color: white;">
+    <ul class="ui-list ui-border-b">
+        <li style="padding: 20px 0px 20px 0px; ">
+            <div class="ui-avatar">
+                <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
+            </div>
+            <div class="ui-list-info">
+                <ul class="ui-row-flex">
+                    <li class="ui-col ui-col-3">
+                        <h4 class="ui-nowrap">${product.productName}</h4>
+                    </li>
+                    <li class="ui-col">
+                        <div class="ui-txt-default">x 1</div>
+                    </li>
+                    <li class="ui-col">
+                        <div class="ui-txt-highlight" style="position: absolute;right: 15px;">${product.stdPrice}元</div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li style="padding-bottom: 20px; color: #04BE02;">
+            <ul class="ui-row-flex">
+                <li class="ui-col">
+                    <label class="ui-label-s" style="position: absolute;margin-top: 15px;margin-left: 5px;">优惠券</label>
+                </li>
+                <li class="ui-col ui-col-3" style="margin-right: 25px;">
+                    <div class="ui-select ui-form-item ui-border-tb">
+                        <select>
+                            <option>不使用</option>
+                            <option selected>新人优惠券3元</option>
+                            <option>活动优惠券1元</option>
+                            <option>活动优惠券2元</option>
+                            <option>活动优惠券3元</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="ui-col">
+                    <div class="ui-txt-highlight" style="position: absolute;margin-top: 10px;right: 15px;">-3元</div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="ui-row-flex" style="padding: 10px 0px 10px 0px; margin-bottom: 40px;">
+        <li class="ui-col ui-col-4 ui-flex ui-flex-pack-end">
+            <h4 style="padding-top: 7px;">订单金额</h4>
+        </li>
+        <li class="ui-col">
+            <h1 class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">17元</h1>
+        </li>
+    </ul>
+
+    <div class="ui-form ui-border-t">
+        <form action="@{MyC.createOrder()}">
+            <input name="contactId" type="hidden">
+            <div class="ui-form-item ui-border-b">
+                <label>
+                    联系人
+                </label>
+                <input name="contact" type="text" placeholder="配送时联系人姓名">
+            </div>
+            <div class="ui-form-item ui-border-b">
+                <label>
+                    联系电话
+                </label>
+                <input name="contactPhone" type="text" placeholder="联系人手机号码">
+            </div>
+            <div class="ui-form-item ui-form-item-r ui-border-b">
+                <input type="text" placeholder="请输入验证码">
+                <!-- 若按钮不可点击则添加 disabled 类 -->
+                <button type="button" class="ui-border-l">发送验证码</button>
+            </div>
+            <input name="addressId" type="hidden">
+            <div class="ui-form-item ui-border-b">
+                <label>
+                    送餐片区
+                </label>
+                <div class="ui-select-group">
+                    <div class="ui-select">
+                        <select>
+                            <option>北京</option>
+                            <option selected>深圳</option>
+                            <option>广州</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <select>
+                            <option>科兴科技园</option>
+                            <option selected>软件创业园</option>
+                            <option>深圳大学</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <select>
+                            <option>A座</option>
+                            <option selected>B座</option>
+                            <option>C座</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-form-item ui-border-b">
+                <label>
+                    详细地址
+                </label>
+                <input name="address" type="text" placeholder="楼层门牌号公司名称">
+            </div>
+        </form>
+    </div>
+    <div class="ui-btn-wrap">
+        <button class="ui-btn-lg ui-btn-primary" style="border-radius: 0;background: #04BE02;">
+            付款
+        </button>
+    </div>
+</body>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+</html>

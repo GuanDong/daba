@@ -19,6 +19,8 @@ GET     /products/{id}                                  ProductsC.detail
 # 创建联系人
 POST    /contacts                                    MyC.createContact
 # 创建订单
+GET     /orders                                      MyC.wantOrder
+# 创建订单
 POST     /orders                                     MyC.createOrder
 # 查看订单
 GET     /orders/{id}                                    MyC.viewOrder

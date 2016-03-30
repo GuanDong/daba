@@ -1,5 +1,6 @@
 package controllers;
 
+import models.ProductM;
 import play.mvc.Controller;
 import soap.*;
 
@@ -36,6 +37,11 @@ public class MyC extends Controller {
         HUHU_spcCreate_spcAccount_spcCoupon_spcWeb_spcServiceStub stub = new HUHU_spcCreate_spcAccount_spcCoupon_spcWeb_spcServiceStub();
         HUHU_spcCreate_spcAccount_spcCoupon_spcWeb_spcServiceStub.CreatedAccountCoupon_Output output = stub.createdAccountCoupon(accountCoupon);
         renderJSON(output);
+    }
+
+    public static void wantOrder(String productId) {
+        ProductM product = ProductM.findById(productId);
+        render(product);
     }
 
     public static void createOrder(HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order, HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.OrderEntryLineItems product, HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.OrderEntryLineItems coupon) throws RemoteException {
