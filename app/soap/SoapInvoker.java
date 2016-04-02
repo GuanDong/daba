@@ -44,6 +44,7 @@ public class SoapInvoker {
         OrderEntryLineItems product = new OrderEntryLineItems();
         product.setItemid(productId);
         product.setProducttype("产品");
+        product.setDeliverydate("2017/07/01 00:00:00");
         orderEntryLineItems.addOrderEntryLineItems(product);
         if (!StringUtils.isBlank(couponId)) {
             Logger.info("couponId:%s", couponId);
