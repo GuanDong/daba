@@ -66,16 +66,16 @@ public class Orders extends Base {
 
     public static void comment(String orderId, Integer score, String content) {
         OrderM order = OrderM.find("accountId = ? and orderId = ?", getAccountOpenId(), orderId).first();
-        if (order != null && order.evaluateScore != null) {
-            order.evaluateScore = score;
-            order.evaluateContent = content;
+//        if (order != null && order.evaluateScore != null) {
+//            order.evaluateScore = score;
+//            order.evaluateContent = content;
 //            HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(orderIt);
 //            if (StringUtils.equals("SUCCESS", output.getProcStatus())){
 //                renderJSON("SUCCESS");
 //            } else {
 //                renderJSON(output.getProcMsg());
 //            }
-        }
+//        }
     }
 
 }

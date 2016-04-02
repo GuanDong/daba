@@ -277,7 +277,12 @@ public class Wechat extends Base {
             account.setIntegrationid(user.getOpenId());
             account.setAliasname(user.getNickname());
             account.setLoc(user.getCity());
-            account.setReserve1(user.getSex());
+
+            if (StringUtils.equals(user.getSex(), "1")) {
+                account.setReserve1("男");
+            } else if (StringUtils.equals(user.getSex(), "2")) {
+                account.setReserve1("女");
+            }
             account.setReserve2(user.getHeadImgUrl());
 
             Logger.info("subscribe user: %s", new Gson().toJson(account));
