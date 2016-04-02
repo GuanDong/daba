@@ -84,13 +84,13 @@ public class Wechat extends Base {
                 .async(false)
                 .event(WxConsts.EVT_LOCATION)
                 .handler(new LocationHandler())
-                .end()
-                //支付
-                .rule()
-                .async(false)
-                .matcher(new PayMessageMatcher())
-                .handler(new PaySuccessHandler())
                 .end();
+//                //支付
+//                .rule()
+//                .async(false)
+//                .matcher(new PayMessageMatcher())
+//                .handler(new PaySuccessHandler())
+//                .end();
 
     }
 
@@ -134,6 +134,34 @@ public class Wechat extends Base {
         }
 
         error("不可识别的加密类型");
+    }
+
+    /*
+     * 微信消息路由
+     */
+    public static void pay() {
+
+        WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
+        String xmlMsg = inMessage.getContent();
+        WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
+
+        String orderNo = wxMpPayCallback.getOut_trade_no();
+        OrderM order = OrderM.find("byNo", orderNo).first();
+        if (StringUtils.equals(order.status, "已下单")) {
+            try {
+                SoapInvoker.changeOrderStatus(orderNo, "已支付");
+            } catch (RemoteException e) {
+                Logger.error(e, "订单支付信息处理失败: %s", xmlMsg);
+            }
+        }
+
+        StringBuilder response = new StringBuilder("<xml>");
+        response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
+        response.append(String.format("<%s>%s</%s>", new Object[]{"return_msg", "<![CDATA[OK]]>", "return_msg"}));
+        response.append("</xml>");
+        WxMpXmlOutTextMessage outMessage
+                = WxMpXmlOutMessage.TEXT().content(response.toString()).build();
+        renderXml(outMessage == null ? "" : outMessage.toXml());
     }
 
     /*
