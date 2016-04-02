@@ -42,8 +42,9 @@ public class Wechat extends Base {
         }
         wxMpConfigStorage = new WxMpInMemoryConfigStorage();
         ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setAppId(Play.configuration.getProperty("weixin.appid")); // 设置微信公众号的appid
-        ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setPartnerId(Play.configuration.getProperty("weixin.partnerid")); // 设置微信商家号
         ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setSecret(Play.configuration.getProperty("weixin.secret")); // 设置微信公众号的app corpSecret
+        ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setPartnerId(Play.configuration.getProperty("weixin.partnerid")); // 设置微信商家号
+        ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setPartnerKey(Play.configuration.getProperty("weixin.partnersecret")); // 设置微信商家号
         ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setToken(Play.configuration.getProperty("weixin.token")); // 设置微信公众号的token
         ((WxMpInMemoryConfigStorage) wxMpConfigStorage).setAesKey(Play.configuration.getProperty("weixin.encodingAESKey")); // 设置微信公众号的EncodingAESKey
 
