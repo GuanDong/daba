@@ -9,7 +9,7 @@ import java.util.List;
 public class My extends Base {
 
     public static void index() {
-        List<OrderM> orderList = OrderM.find("account = ? order by createDate", getAccountOpenId()).fetch();
+        List<OrderM> orderList = OrderM.find("accountId = ? order by createdDate", getAccountOpenId()).fetch();
         List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'N' order by endtDate", getAccountOpenId()).fetch();
         render(orderList, couponList);
     }
