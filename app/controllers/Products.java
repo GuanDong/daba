@@ -3,7 +3,9 @@ package controllers;
 import beans.DistributeInfo;
 import models.AccountCouponM;
 import models.ProductM;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
+import play.Logger;
 import play.cache.Cache;
 import play.db.jpa.JPA;
 import play.mvc.With;
@@ -31,19 +33,23 @@ public class Products extends Base {
         ProductM product = ProductM.findById(productId);
         List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'Y' order by endtDate", getAccountOpenId()).fetch();
 
-        String position = Cache.get(getAccountOpenId() + "_position", String.class);
+        String location = Cache.get(getAccountOpenId() + "_location", String.class);
+
+        Logger.info("openId: %s, location: %s", getAccountOpenId(), location);
+
         String sql = "select " +
                 "new beans.DistributeInfo(contactName, contectPhone, addressCity, addressBlock, addressUnit, addressDetail, latitude, longitude)" +
                 " from OrderM where accountId = :accountId";
         List<DistributeInfo> distributeInfoList = null;
 
-        if (position == null) {
+        if (StringUtils.isBlank(location)) {
+            sql += " order by createdDate desc";
             distributeInfoList = JPA.em().createQuery(sql)
                     .setParameter("accountId", getAccountOpenId())
                     .getResultList();
         } else {
-            String[] longLat = position.split("-");
-            sql += " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2)";
+            String[] longLat = location.split("-");
+            sql += " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc ";
             distributeInfoList = JPA.em().createQuery(sql)
                     .setParameter("accountId", getAccountOpenId())
                     .setParameter("longitude", Double.parseDouble(longLat[0]))
