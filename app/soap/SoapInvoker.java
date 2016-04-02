@@ -1,5 +1,6 @@
 package soap;
 
+import me.chanjar.weixin.common.util.StringUtils;
 import play.Logger;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Input;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output;
@@ -37,17 +38,19 @@ public class SoapInvoker {
 
     public static CreatedOrder_Output saveOrder(CreatedOrder_Input order, String productId, String couponId) throws RemoteException {
         Logger.info("productId: %s, couponId:%s", productId, couponId);
-        OrderEntryLineItems product = new OrderEntryLineItems();
-        product.setItemid(productId);
-        product.setProducttype("产品");
-        OrderEntryLineItems coupon = new OrderEntryLineItems();
-        coupon.setItemid(couponId);
-        coupon.setProducttype("促销");
 
         ListOfHuhuOrderLineMessage lineMessage = new ListOfHuhuOrderLineMessage();
         ListOforderEntryLineItems orderEntryLineItems = new ListOforderEntryLineItems();
+        OrderEntryLineItems product = new OrderEntryLineItems();
+        product.setItemid(productId);
+        product.setProducttype("产品");
         orderEntryLineItems.addOrderEntryLineItems(product);
-        orderEntryLineItems.addOrderEntryLineItems(coupon);
+        if (!StringUtils.isBlank(couponId)) {
+            OrderEntryLineItems coupon = new OrderEntryLineItems();
+            coupon.setItemid(couponId);
+            coupon.setProducttype("促销");
+            orderEntryLineItems.addOrderEntryLineItems(coupon);
+        }
         lineMessage.setListOforderEntryLineItems(orderEntryLineItems);
 
         order.setListOfHuhuOrderLineMessage(lineMessage);
