@@ -43,7 +43,7 @@ public class Products extends Base {
         List<DistributeInfo> distributeInfoList = null;
 
         if (StringUtils.isBlank(location)) {
-            sql += " order by createdDate desc";
+            sql = sql +  " order by createdDate desc";
             Logger.info("sql: %s", sql);
             distributeInfoList = JPA.em().createQuery(sql)
                     .setParameter("accountId", getAccountOpenId())
@@ -51,7 +51,7 @@ public class Products extends Base {
         } else {
             Logger.info("sql: %s", sql);
             String[] longLat = location.split("-");
-            sql += " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc ";
+            sql = sql + " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc ";
             distributeInfoList = JPA.em().createQuery(sql)
                     .setParameter("accountId", getAccountOpenId())
                     .setParameter("longitude", Double.parseDouble(longLat[0]))
