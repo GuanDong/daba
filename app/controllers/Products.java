@@ -2,6 +2,7 @@ package controllers;
 
 import beans.DistributeInfo;
 import models.AccountCouponM;
+import models.OrderM;
 import models.ProductM;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
@@ -37,28 +38,16 @@ public class Products extends Base {
 
         Logger.info("openId: %s, location: %s", getAccountOpenId(), location);
 
-        String sql = "select " +
-                "new beans.DistributeInfo(contactName, contectPhone, addressCity, addressBlock, addressUnit, addressDetail, latitude, longitude)" +
-                " from OrderM where accountId = :accountId";
-        List<DistributeInfo> distributeInfoList = null;
+        List<OrderM> orderList = null;
 
         if (StringUtils.isBlank(location)) {
-            sql = sql +  " order by createdDate desc";
-            Logger.info("sql: %s", sql);
-            distributeInfoList = JPA.em().createQuery(sql)
-                    .setParameter("accountId", getAccountOpenId())
-                    .getResultList();
+            orderList = OrderM.find("accountId = :accountId order by createdDate desc", getAccountOpenId()).fetch();
         } else {
             String[] longLat = location.split("-");
-            sql = sql + " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc ";
-            Logger.info("sql: %s", sql);
-            distributeInfoList = JPA.em().createQuery(sql)
-                    .setParameter("accountId", getAccountOpenId())
-                    .setParameter("longitude", Double.parseDouble(longLat[0]))
-                    .setParameter("latitude", Double.parseDouble(longLat[1]))
-                    .getResultList();
+            orderList = OrderM.find("accountId = :accountId order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc",
+                    getAccountOpenId(), Double.parseDouble(longLat[0]), Double.parseDouble(longLat[1])).fetch();
         }
-        render(product, couponList, distributeInfoList);
+        render(product, couponList, orderList);
     }
 
 
