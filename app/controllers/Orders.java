@@ -7,6 +7,7 @@ import models.OrderM;
 import models.ProductM;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
+import play.Logger;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
@@ -41,6 +42,7 @@ public class Orders extends Base {
             String orderId = output.getOrderid();
             pay(orderId);
         } else {
+            Logger.error(output.getProcMsg());
             flash.error("error", output.getProcMsg());
             Products.book(productId);
         }
