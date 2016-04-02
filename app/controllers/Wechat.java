@@ -270,9 +270,9 @@ public class Wechat extends Base {
 
         WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
         buttons.add(button3);
-        button3.setName("评价");
+        button3.setName("帮助");
         button3.setType(WxConsts.BUTTON_VIEW);
-        button3.setUrl(Application.BASE_URL + "/orders/comment");
+        button3.setUrl(Application.BASE_URL + "/subscribe");
 
 //        WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
 //        buttons.add(button3);
