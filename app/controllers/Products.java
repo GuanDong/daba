@@ -33,7 +33,7 @@ public class Products extends Base {
 
         String position = Cache.get(getAccountOpenId() + "_position", String.class);
         String sql = "select " +
-                "new DistributeInfo(contactId, contactName, contectPhone, addressId, addressCity, addressBlock, addressUnit, addressDetail, latitude, longitude)" +
+                "new beans.DistributeInfo(contactName, contectPhone, addressCity, addressBlock, addressUnit, addressDetail, latitude, longitude)" +
                 " from OrderM where accountId = :accountId";
         List<DistributeInfo> distributeInfoList = null;
 
