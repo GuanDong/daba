@@ -39,7 +39,7 @@ public class Orders extends Base {
         Logger.info("productId: %s, couponId:%s, params: %s", productId, couponId, new Gson().toJson(params.data));
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
-        Logger.info("isOk: %s", output.getProcStatus());
+        Logger.info("SAOP status: %s", output.getProcStatus());
         if (StringUtils.equals("SUCCESS", output.getProcStatus())) {
             String orderId = output.getOrderid();
             pay(orderId);

@@ -235,7 +235,7 @@ public class Wechat extends Base {
         Map<String, String> params = new HashMap<String, String>();
         params.put("body", "健康午餐");
         params.put("out_trade_no", order.no);
-        params.put("total_fee", order.price.toString());
+        params.put("total_fee", "0.01");
         params.put("spbill_create_ip", ip);
         params.put("time_start", order.createdDate.toString());
         params.put("time_expire", order.price.toString());
