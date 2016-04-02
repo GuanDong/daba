@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.Gson;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.AccountCouponM;
 import models.CouponM;
@@ -35,7 +36,7 @@ public class Orders extends Base {
 
     public static void create(String productId, String couponId,
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
-        Logger.info("productId: %s, couponId:%s", productId, couponId);
+        Logger.info("productId: %s, couponId:%s, params: %s", productId, couponId, new Gson().toJson(params.data));
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
         Logger.info("isOk: %s", output.getProcStatus());
