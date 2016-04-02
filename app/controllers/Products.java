@@ -41,10 +41,10 @@ public class Products extends Base {
         List<OrderM> orderList = null;
 
         if (StringUtils.isBlank(location)) {
-            orderList = OrderM.find("accountId = :accountId order by createdDate desc", getAccountOpenId()).fetch();
+            orderList = OrderM.find("accountId = ? order by createdDate desc", getAccountOpenId()).fetch();
         } else {
             String[] longLat = location.split("-");
-            orderList = OrderM.find("accountId = :accountId order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc",
+            orderList = OrderM.find("accountId = ? order by power(longitude - ?, 2) + power(latitude - ?, 2), createdDate desc",
                     getAccountOpenId(), Double.parseDouble(longLat[0]), Double.parseDouble(longLat[1])).fetch();
         }
         render(product, couponList, orderList);
