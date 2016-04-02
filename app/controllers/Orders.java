@@ -35,6 +35,7 @@ public class Orders extends Base {
     public static void create(String productId, String couponId,
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
 
+        order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
         if (StringUtils.equals("SUCCESS", output.getProcStatus())) {
             String orderId = output.getOrderid();

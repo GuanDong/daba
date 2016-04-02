@@ -13,6 +13,7 @@
     <ul class="ui-list ui-border-b">
         <li style="padding: 20px 0px 20px 0px; ">
             <input name="productId" type="hidden" value="${product.id}">
+            <input name="order.pricelstid" type="hidden" value="${product.priceId}">
             <div class="ui-avatar">
                 <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
             </div>
@@ -66,13 +67,13 @@
             <label>
                 联系人
             </label>
-            <input name="order.contactName" type="text" placeholder="配送时联系人姓名">
+            <input name="order.name" type="text" placeholder="配送时联系人姓名">
         </div>
         <div class="ui-form-item ui-border-b">
             <label>
                 联系电话
             </label>
-            <input name="order.contactPhone" type="text" placeholder="联系人手机号码">
+            <input name="order.phonenum" type="text" placeholder="联系人手机号码">
         </div>
         <div id="validPhone" class="ui-form-item ui-form-item-r ui-border-b" style="display: none;">
             <input type="text" placeholder="请输入验证码">
