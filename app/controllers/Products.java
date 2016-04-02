@@ -49,9 +49,9 @@ public class Products extends Base {
                     .setParameter("accountId", getAccountOpenId())
                     .getResultList();
         } else {
-            Logger.info("sql: %s", sql);
             String[] longLat = location.split("-");
             sql = sql + " order by power(longitude - :longitude, 2) + power(latitude - :latitude, 2), createdDate desc ";
+            Logger.info("sql: %s", sql);
             distributeInfoList = JPA.em().createQuery(sql)
                     .setParameter("accountId", getAccountOpenId())
                     .setParameter("longitude", Double.parseDouble(longLat[0]))
