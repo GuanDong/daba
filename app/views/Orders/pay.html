@@ -53,25 +53,24 @@
         WeixinJSBridge.invoke(
                 'getBrandWCPayRequest',
                 {
-                    "appId" ： "${jssdkPayInfo.appId}",
-                "timeStamp"："${jssdkPayInfo.timeStamp}",
-                "nonceStr" ： "${jssdkPayInfo.nonceStr}",
-                "package" ： "${jssdkPayInfo.package}",
-                "signType" ： "${jssdkPayInfo.signType}",
-                "paySign" ： "${jssdkPayInfo.paySign}"
-    },
-        function (res) {
-            $("body").empty();
-            if (res.err_msg == "get_brand_wcpay_request：ok") {
-                $("body").innerHTML($("#paySuccessTmpl").innerHTML);
-            } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
-                $("body").innerHTML($("#payCancelTmpl").innerHTML);
-            } else {
-                $("body").innerHTML($("#payFailureTmpl").innerHTML);
-            }
-        }
-
-    )
+                    "appId": "${jssdkPayInfo.appId}",
+                    "timeStamp": "${jssdkPayInfo.timeStamp}",
+                    "nonceStr": "${jssdkPayInfo.nonceStr}",
+                    "package": "${jssdkPayInfo.package}",
+                    "signType": "${jssdkPayInfo.signType}",
+                    "paySign": "${jssdkPayInfo.paySign}"
+                },
+                function (res) {
+                    $("body").empty();
+                    if (res.err_msg == "get_brand_wcpay_request：ok") {
+                        $("body").innerHTML($("#paySuccessTmpl").innerHTML);
+                    } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
+                        $("body").innerHTML($("#payCancelTmpl").innerHTML);
+                    } else {
+                        $("body").innerHTML($("#payFailureTmpl").innerHTML);
+                    }
+                }
+        )
         ;
     }
     if (typeof WeixinJSBridge == "undefined") {
