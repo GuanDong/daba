@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+    <link rel="stylesheet" href="@{'/public/css/frozen.css'}"/>
+</head>
+<body>
+<div class="weui_cell weui_media_box weui_media_appmsg">
+    <div class="weui_media_hd">
+        <img class="weui_media_appmsg_thumb" src="@{'/public/images/tfzg.jpg'}" alt="">
+    </div>
+    <div class="weui_media_bd">
+        <ul class="ui-row">
+            <li class="ui-col ui-col-75">
+                <h4 class="weui_media_title">土匪猪肝</h4>
+            </li>
+            <li class="ui-col ui-col-25">
+                x1
+            </li>
+    </div>
+        <span class="weui_cell_ft">
+            <h1 class="ui-txt-highlight">18元</h1>
+        </span>
+</div>
+<div class="ui-form ui-border-t">
+    <form action="#">
+        <div class="ui-form-item ui-border-b">
+            <label>
+                联系人
+            </label>
+            <input type="text" placeholder="配送时联系人姓名">
+            </a>
+        </div>
+        <div class="ui-form-item ui-border-b">
+            <label>
+                联系电话
+            </label>
+            <input type="text" placeholder="联系人手机号码">
+        </div>
+        <div class="ui-form-item ui-border-b">
+            <label>
+                送餐片区
+            </label>
+            <div class="ui-select-group">
+                <div class="ui-select">
+                    <select>
+                        <option>北京</option>
+                        <option selected>深圳</option>
+                        <option>广州</option>
+                    </select>
+                </div>
+                <div class="ui-select">
+                    <select>
+                        <option>科兴科技园</option>
+                        <option selected>软件创业园</option>
+                        <option>深圳大学</option>
+                    </select>
+                </div>
+                <div class="ui-select">
+                    <select>
+                        <option>A座</option>
+                        <option selected>B座</option>
+                        <option>C座</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="ui-form-item ui-border-b">
+            <label>
+                详细地址
+            </label>
+            <input type="text" placeholder="楼层门牌号公司名称">
+        </div>
+    </form>
+</div>
+<div class="ui-btn-wrap">
+    <button class="ui-btn-lg ui-btn-primary">
+        付款
+    </button>
+</div>
+</body>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+</html>

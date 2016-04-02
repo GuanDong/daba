@@ -6,30 +6,30 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="huhu_contact_info_v")
+@Table(name = "huhu_contact_info_v")
 public class ContactM extends GenericModel {
 
     @Id
-    @Column(name="row_id")
+    @Column(name = "row_id")
     public String id;
 
-    @Column(name="acc_id")
+    @Column(name = "acc_id")
     public String accountId;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     public String name;
 
-    @Column(name="cell_ph_num")
+    @Column(name = "cell_ph_num")
     public String tel;
 
-    @Column(name="main_flg")
+    @Column(name = "main_flg")
     public String mainFlag;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="created")
+    @Column(name = "created")
     public Date createdDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="last_upd")
+    @Column(name = "last_upd")
     public Date lastUpdatedDate;
 }

@@ -1,6 +1,6 @@
 /**
  * HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.java
- *
+ * <p/>
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.1  Built on : Feb 20, 2016 (10:01:29 GMT)
  */
@@ -24,8 +24,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
      *Constructor that takes in a configContext
      */
     public HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext,
-        java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext,
+            java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
 
@@ -33,9 +33,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
      * Constructor that takes in a configContext  and useseperate listner
      */
     public HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext,
-        java.lang.String targetEndpoint, boolean useSeparateListener)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext,
+            java.lang.String targetEndpoint, boolean useSeparateListener)
+            throws org.apache.axis2.AxisFault {
         //To populate AxisService
         populateAxisService();
         populateFaults();
@@ -44,8 +44,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 _service);
 
         _serviceClient.getOptions()
-                      .setTo(new org.apache.axis2.addressing.EndpointReference(
-                targetEndpoint));
+                .setTo(new org.apache.axis2.addressing.EndpointReference(
+                        targetEndpoint));
         _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
     }
 
@@ -53,26 +53,26 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
      * Default Constructor
      */
     public HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext)
+            throws org.apache.axis2.AxisFault {
         this(configurationContext,
-            "http://120.24.68.64:7778/eai_chs/start.swe?SWEExtSource=WebService&SWEExtCmd=Execute&Username=SADMIN&Password=SADMIN");
+                "http://120.24.68.64:7778/eai_chs/start.swe?SWEExtSource=WebService&SWEExtCmd=Execute&Username=SADMIN&Password=SADMIN");
     }
 
     /**
      * Default Constructor
      */
     public HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub()
-        throws org.apache.axis2.AxisFault {
+            throws org.apache.axis2.AxisFault {
         this(
-            "http://120.24.68.64:7778/eai_chs/start.swe?SWEExtSource=WebService&SWEExtCmd=Execute&Username=SADMIN&Password=SADMIN");
+                "http://120.24.68.64:7778/eai_chs/start.swe?SWEExtSource=WebService&SWEExtCmd=Execute&Username=SADMIN&Password=SADMIN");
     }
 
     /**
      * Constructor taking the target endpoint
      */
     public HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub(
-        java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+            java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
@@ -85,14 +85,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         counter = counter + 1;
 
         return java.lang.Long.toString(java.lang.System.currentTimeMillis()) +
-        "_" + counter;
+                "_" + counter;
     }
 
     private void populateAxisService() throws org.apache.axis2.AxisFault {
         //creating the Service with a unique name
         _service = new org.apache.axis2.description.AxisService(
                 "HUHU_spcCreate_spcOrder_spcWeb_spcService" +
-                getUniqueSuffix());
+                        getUniqueSuffix());
         addAnonymousOperations();
 
         //creating the operations
@@ -120,19 +120,19 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
      * @param createdOrder_Input
      */
     public soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output createdOrder(
-        soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input createdOrder_Input)
-        throws java.rmi.RemoteException {
+            soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input createdOrder_Input)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = null;
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
             _operationClient.getOptions()
-                            .setAction("document/http://siebel.com/CustomUI:createdOrder");
+                    .setAction("document/http://siebel.com/CustomUI:createdOrder");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create a message context
             _messageContext = new org.apache.axis2.context.MessageContext();
@@ -141,13 +141,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     createdOrder_Input,
                     optimizeContent(
-                        new javax.xml.namespace.QName(
-                            "http://siebel.com/CustomUI", "createdOrder")),
+                            new javax.xml.namespace.QName(
+                                    "http://siebel.com/CustomUI", "createdOrder")),
                     new javax.xml.namespace.QName(
-                        "http://siebel.com/CustomUI", "createdOrder_Input"));
+                            "http://siebel.com/CustomUI", "createdOrder_Input"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -164,7 +164,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             java.lang.Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output.class);
 
             return (soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output) object;
@@ -173,25 +173,25 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "createdOrder"))) {
                     //make the fault by reflection
                     try {
                         java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "createdOrder"));
+                                faultElt.getQName(), "createdOrder"));
                         java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(java.lang.String.class);
                         java.lang.Exception ex = (java.lang.Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         java.lang.String messageClassName = (java.lang.String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "createdOrder"));
+                                faultElt.getQName(), "createdOrder"));
                         java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
                         java.lang.Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new java.lang.Class[] { messageClass });
-                        m.invoke(ex, new java.lang.Object[] { messageObject });
+                                new java.lang.Class[]{messageClass});
+                        m.invoke(ex, new java.lang.Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (java.lang.ClassCastException e) {
@@ -222,7 +222,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -242,38 +242,38 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -287,20 +287,20 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
      *  get the default envelope
      */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory) {
+            org.apache.axiom.soap.SOAPFactory factory) {
         return factory.getDefaultEnvelope();
     }
 
     private java.lang.Object fromOM(org.apache.axiom.om.OMElement param,
-        java.lang.Class type) throws org.apache.axis2.AxisFault {
+                                    java.lang.Class type) throws org.apache.axis2.AxisFault {
         try {
             if (soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input.class.equals(
-                        type)) {
+                    type)) {
                 return soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output.class.equals(
-                        type)) {
+                    type)) {
                 return soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
         } catch (java.lang.Exception e) {
@@ -428,6 +428,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *   in the serialized XML
          */
         protected boolean localReverse5Tracker = false;
+
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals(
+                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
+                return "ns1";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
 
         public boolean isItemidSpecified() {
             return localItemidTracker;
@@ -656,23 +666,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -680,7 +690,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -689,12 +699,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":orderEntry-LineItems", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":orderEntry-LineItems", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "orderEntry-LineItems", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "orderEntry-LineItems", xmlWriter);
                 }
             }
 
@@ -705,7 +715,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localItemid == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "itemid cannot be null!!");
+                            "itemid cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localItemid);
                 }
@@ -720,7 +730,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localItemdesc == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "itemdesc cannot be null!!");
+                            "itemdesc cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localItemdesc);
                 }
@@ -735,7 +745,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localDeliverydate == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "deliverydate cannot be null!!");
+                            "deliverydate cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localDeliverydate);
                 }
@@ -750,7 +760,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localProdid == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "prodid cannot be null!!");
+                            "prodid cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localProdid);
                 }
@@ -765,7 +775,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localProducttype == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "producttype cannot be null!!");
+                            "producttype cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localProducttype);
                 }
@@ -780,7 +790,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localReverse1 == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "reverse1 cannot be null!!");
+                            "reverse1 cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localReverse1);
                 }
@@ -795,7 +805,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localReverse2 == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "reverse2 cannot be null!!");
+                            "reverse2 cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localReverse2);
                 }
@@ -810,7 +820,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localReverse3 == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "reverse3 cannot be null!!");
+                            "reverse3 cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localReverse3);
                 }
@@ -825,7 +835,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localReverse4 == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "reverse4 cannot be null!!");
+                            "reverse4 cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localReverse4);
                 }
@@ -840,7 +850,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if (localReverse5 == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "reverse5 cannot be null!!");
+                            "reverse5 cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localReverse5);
                 }
@@ -851,23 +861,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
-                return "ns1";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -889,15 +889,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -909,14 +909,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -924,9 +924,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -947,7 +947,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -955,8 +955,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -970,8 +970,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -984,8 +984,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -1011,8 +1011,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -1031,9 +1031,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -1072,8 +1072,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static OrderEntryLineItems parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 OrderEntryLineItems object = new OrderEntryLineItems();
 
                 int event;
@@ -1089,8 +1089,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -1105,15 +1105,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"orderEntry-LineItems".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (OrderEntryLineItems) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -1129,18 +1129,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "itemid").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "itemid").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "itemid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "itemid" +
-                                "  cannot be null");
+                                    "The element: " + "itemid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1159,18 +1159,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "itemdesc").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "itemdesc").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "itemdesc").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "itemdesc" +
-                                "  cannot be null");
+                                    "The element: " + "itemdesc" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1189,18 +1189,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "deliverydate").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "deliverydate").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "deliverydate").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "deliverydate" +
-                                "  cannot be null");
+                                    "The element: " + "deliverydate" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1219,18 +1219,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "prodid").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "prodid").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "prodid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "prodid" +
-                                "  cannot be null");
+                                    "The element: " + "prodid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1249,18 +1249,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "producttype").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "producttype").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "producttype").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "producttype" +
-                                "  cannot be null");
+                                    "The element: " + "producttype" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1279,18 +1279,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "reverse1").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "reverse1").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "reverse1").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reverse1" +
-                                "  cannot be null");
+                                    "The element: " + "reverse1" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1309,18 +1309,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "reverse2").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "reverse2").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "reverse2").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reverse2" +
-                                "  cannot be null");
+                                    "The element: " + "reverse2" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1339,18 +1339,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "reverse3").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "reverse3").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "reverse3").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reverse3" +
-                                "  cannot be null");
+                                    "The element: " + "reverse3" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1369,18 +1369,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "reverse4").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "reverse4").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "reverse4").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reverse4" +
-                                "  cannot be null");
+                                    "The element: " + "reverse4" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1399,18 +1399,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "reverse5").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "reverse5").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("", "reverse5").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reverse5" +
-                                "  cannot be null");
+                                    "The element: " + "reverse5" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -1430,7 +1430,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
@@ -1460,6 +1460,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         protected boolean localOrderEntryLineItemsTracker = false;
 
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals(
+                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
+                return "ns1";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
         public boolean isOrderEntryLineItemsSpecified() {
             return localOrderEntryLineItemsTracker;
         }
@@ -1470,12 +1480,6 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         public OrderEntryLineItems[] getOrderEntryLineItems() {
             return localOrderEntryLineItems;
-        }
-
-        /**
-         * validate the array for OrderEntryLineItems
-         */
-        protected void validateOrderEntryLineItems(OrderEntryLineItems[] param) {
         }
 
         /**
@@ -1491,12 +1495,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         /**
+         * validate the array for OrderEntryLineItems
+         */
+        protected void validateOrderEntryLineItems(OrderEntryLineItems[] param) {
+        }
+
+        /**
          * Auto generated add method for the array for convenience
          * @param param OrderEntryLineItems
          */
         public void addOrderEntryLineItems(OrderEntryLineItems param) {
             if (localOrderEntryLineItems == null) {
-                localOrderEntryLineItems = new OrderEntryLineItems[] {  };
+                localOrderEntryLineItems = new OrderEntryLineItems[]{};
             }
 
             //update the setting tracker
@@ -1514,23 +1524,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -1538,7 +1548,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -1547,13 +1557,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":listOforderEntry-LineItems",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":listOforderEntry-LineItems",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "listOforderEntry-LineItems", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "listOforderEntry-LineItems", xmlWriter);
                 }
             }
 
@@ -1570,30 +1580,20 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     }
                 } else {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "orderEntry-LineItems cannot be null!!");
+                            "orderEntry-LineItems cannot be null!!");
                 }
             }
 
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
-                return "ns1";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -1615,15 +1615,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -1635,14 +1635,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -1650,9 +1650,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -1673,7 +1673,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -1681,8 +1681,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -1696,8 +1696,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -1710,8 +1710,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -1737,8 +1737,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -1757,9 +1757,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -1798,8 +1798,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ListOforderEntryLineItems parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 ListOforderEntryLineItems object = new ListOforderEntryLineItems();
 
                 int event;
@@ -1815,8 +1815,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -1831,15 +1831,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"listOforderEntry-LineItems".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (ListOforderEntryLineItems) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -1857,10 +1857,10 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "orderEntry-LineItems").equals(reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "orderEntry-LineItems").equals(reader.getName())) ||
                             new javax.xml.namespace.QName("",
-                                "orderEntry-LineItems").equals(reader.getName())) {
+                                    "orderEntry-LineItems").equals(reader.getName())) {
                         // Process the array and step past its final element's end.
                         list1.add(OrderEntryLineItems.Factory.parse(reader));
 
@@ -1885,9 +1885,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                                 loopDone1 = true;
                             } else {
                                 if (new javax.xml.namespace.QName(
-                                            "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                            "orderEntry-LineItems").equals(
-                                            reader.getName())) {
+                                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                        "orderEntry-LineItems").equals(
+                                        reader.getName())) {
                                     list1.add(OrderEntryLineItems.Factory.parse(
                                             reader));
                                 } else {
@@ -1910,7 +1910,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
@@ -1930,6 +1930,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         protected ListOfHuhuOrderLineMessage localListOfHuhuOrderLineMessage;
 
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals(
+                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
+                return "ns1";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
         /**
          * Auto generated getter method
          * @return ListOfHuhuOrderLineMessage
@@ -1943,7 +1953,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @param param ListOfHuhuOrderLineMessage
          */
         public void setListOfHuhuOrderLineMessage(
-            ListOfHuhuOrderLineMessage param) {
+                ListOfHuhuOrderLineMessage param) {
             this.localListOfHuhuOrderLineMessage = param;
         }
 
@@ -1954,50 +1964,40 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             //We can safely assume an element has only one type associated with it
             if (localListOfHuhuOrderLineMessage == null) {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "listOfHuhuOrderLineMessage cannot be null!");
+                        "listOfHuhuOrderLineMessage cannot be null!");
             }
 
             localListOfHuhuOrderLineMessage.serialize(MY_QNAME, xmlWriter);
-        }
-
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
-                return "ns1";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
 
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -2019,15 +2019,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -2039,14 +2039,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -2054,9 +2054,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -2077,7 +2077,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -2085,8 +2085,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -2100,8 +2100,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -2114,8 +2114,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -2141,8 +2141,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -2161,9 +2161,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -2202,8 +2202,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ListOfHuhuOrderLineMessageE parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 ListOfHuhuOrderLineMessageE object = new ListOfHuhuOrderLineMessageE();
 
                 int event;
@@ -2226,12 +2226,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                         if (reader.isStartElement()) {
                             if ((reader.isStartElement() &&
                                     new javax.xml.namespace.QName(
-                                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                        "listOfHuhuOrderLineMessage").equals(
-                                        reader.getName())) ||
+                                            "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                            "listOfHuhuOrderLineMessage").equals(
+                                            reader.getName())) ||
                                     new javax.xml.namespace.QName("",
-                                        "listOfHuhuOrderLineMessage").equals(
-                                        reader.getName())) {
+                                            "listOfHuhuOrderLineMessage").equals(
+                                            reader.getName())) {
                                 object.setListOfHuhuOrderLineMessage(ListOfHuhuOrderLineMessage.Factory.parse(
                                         reader));
                             } // End of if for expected property start element
@@ -2239,8 +2239,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             else {
                                 // 3 - A start element we are not expecting indicates an invalid parameter was passed
                                 throw new org.apache.axis2.databinding.ADBException(
-                                    "Unexpected subelement " +
-                                    reader.getName());
+                                        "Unexpected subelement " +
+                                                reader.getName());
                             }
                         } else {
                             reader.next();
@@ -2257,34 +2257,34 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
     public static class ExtensionMapper {
         public static java.lang.Object getTypeObject(
-            java.lang.String namespaceURI, java.lang.String typeName,
-            javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                java.lang.String namespaceURI, java.lang.String typeName,
+                javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
             if ("http://www.siebel.com/xml/HUHU%20Order%20Line%20Message".equals(
-                        namespaceURI) &&
+                    namespaceURI) &&
                     "listOfHuhuOrderLineMessage".equals(typeName)) {
                 return ListOfHuhuOrderLineMessage.Factory.parse(reader);
             }
 
             if ("http://www.siebel.com/xml/HUHU%20Order%20Line%20Message".equals(
-                        namespaceURI) &&
+                    namespaceURI) &&
                     "orderEntry-LineItems".equals(typeName)) {
                 return OrderEntryLineItems.Factory.parse(reader);
             }
 
             if ("http://www.siebel.com/xml/HUHU%20Order%20Line%20Message".equals(
-                        namespaceURI) &&
+                    namespaceURI) &&
                     "listOfHuhuOrderLineMessageTopElmt".equals(typeName)) {
                 return ListOfHuhuOrderLineMessageTopElmt.Factory.parse(reader);
             }
 
             if ("http://www.siebel.com/xml/HUHU%20Order%20Line%20Message".equals(
-                        namespaceURI) &&
+                    namespaceURI) &&
                     "listOforderEntry-LineItems".equals(typeName)) {
                 return ListOforderEntryLineItems.Factory.parse(reader);
             }
 
             throw new org.apache.axis2.databinding.ADBException(
-                "Unsupported type " + namespaceURI + " " + typeName);
+                    "Unsupported type " + namespaceURI + " " + typeName);
         }
     }
 
@@ -2316,6 +2316,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * field for ProcStatus
          */
         protected java.lang.String localProcStatus;
+
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals("http://siebel.com/CustomUI")) {
+                return "ns2";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
 
         /**
          * Auto generated getter method
@@ -2404,23 +2413,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -2428,7 +2437,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -2437,12 +2446,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":createdOrder_Output", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":createdOrder_Output", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "createdOrder_Output", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "createdOrder_Output", xmlWriter);
                 }
             }
 
@@ -2452,7 +2461,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localOrderamt == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "orderamt cannot be null!!");
+                        "orderamt cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localOrderamt);
             }
@@ -2465,7 +2474,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localOrderid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "orderid cannot be null!!");
+                        "orderid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localOrderid);
             }
@@ -2478,7 +2487,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localOrdernum == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "ordernum cannot be null!!");
+                        "ordernum cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localOrdernum);
             }
@@ -2491,7 +2500,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localProcMsg == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "procMsg cannot be null!!");
+                        "procMsg cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localProcMsg);
             }
@@ -2504,7 +2513,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localProcStatus == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "procStatus cannot be null!!");
+                        "procStatus cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localProcStatus);
             }
@@ -2514,22 +2523,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals("http://siebel.com/CustomUI")) {
-                return "ns2";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -2551,15 +2551,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -2571,14 +2571,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -2586,9 +2586,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -2609,7 +2609,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -2617,8 +2617,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -2632,8 +2632,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -2646,8 +2646,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -2673,8 +2673,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -2693,9 +2693,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -2734,8 +2734,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static CreatedOrder_Output parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 CreatedOrder_Output object = new CreatedOrder_Output();
 
                 int event;
@@ -2751,8 +2751,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -2767,15 +2767,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"createdOrder_Output".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (CreatedOrder_Output) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -2791,18 +2791,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "orderamt").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "orderamt").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "orderamt").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "orderamt" +
-                                "  cannot be null");
+                                    "The element: " + "orderamt" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -2816,7 +2816,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -2824,18 +2824,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "orderid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "orderid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "orderid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "orderid" +
-                                "  cannot be null");
+                                    "The element: " + "orderid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -2849,7 +2849,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -2857,18 +2857,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "ordernum").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "ordernum").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "ordernum").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "ordernum" +
-                                "  cannot be null");
+                                    "The element: " + "ordernum" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -2882,7 +2882,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -2890,18 +2890,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "procMsg").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "procMsg").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "procMsg").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "procMsg" +
-                                "  cannot be null");
+                                    "The element: " + "procMsg" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -2915,7 +2915,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -2923,18 +2923,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "procStatus").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "procStatus").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "procStatus").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "procStatus" +
-                                "  cannot be null");
+                                    "The element: " + "procStatus" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -2948,7 +2948,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -2957,7 +2957,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
@@ -2986,6 +2986,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         protected boolean localListOforderEntryLineItemsTracker = false;
 
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals(
+                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
+                return "ns1";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
         public boolean isListOforderEntryLineItemsSpecified() {
             return localListOforderEntryLineItemsTracker;
         }
@@ -3003,7 +3013,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @param param ListOforderEntryLineItems
          */
         public void setListOforderEntryLineItems(
-            ListOforderEntryLineItems param) {
+                ListOforderEntryLineItems param) {
             localListOforderEntryLineItemsTracker = param != null;
 
             this.localListOforderEntryLineItems = param;
@@ -3016,23 +3026,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -3040,7 +3050,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -3049,20 +3059,20 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":listOfHuhuOrderLineMessage",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":listOfHuhuOrderLineMessage",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "listOfHuhuOrderLineMessage", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "listOfHuhuOrderLineMessage", xmlWriter);
                 }
             }
 
             if (localListOforderEntryLineItemsTracker) {
                 if (localListOforderEntryLineItems == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "listOforderEntry-LineItems cannot be null!!");
+                            "listOforderEntry-LineItems cannot be null!!");
                 }
 
                 localListOforderEntryLineItems.serialize(new javax.xml.namespace.QName(
@@ -3073,23 +3083,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
-                return "ns1";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -3111,15 +3111,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -3131,14 +3131,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -3146,9 +3146,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -3169,7 +3169,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -3177,8 +3177,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -3192,8 +3192,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -3206,8 +3206,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -3233,8 +3233,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -3253,9 +3253,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -3294,8 +3294,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ListOfHuhuOrderLineMessage parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 ListOfHuhuOrderLineMessage object = new ListOfHuhuOrderLineMessage();
 
                 int event;
@@ -3311,8 +3311,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -3327,15 +3327,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"listOfHuhuOrderLineMessage".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (ListOfHuhuOrderLineMessage) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -3351,12 +3351,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "listOforderEntry-LineItems").equals(
-                                reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "listOforderEntry-LineItems").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("",
-                                "listOforderEntry-LineItems").equals(
-                                reader.getName())) {
+                                    "listOforderEntry-LineItems").equals(
+                                    reader.getName())) {
                         object.setListOforderEntryLineItems(ListOforderEntryLineItems.Factory.parse(
                                 reader));
 
@@ -3372,7 +3372,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
@@ -3503,6 +3503,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         protected java.lang.String localReserve3 = "";
 
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals("http://siebel.com/CustomUI")) {
+                return "ns2";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
         /**
          * Auto generated getter method
          * @return java.lang.String
@@ -3584,7 +3593,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @param param ListOfHuhuOrderLineMessage
          */
         public void setListOfHuhuOrderLineMessage(
-            ListOfHuhuOrderLineMessage param) {
+                ListOfHuhuOrderLineMessage param) {
             localListOfHuhuOrderLineMessageTracker = param != null;
 
             this.localListOfHuhuOrderLineMessage = param;
@@ -3869,23 +3878,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -3893,7 +3902,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -3902,12 +3911,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":createdOrder_Input", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":createdOrder_Input", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "createdOrder_Input", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "createdOrder_Input", xmlWriter);
                 }
             }
 
@@ -3917,7 +3926,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localPricelstid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "pricelstid cannot be null!!");
+                        "pricelstid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localPricelstid);
             }
@@ -3930,7 +3939,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localContactid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "contactid cannot be null!!");
+                        "contactid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localContactid);
             }
@@ -3943,7 +3952,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localName == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "name cannot be null!!");
+                        "name cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localName);
             }
@@ -3956,7 +3965,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localReserve1 == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "reserve1 cannot be null!!");
+                        "reserve1 cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localReserve1);
             }
@@ -3966,7 +3975,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localListOfHuhuOrderLineMessageTracker) {
                 if (localListOfHuhuOrderLineMessage == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "listOfHuhuOrderLineMessage cannot be null!!");
+                            "listOfHuhuOrderLineMessage cannot be null!!");
                 }
 
                 localListOfHuhuOrderLineMessage.serialize(new javax.xml.namespace.QName(
@@ -3980,7 +3989,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localOrderid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "orderid cannot be null!!");
+                        "orderid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localOrderid);
             }
@@ -3993,7 +4002,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localState == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "state cannot be null!!");
+                        "state cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localState);
             }
@@ -4006,7 +4015,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localPhonenum == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "phonenum cannot be null!!");
+                        "phonenum cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localPhonenum);
             }
@@ -4019,7 +4028,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localReserve5 == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "reserve5 cannot be null!!");
+                        "reserve5 cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localReserve5);
             }
@@ -4032,7 +4041,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localCity == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "city cannot be null!!");
+                        "city cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localCity);
             }
@@ -4045,7 +4054,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localUnit == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "unit cannot be null!!");
+                        "unit cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localUnit);
             }
@@ -4058,7 +4067,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localLongtitude == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "longtitude cannot be null!!");
+                        "longtitude cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localLongtitude);
             }
@@ -4071,7 +4080,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localAccntid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "accntid cannot be null!!");
+                        "accntid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localAccntid);
             }
@@ -4084,7 +4093,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localDesc == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "desc cannot be null!!");
+                        "desc cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localDesc);
             }
@@ -4097,7 +4106,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localLatitude == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "latitude cannot be null!!");
+                        "latitude cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localLatitude);
             }
@@ -4110,7 +4119,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localReserve2 == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "reserve2 cannot be null!!");
+                        "reserve2 cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localReserve2);
             }
@@ -4123,7 +4132,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localReserve4 == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "reserve4 cannot be null!!");
+                        "reserve4 cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localReserve4);
             }
@@ -4136,7 +4145,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localBlock == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "block cannot be null!!");
+                        "block cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localBlock);
             }
@@ -4149,7 +4158,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localAddr == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "addr cannot be null!!");
+                        "addr cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localAddr);
             }
@@ -4162,7 +4171,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localAddrid == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "addrid cannot be null!!");
+                        "addrid cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localAddrid);
             }
@@ -4175,7 +4184,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localAliasname == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "aliasname cannot be null!!");
+                        "aliasname cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localAliasname);
             }
@@ -4188,7 +4197,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             if (localReserve3 == null) {
                 // write the nil attribute
                 throw new org.apache.axis2.databinding.ADBException(
-                    "reserve3 cannot be null!!");
+                        "reserve3 cannot be null!!");
             } else {
                 xmlWriter.writeCharacters(localReserve3);
             }
@@ -4198,22 +4207,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals("http://siebel.com/CustomUI")) {
-                return "ns2";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -4235,15 +4235,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -4255,14 +4255,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -4270,9 +4270,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -4293,7 +4293,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -4301,8 +4301,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -4316,8 +4316,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -4330,8 +4330,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -4357,8 +4357,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -4377,9 +4377,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -4418,8 +4418,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static CreatedOrder_Input parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 CreatedOrder_Input object = new CreatedOrder_Input();
 
                 int event;
@@ -4435,8 +4435,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -4451,15 +4451,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"createdOrder_Input".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (CreatedOrder_Input) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -4475,18 +4475,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "pricelstid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "pricelstid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "pricelstid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "pricelstid" +
-                                "  cannot be null");
+                                    "The element: " + "pricelstid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4500,7 +4500,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4508,18 +4508,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "contactid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "contactid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "contactid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "contactid" +
-                                "  cannot be null");
+                                    "The element: " + "contactid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4533,7 +4533,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4541,17 +4541,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "name").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "name").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "name").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "name" + "  cannot be null");
+                                    "The element: " + "name" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4565,7 +4565,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4573,18 +4573,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "reserve1").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "reserve1").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "reserve1").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reserve1" +
-                                "  cannot be null");
+                                    "The element: " + "reserve1" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4598,7 +4598,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4606,12 +4606,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "listOfHuhuOrderLineMessage").equals(
-                                reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "listOfHuhuOrderLineMessage").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("",
-                                "listOfHuhuOrderLineMessage").equals(
-                                reader.getName())) {
+                                    "listOfHuhuOrderLineMessage").equals(
+                                    reader.getName())) {
                         object.setListOfHuhuOrderLineMessage(ListOfHuhuOrderLineMessage.Factory.parse(
                                 reader));
 
@@ -4626,18 +4626,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "orderid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "orderid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "orderid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "orderid" +
-                                "  cannot be null");
+                                    "The element: " + "orderid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4651,7 +4651,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4659,17 +4659,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "state").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "state").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "state").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "state" + "  cannot be null");
+                                    "The element: " + "state" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4683,7 +4683,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4691,18 +4691,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "phonenum").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "phonenum").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "phonenum").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "phonenum" +
-                                "  cannot be null");
+                                    "The element: " + "phonenum" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4716,7 +4716,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4724,18 +4724,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "reserve5").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "reserve5").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "reserve5").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reserve5" +
-                                "  cannot be null");
+                                    "The element: " + "reserve5" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4749,7 +4749,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4757,17 +4757,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "city").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "city").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "city").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "city" + "  cannot be null");
+                                    "The element: " + "city" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4781,7 +4781,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4789,17 +4789,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "unit").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "unit").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "unit").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "unit" + "  cannot be null");
+                                    "The element: " + "unit" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4813,7 +4813,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4821,18 +4821,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "longtitude").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "longtitude").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "longtitude").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "longtitude" +
-                                "  cannot be null");
+                                    "The element: " + "longtitude" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4846,7 +4846,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4854,18 +4854,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "accntid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "accntid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "accntid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "accntid" +
-                                "  cannot be null");
+                                    "The element: " + "accntid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4879,7 +4879,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4887,17 +4887,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "desc").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "desc").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "desc").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "desc" + "  cannot be null");
+                                    "The element: " + "desc" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4911,7 +4911,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4919,18 +4919,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "latitude").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "latitude").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "latitude").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "latitude" +
-                                "  cannot be null");
+                                    "The element: " + "latitude" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4944,7 +4944,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4952,18 +4952,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "reserve2").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "reserve2").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "reserve2").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reserve2" +
-                                "  cannot be null");
+                                    "The element: " + "reserve2" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -4977,7 +4977,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -4985,18 +4985,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "reserve4").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "reserve4").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "reserve4").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reserve4" +
-                                "  cannot be null");
+                                    "The element: " + "reserve4" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5010,7 +5010,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5018,17 +5018,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "block").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "block").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "block").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "block" + "  cannot be null");
+                                    "The element: " + "block" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5042,7 +5042,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5050,17 +5050,17 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "addr").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "addr").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "addr").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "addr" + "  cannot be null");
+                                    "The element: " + "addr" + "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5074,7 +5074,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5082,18 +5082,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "addrid").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "addrid").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "addrid").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "addrid" +
-                                "  cannot be null");
+                                    "The element: " + "addrid" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5107,7 +5107,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5115,18 +5115,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "aliasname").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "aliasname").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "aliasname").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "aliasname" +
-                                "  cannot be null");
+                                    "The element: " + "aliasname" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5140,7 +5140,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5148,18 +5148,18 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://siebel.com/CustomUI", "reserve3").equals(
-                                reader.getName())) ||
+                                    "http://siebel.com/CustomUI", "reserve3").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("", "reserve3").equals(
-                                reader.getName())) {
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "reserve3" +
-                                "  cannot be null");
+                                    "The element: " + "reserve3" +
+                                            "  cannot be null");
                         }
 
                         java.lang.String content = reader.getElementText();
@@ -5173,7 +5173,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5182,7 +5182,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);
@@ -5205,6 +5205,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          */
         protected ListOfHuhuOrderLineMessage localListOfHuhuOrderLineMessage;
 
+        private static java.lang.String generatePrefix(
+                java.lang.String namespace) {
+            if (namespace.equals(
+                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
+                return "ns1";
+            }
+
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
         /**
          * Auto generated getter method
          * @return ListOfHuhuOrderLineMessage
@@ -5218,7 +5228,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @param param ListOfHuhuOrderLineMessage
          */
         public void setListOfHuhuOrderLineMessage(
-            ListOfHuhuOrderLineMessage param) {
+                ListOfHuhuOrderLineMessage param) {
             this.localListOfHuhuOrderLineMessage = param;
         }
 
@@ -5229,23 +5239,23 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             java.lang.String prefix = null;
             java.lang.String namespace = null;
@@ -5253,7 +5263,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter,
@@ -5262,19 +5272,19 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":listOfHuhuOrderLineMessageTopElmt",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":listOfHuhuOrderLineMessageTopElmt",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "listOfHuhuOrderLineMessageTopElmt", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "listOfHuhuOrderLineMessageTopElmt", xmlWriter);
                 }
             }
 
             if (localListOfHuhuOrderLineMessage == null) {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "listOfHuhuOrderLineMessage cannot be null!!");
+                        "listOfHuhuOrderLineMessage cannot be null!!");
             }
 
             localListOfHuhuOrderLineMessage.serialize(new javax.xml.namespace.QName(
@@ -5284,23 +5294,13 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             xmlWriter.writeEndElement();
         }
 
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message")) {
-                return "ns1";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
         /**
          * Utility method to write an element start tag.
          */
         private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       java.lang.String namespace, java.lang.String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -5322,15 +5322,15 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -5342,14 +5342,14 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    java.lang.String attName, java.lang.String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -5357,9 +5357,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         java.lang.String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String attributeNamespace = qname.getNamespaceURI();
             java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -5380,7 +5380,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -5388,8 +5388,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -5403,8 +5403,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -5417,8 +5417,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -5444,8 +5444,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -5464,9 +5464,9 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
          * Register a namespace prefix
          */
         private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                java.lang.String namespace)
+                throws javax.xml.stream.XMLStreamException {
             java.lang.String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -5505,8 +5505,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ListOfHuhuOrderLineMessageTopElmt parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws java.lang.Exception {
                 ListOfHuhuOrderLineMessageTopElmt object = new ListOfHuhuOrderLineMessageTopElmt();
 
                 int event;
@@ -5522,8 +5522,8 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -5538,16 +5538,16 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"listOfHuhuOrderLineMessageTopElmt".equals(
-                                        type)) {
+                                    type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (ListOfHuhuOrderLineMessageTopElmt) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -5563,12 +5563,12 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
                     if ((reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
-                                "listOfHuhuOrderLineMessage").equals(
-                                reader.getName())) ||
+                                    "http://www.siebel.com/xml/HUHU%20Order%20Line%20Message",
+                                    "listOfHuhuOrderLineMessage").equals(
+                                    reader.getName())) ||
                             new javax.xml.namespace.QName("",
-                                "listOfHuhuOrderLineMessage").equals(
-                                reader.getName())) {
+                                    "listOfHuhuOrderLineMessage").equals(
+                                    reader.getName())) {
                         object.setListOfHuhuOrderLineMessage(ListOfHuhuOrderLineMessage.Factory.parse(
                                 reader));
 
@@ -5578,7 +5578,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -5587,7 +5587,7 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new java.lang.Exception(e);

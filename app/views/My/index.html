@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
+</head>
+<body style="background: white;">
+<footer class="ui-footer" style="background-color: inherit;">
+    <ul class="ui-tiled ui-border-t">
+        <li class="ui-border-r">
+            <a href="@{Application.index()}">
+                <h1 class="icon-home ui-txt-red"></h1>
+                <h5 class="ui-txt-info">首页</h5>
+            </a>
+        </li>
+        <li class="ui-border-r">
+            <a href="@{My.index()}">
+                <h1 class="icon-user ui-txt-red"></h1>
+                <h5 class="ui-txt-info">个人中心</h5>
+            </a>
+        </li>
+        <li>
+            <a href="@{'/public/about.html'}">
+                <h1 class="icon-info ui-txt-red"></h1>
+                <h5 class="ui-txt-info">关于我们</h5>
+            </a>
+        </li>
+    </ul>
+</footer>
+<section class="ui-container">
+    <section class="ui-container ui-center">
+        <img class="ui-avatar-lg" src="${authInfo.headimgurl}" alt="">
+        <h4>${authInfo.name}</h4>
+        <p class="ui-txt-info">快来准备明天的午餐吧！</p>
+    </section>
+
+    <ul class="ui-list">
+    #{list items:orderList, as:'order'}
+        <li class="ui-border-t">
+            <div class="ui-avatar">
+                <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
+            </div>
+            <div class="ui-list-info">
+                <ul class="ui-row">
+                    <li class="ui-col ui-col-50">
+                        <h4 class="ui-nowrap">${order.productName}
+                        </h4>
+                        <p class="ui-nowrap">订单号:${order.no} 配送时间:${order.createdDate+1}</p>
+                    </li>
+                    <li class="ui-col ui-col-25">
+                        <div class="ui-txt-highlight"
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order.price}元
+                        </div>
+                    </li>
+                    <li class="ui-col ui-col-25">
+                        <div class="ui-txt-default"
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order.status}
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <a href="@{Orders.pay(order.id)}" class="ui-btn"
+               style="border-radius: 0;color: #04BE02;border-color: #04BE02;background: white;">支付</a>
+        </li>
+    #{/list}
+    </ul>
+</section>
+</body>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+</html>

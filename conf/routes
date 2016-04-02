@@ -6,48 +6,16 @@ GET     /public/                                staticDir:public
 
 # 首页
 GET     /                                       Application.index
-# 订阅
-GET     /subscribe                                       Application.subscribe
+# 订阅页面
+GET     /subscribe                              Application.subscribe
 
 # 微信消息
-*     /wechat                                 WechatC.index
-
-# 菜品列表
-GET     /products                                       ProductsC.list
-# 查看菜品
-GET     /products/{id}                                  ProductsC.detail
-# 创建联系人
-POST    /contacts                                    MyC.createContact
-# 创建订单
-GET     /orders                                      MyC.wantOrder
-# 创建订单
-POST     /orders                                     MyC.createOrder
-# 查看订单
-GET     /orders/{id}                                    MyC.viewOrder
-# 修改订单
-PUT     /orders                                   MyC.createOrder
-# 修改订单
-PUT     /payorders                                  MyC.payOrder
-# 取消订单
-DELETE     /orders/{id}                                 MyC.cancelOrder
-# 发表评论
-POST    /comments                                       MyC.evaluateProduct
-# 个人中心
-GET     /my                                       MyC.index
-# 优惠券列表
-GET     /coupons                                       CouponsC.list
-# 我的优惠券
-GET     /users/{id}/coupons                                       MyC.couponList
-# 领取优惠券
-POST     /coupons                                       MyC.takeCoupon
-# 我的地址
-GET     /addresses                                  MyC.addressList
-# 创建地址
-POST     /addresses                                       MyC.createAddress
+*     /wechat                                 Wechat.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 
 # Catch all
-# *       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                  {controller}.{action}
+GET     /{controller}                           {controller}.index

@@ -6,41 +6,41 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="huhu_my_coupon_info_v")
+@Table(name = "huhu_my_coupon_info_v")
 public class AccountCouponM extends GenericModel {
 
     @Id
-    @Column(name="row_id")
+    @Column(name = "row_id")
     public String id;
 
-    @Column(name="accnt_id")
+    @Column(name = "accnt_id")
     public String accountId;
 
-    @Column(name="coupon_id")
+    @Column(name = "coupon_id")
     public String couponId;
 
-    @Column(name="name")
+    @Column(name = "name")
     public String couponName;
 
-    @Column(name="desc_text")
+    @Column(name = "desc_text")
     public String couponDesc;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="start_date")
+    @Column(name = "start_date")
     public Date startDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="end_date")
+    @Column(name = "end_date")
     public Date endtDate;
 
-    @Column(name="usg_flg")
+    @Column(name = "usg_flg")
     public String useFlag;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="created")
+    @Column(name = "created")
     public Date createdDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="last_upd")
+    @Column(name = "last_upd")
     public Date lastUpdatedDate;
 }
