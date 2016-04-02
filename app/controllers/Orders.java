@@ -43,8 +43,7 @@ public class Orders extends Base {
             pay(orderId);
         } else {
             Logger.error(output.getProcMsg());
-            flash.error("error", output.getProcMsg());
-            Products.book(productId);
+            Products.book(params.get("product"));
         }
     }
 
