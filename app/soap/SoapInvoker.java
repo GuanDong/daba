@@ -46,6 +46,7 @@ public class SoapInvoker {
         product.setProducttype("产品");
         orderEntryLineItems.addOrderEntryLineItems(product);
         if (!StringUtils.isBlank(couponId)) {
+            Logger.info("couponId:%s", couponId);
             OrderEntryLineItems coupon = new OrderEntryLineItems();
             coupon.setItemid(couponId);
             coupon.setProducttype("促销");
