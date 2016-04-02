@@ -18,4 +18,6 @@ GET     /favicon.ico                            404
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}/                  {controller}.{action}
 GET     /{controller}                           {controller}.index
+GET     /{controller}/                           {controller}.index
