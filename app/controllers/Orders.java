@@ -50,10 +50,10 @@ public class Orders extends Base {
     }
 
     public static void pay(String orderId) {
-        OrderM orderM = OrderM.findById(orderId);
+        OrderM order = OrderM.findById(orderId);
         try {
-            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, orderM);
-            render(jssdkPayInfo);
+            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, order);
+            render(order, jssdkPayInfo);
         } catch (WxErrorException e) {
             render(e);
         }
