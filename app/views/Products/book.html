@@ -62,7 +62,6 @@
 
     <div class="ui-form ui-border-t">
 
-        <input name="contactId" type="hidden" value="">
         <div class="ui-form-item ui-border-b">
             <label>
                 联系人
@@ -80,7 +79,6 @@
             <!-- 若按钮不可点击则添加 disabled 类 -->
             <button type="button" class="ui-border-l">发送验证码</button>
         </div>
-        <input name="addressId" type="hidden" value="">
         <div class="ui-form-item ui-border-b">
             <label>
                 送餐片区
@@ -125,37 +123,5 @@
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 <script>
     var senderRange = [{"name": "深圳", "block": [{"name": "软件产业基地", "unit": ["A栋", "B栋", "C栋", "D栋"]}]}];
-</script>
-<script type="text/html" id="paySuccessTmpl">
-    <div class="page slideIn msg">
-        <div class="weui_msg">
-            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
-            <div class="weui_text_area">
-                <h2 class="weui_msg_title">支付成功</h2>
-                <p class="weui_msg_desc">欢迎享用您的健康午餐</p>
-            </div>
-            <div class="weui_opr_area">
-                <p class="weui_btn_area">
-                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</script>
-<script type="text/html" id="payFailureTmpl">
-    <div class="page slideIn msg">
-        <div class="weui_msg">
-            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
-            <div class="weui_text_area">
-                <h2 class="weui_msg_title">支付失败</h2>
-                <p class="weui_msg_desc">您的钱包余额不足</p>
-            </div>
-            <div class="weui_opr_area">
-                <p class="weui_btn_area">
-                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
-                </p>
-            </div>
-        </div>
-    </div>
 </script>
 </html>
