@@ -237,9 +237,9 @@ public class Wechat extends Base {
         params.put("out_trade_no", order.no);
         params.put("total_fee", "0.01");
         params.put("spbill_create_ip", ip);
-        params.put("time_start", order.createdDate.toString());
-        params.put("time_expire", order.price.toString());
-        params.put("notify_url", order.price.toString());
+        params.put("time_start", "20160402185859");
+        params.put("time_expire", "201604021705859");
+        params.put("notify_url", "http://www.dabbawal.cn/wechat/pay");
         params.put("trade_type", "JSAPI");
         params.put("openid", order.accountId);
         return wxMpService.getJSSDKPayInfo(params);
