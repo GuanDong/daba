@@ -52,7 +52,7 @@ public class Orders extends Base {
     public static void pay(String orderId) {
         OrderM orderM = OrderM.findById(orderId);
         try {
-            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.host, orderM);
+            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.headers.get("X-Real-IP").value(), orderM);
             render(jssdkPayInfo);
         } catch (WxErrorException e) {
             render(e);
