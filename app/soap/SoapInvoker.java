@@ -1,5 +1,6 @@
 package soap;
 
+import play.Logger;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Input;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output;
 import soap.HUHU_spcCreate_spcAccount_spcAddress_spcWeb_spcServiceStub.CreatedAccountAddr_Input;
@@ -35,6 +36,7 @@ public class SoapInvoker {
     }
 
     public static CreatedOrder_Output saveOrder(CreatedOrder_Input order, String productId, String couponId) throws RemoteException {
+        Logger.info("productId: %s, couponId:%s", productId, couponId);
         OrderEntryLineItems product = new OrderEntryLineItems();
         product.setItemid(productId);
         product.setProducttype("产品");
