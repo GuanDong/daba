@@ -243,6 +243,8 @@ public class Wechat extends Base {
         params.put("notify_url", "http://www.dabbawal.cn/wechat/pay");
         params.put("trade_type", "JSAPI");
         params.put("openid", "o8K-Ts8IYGgigH2HXXC-Qusu62o0");
+
+        Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params));
         return wxMpService.getJSSDKPayInfo(params);
     }
 
