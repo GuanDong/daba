@@ -37,7 +37,7 @@
                 </li>
                 <li class="ui-col ui-col-3" style="margin-right: 25px;">
                     <div class="ui-select ui-form-item ui-border-tb">
-                        <select name="copon.id">
+                        <select name="couponId">
                             <option value="">不使用</option>
                         #{list items:couponList, as:'coupon'}
                             <option value="${coupon.id}">${coupon.name}</option>
@@ -66,13 +66,13 @@
             <label>
                 联系人
             </label>
-            <input name="contact" type="text" placeholder="配送时联系人姓名">
+            <input name="order.contactName" type="text" placeholder="配送时联系人姓名">
         </div>
         <div class="ui-form-item ui-border-b">
             <label>
                 联系电话
             </label>
-            <input name="contactPhone" type="text" placeholder="联系人手机号码">
+            <input name="order.contactPhone" type="text" placeholder="联系人手机号码">
         </div>
         <div id="validPhone" class="ui-form-item ui-form-item-r ui-border-b" style="display: none;">
             <input type="text" placeholder="请输入验证码">
@@ -85,19 +85,19 @@
             </label>
             <div class="ui-select-group">
                 <div class="ui-select">
-                    <select id="city" name="city">
+                    <select id="city" name="order.city">
                         <option>深圳</option>
                     </select>
                 </div>
                 <div class="ui-select">
-                    <select id="block" name="block">
+                    <select id="block" name="order.block">
                         <option>科兴科技园</option>
                         <option selected>软件创业园</option>
                         <option>深圳大学</option>
                     </select>
                 </div>
                 <div class="ui-select">
-                    <select id="unit" name="unit">
+                    <select id="unit" name="order.unit">
                         <option>A座</option>
                         <option selected>B座</option>
                         <option>C座</option>
@@ -109,7 +109,7 @@
             <label>
                 详细地址
             </label>
-            <input name="address" type="text" placeholder="楼层门牌号公司名称">
+            <input name="order.address" type="text" placeholder="楼层门牌号公司名称">
         </div>
     </div>
     <div class="ui-btn-wrap" style="margin-top: 20px;">
