@@ -7,6 +7,8 @@
 package soap;
 
 
+import play.Logger;
+
 /*
  *  HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub java implementation
  */
@@ -156,6 +158,10 @@ public class HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub extends org.apache.ax
 
             // add the message contxt to the operation client
             _operationClient.addMessageContext(_messageContext);
+
+            Logger.error("mmmmmmm: %s", _messageContext.toString());
+            Logger.error("mmmmmmm: %s", _operationClient.toString());
+
 
             //execute the operation client
             _operationClient.execute(true);
