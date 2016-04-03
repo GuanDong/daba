@@ -17,13 +17,13 @@
             <label>
                 联系人
             </label>
-            <input name="order.name" type="text" placeholder="配送时联系人姓名">
+            <input name="order.name" type="text" placeholder="配送时联系人姓名" value="${lastOrder?.contactName}">
         </div>
         <div class="ui-form-item ui-border-b">
             <label>
                 联系电话
             </label>
-            <input name="order.phonenum" type="text" placeholder="联系人手机号码">
+            <input name="order.phonenum" type="text" placeholder="联系人手机号码" value="${lastOrder?.contactPhone}">
         </div>
         <div id="validPhone" class="ui-form-item ui-form-item-r ui-border-b" style="display: none;">
             <input type="text" placeholder="请输入验证码">
@@ -38,21 +38,21 @@
             <div class="ui-select-group">
                 <div class="ui-select">
                     <select id="city" name="order.city">
-                        <option>深圳</option>
+                        <option #{if lastOrder.addressCity == "深圳"}selected#{/if}>深圳</option>
                     </select>
                 </div>
                 <div class="ui-select">
                     <select id="block" name="order.block">
-                        <option>科兴科技园</option>
-                        <option selected>软件创业园</option>
-                        <option>深圳大学</option>
+                        <option #{if lastOrder.addressBlock == "科兴科技园"}selected#{/if}>科兴科技园</option>
+                        <option #{if lastOrder.addressBlock == "软件创业园"}selected#{/if}>软件创业园</option>
+                        <option #{if lastOrder.addressBlock == "深圳大学"}selected#{/if}>深圳大学</option>
                     </select>
                 </div>
                 <div class="ui-select">
                     <select id="unit" name="order.unit">
-                        <option>A座</option>
-                        <option selected>B座</option>
-                        <option>C座</option>
+                        <option #{if lastOrder.addressUnit == "A座"}selected#{/if}>A座</option>
+                        <option #{if lastOrder.addressUnit == "B座"}selected#{/if}>B座</option>
+                        <option #{if lastOrder.addressUnit == "C座"}selected#{/if}>C座</option>
                     </select>
                 </div>
             </div>
@@ -61,7 +61,7 @@
             <label>
                 详细地址
             </label>
-            <input name="order.addr" type="text" placeholder="楼层门牌号公司名称">
+            <input name="order.addr" type="text" placeholder="楼层门牌号公司名称" value="${lastOrder?.addressDetail}">
         </div>
     </div>
     <ul class="ui-list ui-border-b">
@@ -93,16 +93,16 @@
                 </li>
                 <li class="ui-col ui-col-3" style="margin-right: 25px;">
                     <div class="ui-select ui-form-item ui-border-tb">
-                        <select name="couponId">
+                        <select id="couponId" name="couponId">
                             <option value="">不使用</option>
                         #{list items:couponList, as:'coupon'}
-                            <option value="${coupon.id}">${coupon.name}</option>
+                            <option value="${coupon.id}" data-value="${coupon.value}">${coupon.name}</option>
                         #{/list}
                         </select>
                     </div>
                 </li>
                 <li class="ui-col">
-                    <div class="ui-txt-highlight" style="position: absolute;margin-top: 10px;right: 15px;">-3元</div>
+                    <div id="couponValue" class="ui-txt-highlight" style="position: absolute;margin-top: 10px;right: 15px;">-0元</div>
                 </li>
             </ul>
         </li>
@@ -112,7 +112,7 @@
             <h4 style="padding-top: 7px;">订单金额</h4>
         </li>
         <li class="ui-col">
-            <h1 class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">17元</h1>
+            <h1 id="orderPrice" class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">${product.stdPrice}元</h1>
         </li>
     </ul>
     <input type="submit" value="付款" class="weui_btn weui_btn_primary">
@@ -235,6 +235,12 @@
 
     Zepto(function ($) {
         $("#bookForm").submit(createOrder);
+        $("#couponId").bind("change", function(){
+            var select = document.getElementById("couponId");
+            var option = select.options[select.selectedIndex];
+            $("#couponValue").text("-"+$(option).attr("data-value")+"元");
+            $("#orderPrice").text((${product.stdPrice} - parseInt($(option).attr("data-value")))+"元");
+        });
     });
 </script>
 </html>

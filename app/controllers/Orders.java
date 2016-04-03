@@ -14,6 +14,7 @@ import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
+import java.rmi.AccessException;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Map;
@@ -51,8 +52,11 @@ public class Orders extends Base {
             order.setLongtitude(longLat[0]);
             order.setLatitude(longLat[1]);
         }
+
+        AccountCouponM coupon = AccountCouponM.find("accountId = ? and couponId = ?", getAccountOpenId(), couponId).first();
+
         order.setAccntid(getAccountOpenId());
-        HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
+        HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, coupon.id);
         if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
             result.setResult(output.getOrderid());
             renderJSON(result);

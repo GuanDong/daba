@@ -29,7 +29,7 @@ public class OrderItemM extends GenericModel {
     public String productName;
 
     @Column(name = "net_pri")
-    public Float price;
+    public Integer price;
 
     @Column(name = "expctd_dlvry_dt")
     public String orderDate;

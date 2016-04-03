@@ -1,6 +1,8 @@
 package controllers;
 
+import consts.DabbawalConsts;
 import models.AccountCouponM;
+import models.CouponM;
 import models.OrderM;
 import models.ProductM;
 import org.apache.commons.lang.StringUtils;
@@ -27,7 +29,7 @@ public class Products extends Base {
 
     public static void book(String productId) {
         ProductM product = ProductM.findById(productId);
-        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'N' order by endtDate", getAccountOpenId()).fetch();
+        List<CouponM> couponList = CouponM.find("id in (select couponId from AccountCouponM where accountId = ? and (useFlag is null or useFlag != ?)) order by endDate", getAccountOpenId(), DabbawalConsts.COUPON_USE_FLAG_YES).fetch();
 
         String location = Cache.get(getAccountOpenId() + "_location", String.class);
 

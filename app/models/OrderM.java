@@ -26,7 +26,7 @@ public class OrderM extends GenericModel {
     public String status;
 
     @Column(name = "order_amt")
-    public Float price;
+    public Integer price;
 
     @Column(name = "desc_text")
     public String notes;

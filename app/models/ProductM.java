@@ -38,10 +38,10 @@ public class ProductM extends GenericModel {
     public Integer evaLevel;
 
     @Column(name = "std_pri_unit")
-    public Float stdPrice;
+    public Integer stdPrice;
 
     @Column(name = "promo_pri")
-    public Float promoPrice;
+    public Integer promoPrice;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "eff_start_dt")
