@@ -19,9 +19,9 @@ public class My extends Base {
 //        List<OrderItemM> orderItemList = OrderItemM.find("accountId = ? order by orderId").fetch();
         List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'N' order by endtDate", getAccountOpenId()).fetch();
         Query query = JPA.em().createQuery("select o as order, " +
-                "(select i from OrderItemM i where i.orderId=o.orderId and i.productType='产品') as product,  " +
-                "(select i from OrderItemM i where i.orderId=o.orderId and i.productType='促销') as coupon " +
-                "from OrderM o where accountId = ? order by createdDate");
+                "(select i from OrderItemM i where i.orderId=o.id and i.productType='产品') as product,  " +
+                "(select i from OrderItemM i where i.orderId=o.id and i.productType='促销') as coupon " +
+                "from OrderM o where o.accountId = ? order by o.createdDate");
 
         query.setParameter(1, getAccountOpenId());
         List orderList = query.getResultList();
