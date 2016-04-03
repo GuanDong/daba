@@ -149,7 +149,7 @@ public class Wechat extends Base {
 
         String orderNo = wxMpPayCallback.getOut_trade_no();
         OrderM order = OrderM.find("byNo", orderNo).first();
-        if (StringUtils.equals(order.status, "已下单")) {
+        if (StringUtils.equals(order.status, "待定")) {
             try {
                 SoapInvoker.changeOrderStatus(orderNo, "已支付");
             } catch (RemoteException e) {
@@ -236,14 +236,14 @@ public class Wechat extends Base {
     public static Map<String, String> getJSSDKPayInfo(String ip, OrderM order) throws WxErrorException {
         Map<String, String> params = new HashMap<String, String>();
         params.put("body", "健康午餐");
-        params.put("out_trade_no", "1-500847");
+        params.put("out_trade_no", order.no);
         params.put("total_fee", "1");
         params.put("spbill_create_ip", ip);
         params.put("time_start", "20160402185859");
         params.put("time_expire", "20160405235859");
         params.put("notify_url", "http://www.dabbawal.cn/wechat/pay");
         params.put("trade_type", "JSAPI");
-        params.put("openid", "o8K-Ts8IYGgigH2HXXC-Qusu62o0");
+        params.put("openid", order.accountId);
 
         Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params)));
         return wxMpService.getJSSDKPayInfo(params);
