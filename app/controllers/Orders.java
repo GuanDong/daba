@@ -1,14 +1,9 @@
 package controllers;
 
 import beans.ResponseResult;
-import com.google.gson.Gson;
 import me.chanjar.weixin.common.exception.WxErrorException;
-import models.AccountCouponM;
-import models.CouponM;
-import models.OrderM;
-import models.ProductM;
+import models.*;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
 import play.Logger;
 import play.cache.Cache;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
@@ -17,8 +12,6 @@ import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
 import java.rmi.RemoteException;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 public class Orders extends Base {
@@ -26,9 +19,9 @@ public class Orders extends Base {
     public static void evaluate(String productId, String couponId) {
         ProductM product = ProductM.findById(productId);
         AccountCouponM myCoupon = AccountCouponM.findById(couponId);
-        if (product != null && myCoupon != null){
+        if (product != null && myCoupon != null) {
             CouponM coupon = CouponM.findById(myCoupon.couponId);
-            if (coupon != null){
+            if (coupon != null) {
                 renderJSON(product.stdPrice - 3);
             }
             renderJSON(product.stdPrice);
@@ -82,18 +75,20 @@ public class Orders extends Base {
 
     public static void comment(String orderId, Integer score, String content) throws RemoteException {
         OrderM order = OrderM.find("accountId = ? and id = ?", getAccountOpenId(), orderId).first();
-        if (order == null){
+        if (order == null) {
             renderText("订单不存在");
         }
+
+        OrderItemM orderItem = OrderItemM.find("orderId = ? and productType='产品'", orderId).first();
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input comment = new HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input();
         comment.setAccntid(getAccountOpenId());
         comment.setOrderid(orderId);
-        comment.setProdid("五花肉");
+        comment.setProdid(orderItem.productId);
         comment.setProdrate(score.toString());
         comment.setProdevadesc(content);
 
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output output = SoapInvoker.commentProduct(comment);
-        if (StringUtils.equals("S", output.getProcStatus())){
+        if (StringUtils.equals("S", output.getProcStatus())) {
             renderText("SUCCESS");
         } else {
             renderText(output.getProcMsg());

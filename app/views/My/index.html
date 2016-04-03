@@ -109,7 +109,7 @@
 </div>
 <div class="ui-dialog">
     <form id="commentForm" action="@{Orders.comment()}" method="get">
-        <input type="hidden" name="orderId" value="1-AQGE">
+        <input type="hidden" id="orderId" name="orderId" value="1-AQGE">
         <div class="ui-dialog-cnt">
             <header class="ui-dialog-hd">
                 <h5>订单号: 1111</h5>
@@ -126,8 +126,8 @@
                 <textarea name="content" placeholder="写下您的评价"></textarea>
             </div>
             <div class="ui-dialog-ft">
-                <button type="submit" data-role="button">确定</button>
-                <button type="reset" data-role="button">取消</button>
+                <button type="submit" class="selected" data-role="button">确定</button>
+                <button class="resetForm" type="reset" data-role="button">取消</button>
             </div>
         </div>
     </form>
@@ -165,7 +165,7 @@
     function payOrder(orderId) {
         $.ajax({
             type: 'GET',
-            url: @{Orders.pay()},
+            url: '@{Orders.pay()}',
             data: {"orderId": orderId},
             success: function (data) {
                 if (data.status == 'SUCCESS'){
@@ -228,7 +228,14 @@
         $("#score").val(score);
     }
 
+    function resetCommentForm(){
+        $(".ui-dialog").removeClass("show");
+        document.getElementById("commentForm").reset();
+        renderStar(0);
+    }
+
     Zepto(function ($) {
+        $("#commentForm .resetForm").click(resetCommentForm);
         $("#commentForm").submit(function () {
             $.ajax({
                 type: 'POST',
@@ -237,17 +244,15 @@
                 success: function (data) {
                     if (data == 'SUCCESS') {
                         alert("SUCCESS");
-                        $(".ui-dialog").removeClass("show");
                     } else {
                         alert(data);
                     }
                 },
                 error: function (xhr, type) {
                     alert('Ajax error!');
-                    $(".ui-dialog").removeClass("show");
                 }
             });
-            $("#commentForm").reset();
+            resetCommentForm();
             return false;
         });
     });
