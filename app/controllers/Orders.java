@@ -1,11 +1,13 @@
 package controllers;
 
 import beans.ResponseResult;
+import consts.DabbawalConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.*;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.cache.Cache;
+import play.mvc.Util;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
@@ -40,7 +42,7 @@ public class Orders extends Base {
         }
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
-        if (StringUtils.equals("S", output.getProcStatus())) {
+        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
             String orderId = output.getOrderid();
             pay(orderId);
         } else {
@@ -65,12 +67,19 @@ public class Orders extends Base {
     }
 
     public static void cancel(String orderId) throws RemoteException {
-        HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(orderId, "已取消");
-        if (StringUtils.equals("S", output.getProcStatus())) {
-            renderJSON("SUCCESS");
+
+        String result = cancelOrder(orderId);
+        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, result)) {
+            renderJSON(DabbawalConsts.RESPONSE_RESULT_SUCCESS);
         } else {
-            renderJSON(output.getProcMsg());
+            renderJSON(result);
         }
+    }
+
+    @Util
+    public static String cancelOrder(String orderId) throws RemoteException {
+        HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(orderId, "已取消");
+        return StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS) ? DabbawalConsts.RESPONSE_RESULT_SUCCESS : output.getProcMsg();
     }
 
     public static void comment(String orderId, Integer score, String content) throws RemoteException {
@@ -88,8 +97,8 @@ public class Orders extends Base {
         comment.setProdevadesc(content);
 
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output output = SoapInvoker.commentProduct(comment);
-        if (StringUtils.equals("S", output.getProcStatus())) {
-            renderText("SUCCESS");
+        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
+            renderText(DabbawalConsts.RESPONSE_RESULT_SUCCESS);
         } else {
             renderText(output.getProcMsg());
         }

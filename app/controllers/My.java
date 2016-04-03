@@ -1,11 +1,7 @@
 package controllers;
 
-import com.google.gson.Gson;
+import consts.DabbawalConsts;
 import models.AccountCouponM;
-import models.OrderItemM;
-import models.OrderM;
-import play.Logger;
-import play.db.jpa.GenericModel;
 import play.db.jpa.JPA;
 
 import javax.persistence.Query;
@@ -17,13 +13,15 @@ public class My extends Base {
     public static void index() {
 //        List<OrderM> orderList = OrderM.find("accountId = ? order by createdDate", getAccountOpenId()).fetch();
 //        List<OrderItemM> orderItemList = OrderItemM.find("accountId = ? order by orderId").fetch();
-        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'N' order by endtDate", getAccountOpenId()).fetch();
+        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = ? order by endtDate", getAccountOpenId(), DabbawalConsts.COUPON_USE_FLAG_NO).fetch();
         Query query = JPA.em().createQuery("select o as order, " +
-                "(select i from OrderItemM i where i.orderId=o.id and i.productType='产品') as product,  " +
-                "(select i from OrderItemM i where i.orderId=o.id and i.productType='促销') as coupon " +
+                "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as product,  " +
+                "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as coupon " +
                 "from OrderM o where o.accountId = ? order by o.createdDate");
 
-        query.setParameter(1, getAccountOpenId());
+        query.setParameter(1, DabbawalConsts.PRODUCT_TYPE_PROD);
+        query.setParameter(2, DabbawalConsts.PRODUCT_TYPE_COUPON);
+        query.setParameter(3, getAccountOpenId());
         List orderList = query.getResultList();
 //        Logger.info("orderImtes: %s", new Gson().toJson(orderList));
         render(orderList, couponList);

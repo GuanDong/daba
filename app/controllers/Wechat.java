@@ -1,19 +1,20 @@
 package controllers;
 
 import com.google.gson.Gson;
+import consts.DabbawalConsts;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.WxMenu;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.crypto.WxCryptUtil;
 import me.chanjar.weixin.mp.api.*;
-import me.chanjar.weixin.mp.bean.*;
+import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpPayCallback;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
-import models.AccountM;
 import models.OrderM;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.Play;
@@ -52,24 +53,8 @@ public class Wechat extends Base {
         wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage);
 
-        WxMpMessageHandler handler = new WxMpMessageHandler() {
-            @Override
-            public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
-                WxMpXmlOutTextMessage m
-                        = WxMpXmlOutMessage.TEXT().content("测试消息").fromUser(wxMpXmlMessage.getToUserName())
-                        .toUser(wxMpXmlMessage.getFromUserName()).build();
-                return m;
-            }
-        };
-
         wxMpMessageRouter = new WxMpMessageRouter(wxMpService);
         wxMpMessageRouter
-                //测试
-                .rule()
-                .async(false)
-                .content("哈哈") // 拦截内容为“哈哈”的消息
-                .handler(handler)
-                .end()
                 //关注
                 .rule()
                 .async(false)
@@ -88,13 +73,6 @@ public class Wechat extends Base {
                 .event(WxConsts.EVT_LOCATION)
                 .handler(new LocationHandler())
                 .end();
-//                //支付
-//                .rule()
-//                .async(false)
-//                .matcher(new PayMessageMatcher())
-//                .handler(new PaySuccessHandler())
-//                .end();
-
     }
 
     /*
@@ -149,9 +127,9 @@ public class Wechat extends Base {
         Logger.info("pay obj: %s", new Gson().toJson(wxMpPayCallback));
         String orderNo = wxMpPayCallback.getOut_trade_no();
         OrderM order = OrderM.find("byNo", orderNo).first();
-        if (StringUtils.equals(order.status, "待定")) {
+        if (StringUtils.equals(order.status, DabbawalConsts.ORDER_STATUS_NEW)) {
             try {
-               HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output =  SoapInvoker.changeOrderStatus(order.id, "已支付");
+                HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(order.id, DabbawalConsts.ORDER_STATUS_PAIED);
                 if (StringUtils.equals("S", output.getProcStatus())) {
                     StringBuilder response = new StringBuilder("<xml>");
                     response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
@@ -159,11 +137,11 @@ public class Wechat extends Base {
                     response.append("</xml>");
                     renderXml(response.toString());
                 } else {
-                    Logger.error("订单支付信息SOAP处理失败: %s", output.getProcMsg());
+                    Logger.error("订单支付信息SOAP处理失败! 结果: %s, 消息: %s", output.getProcMsg(), xmlMsg);
                     return;
                 }
             } catch (RemoteException e) {
-                Logger.error(e, "订单支付信息SOAP处理失败: %s", xmlMsg);
+                Logger.error(e, "订单支付信息SOAP处理失败! 消息: %s", xmlMsg);
                 return;
             }
         }
@@ -228,7 +206,7 @@ public class Wechat extends Base {
         params.put("trade_type", "JSAPI");
         params.put("openid", order.accountId);
 
-        Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params)));
+//        Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params)));
         return wxMpService.getJSSDKPayInfo(params);
     }
 
@@ -267,7 +245,6 @@ public class Wechat extends Base {
         @Override
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 
-            Logger.info("subscribe event");
             WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
 
             HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input account = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input();
@@ -281,13 +258,9 @@ public class Wechat extends Base {
                 account.setReserve1("女");
             }
             account.setReserve2(user.getHeadImgUrl());
-
-            Logger.info("subscribe user: %s", new Gson().toJson(account));
-
             try {
                 SoapInvoker.saveAccount(account);
             } catch (RemoteException e) {
-                e.printStackTrace();
                 Logger.info(e, "创建账号出错");
             }
 

@@ -1,10 +1,9 @@
 package controllers;
 
+import consts.DabbawalConsts;
 import models.AccountCouponM;
 import models.CouponM;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
-import play.Logger;
 import soap.HUHU_spcCreate_spcAccount_spcCoupon_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
@@ -30,10 +29,10 @@ public class Coupons extends Base {
         input.setAccntid(getAccountOpenId());
         input.setCouponid(couponId);
         HUHU_spcCreate_spcAccount_spcCoupon_spcWeb_spcServiceStub.CreatedAccountCoupon_Output output = SoapInvoker.takeCoupon(input);
-        if (StringUtils.equals("S", output.getProcStatus())) {
-            renderText(couponId);
+        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
+            renderText(DabbawalConsts.RESPONSE_RESULT_SUCCESS);
         } else {
-            renderText("ERROR");
+            renderText(output.getProcMsg());
         }
     }
 

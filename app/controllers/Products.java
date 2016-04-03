@@ -1,6 +1,5 @@
 package controllers;
 
-import beans.DistributeInfo;
 import models.AccountCouponM;
 import models.OrderM;
 import models.ProductM;
@@ -8,7 +7,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import play.Logger;
 import play.cache.Cache;
-import play.db.jpa.JPA;
 import play.mvc.With;
 
 import java.util.Date;

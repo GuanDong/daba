@@ -6,7 +6,7 @@ import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
 @OnApplicationStart
-public class WechatMenuJob extends Job {
+public class CreateWechatMenuJob extends Job {
 
     public void doJob() {
         try {

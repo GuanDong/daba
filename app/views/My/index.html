@@ -242,7 +242,7 @@
                 url: $("#commentForm").attr("action"),
                 data: $("#commentForm").serialize(),
                 success: function (data) {
-                    if (data == 'SUCCESS') {
+                    if (data == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                         alert("SUCCESS");
                     } else {
                         alert(data);

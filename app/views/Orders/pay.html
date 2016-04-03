@@ -28,47 +28,6 @@
 <body style="background-color: white;">
 
 </body>
-<script src="@{'/public/javascripts/zepto.min.js'}"></script>
-<script>
-    function onBridgeReady() {
-        WeixinJSBridge.invoke(
-                'getBrandWCPayRequest',
-                {
-                    "appId": "${jssdkPayInfo.appId}",
-                    "timeStamp": "${jssdkPayInfo.timeStamp}",
-                    "nonceStr": "${jssdkPayInfo.nonceStr}",
-                    "package": "${jssdkPayInfo.package}",
-                    "signType": "${jssdkPayInfo.signType}",
-                    "paySign": "${jssdkPayInfo.paySign}"
-                },
-                function (res) {
-                    alert(JSON.stringify(res));
-                    $("body").empty();
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                        alert(1);
-                        $("body").append($("#paySuccessTmpl").html());
-                    } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                        alert(2);
-                        $("body").append($("#payCancelTmpl").html());
-                    } else {
-                        alert(3);
-                        $("body").append($("#payFailureTmpl").html());
-                    }
-                }
-        )
-        ;
-    }
-    if (typeof WeixinJSBridge == "undefined") {
-        if (document.addEventListener) {
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        } else if (document.attachEvent) {
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        }
-    } else {
-        onBridgeReady();
-    }
-</script>
 <script type="text/html" id="paySuccessTmpl">
     <div class="page slideIn msg">
         <div class="weui_msg">
@@ -116,6 +75,46 @@
             </div>
         </div>
     </div>
+</script>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+<script>
+    function onBridgeReady() {
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                {
+                    "appId": "${jssdkPayInfo.appId}",
+                    "timeStamp": "${jssdkPayInfo.timeStamp}",
+                    "nonceStr": "${jssdkPayInfo.nonceStr}",
+                    "package": "${jssdkPayInfo.package}",
+                    "signType": "${jssdkPayInfo.signType}",
+                    "paySign": "${jssdkPayInfo.paySign}"
+                },
+                function (res) {
+                    alert(JSON.stringify(res));
+                    $("body").empty();
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        alert(1);
+                        $("body").append($("#paySuccessTmpl").html());
+                    } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                        alert(2);
+                        $("body").append($("#payCancelTmpl").html());
+                    } else {
+                        alert(3);
+                        $("body").append($("#payFailureTmpl").html());
+                    }
+                }
+        );
+    }
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
 </script>
 #{/else}}
 </html>
