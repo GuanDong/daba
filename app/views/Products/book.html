@@ -9,62 +9,10 @@
 </head>
 <body style="background-color: white;">
 <div id="rootContainer">
-<form id="bookForm" action="@{Orders.create()}">
+<form id="bookForm" action="@{Orders.create()}" style="margin-top: 50px;">
 #{authenticityToken /}
-    <ul class="ui-list ui-border-b">
-        <li style="padding: 20px 0px 20px 0px; ">
-            <input name="product" type="hidden" value="${product.id}">
-            <input name="productId" type="hidden" value="${product.productId}">
-            <input name="order.pricelstid" type="hidden" value="${product.priceId}">
-            <div class="ui-avatar">
-                <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
-            </div>
-            <div class="ui-list-info">
-                <ul class="ui-row-flex">
-                    <li class="ui-col ui-col-3">
-                        <h4 class="ui-nowrap">${product.productName}</h4>
-                    </li>
-                    <li class="ui-col">
-                        <div class="ui-txt-default">x 1</div>
-                    </li>
-                    <li class="ui-col">
-                        <div class="ui-txt-highlight" style="position: absolute;right: 15px;">${product.stdPrice}元</div>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li style="padding-bottom: 20px; color: #04BE02;">
-            <ul class="ui-row-flex">
-                <li class="ui-col">
-                    <label class="ui-label-s" style="position: absolute;margin-top: 15px;margin-left: 5px;">优惠券</label>
-                </li>
-                <li class="ui-col ui-col-3" style="margin-right: 25px;">
-                    <div class="ui-select ui-form-item ui-border-tb">
-                        <select name="couponId">
-                            <option value="">不使用</option>
-                        #{list items:couponList, as:'coupon'}
-                            <option value="${coupon.id}">${coupon.name}</option>
-                        #{/list}
-                        </select>
-                    </div>
-                </li>
-                <li class="ui-col">
-                    <div class="ui-txt-highlight" style="position: absolute;margin-top: 10px;right: 15px;">-3元</div>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul class="ui-row-flex" style="padding: 10px 0px 10px 0px; margin-bottom: 40px;">
-        <li class="ui-col ui-col-4 ui-flex ui-flex-pack-end">
-            <h4 style="padding-top: 7px;">订单金额</h4>
-        </li>
-        <li class="ui-col">
-            <h1 class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">17元</h1>
-        </li>
-    </ul>
-
+    <div class="weui_cells_title">订单信息</div>
     <div class="ui-form ui-border-t">
-
         <div class="ui-form-item ui-border-b">
             <label>
                 联系人
@@ -116,10 +64,58 @@
             <input name="order.addr" type="text" placeholder="楼层门牌号公司名称">
         </div>
     </div>
-    <div class="ui-btn-wrap" style="margin-top: 20px;">
-        <input type="submit" value="付款" class="ui-btn-lg ui-btn-primary" style="border-radius: 0;background: #04BE02;">
-        </input>
-    </div>
+    <ul class="ui-list ui-border-b">
+        <li style="padding: 20px 0px 20px 0px; ">
+            <input name="product" type="hidden" value="${product.id}">
+            <input name="productId" type="hidden" value="${product.productId}">
+            <input name="order.pricelstid" type="hidden" value="${product.priceId}">
+            <div class="ui-avatar">
+                <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
+            </div>
+            <div class="ui-list-info">
+                <ul class="ui-row-flex">
+                    <li class="ui-col ui-col-3">
+                        <h4 class="ui-nowrap">${product.productName}</h4>
+                    </li>
+                    <li class="ui-col">
+                        <div class="ui-txt-default">x 1</div>
+                    </li>
+                    <li class="ui-col">
+                        <div class="ui-txt-highlight" style="position: absolute;right: 15px;">${product.stdPrice}元</div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li style="padding-bottom: 20px; color: #04BE02;">
+            <ul class="ui-row-flex">
+                <li class="ui-col">
+                    <label class="ui-label-s" style="position: absolute;margin-top: 15px;margin-left: 5px;">优惠券</label>
+                </li>
+                <li class="ui-col ui-col-3" style="margin-right: 25px;">
+                    <div class="ui-select ui-form-item ui-border-tb">
+                        <select name="couponId">
+                            <option value="">不使用</option>
+                        #{list items:couponList, as:'coupon'}
+                            <option value="${coupon.id}">${coupon.name}</option>
+                        #{/list}
+                        </select>
+                    </div>
+                </li>
+                <li class="ui-col">
+                    <div class="ui-txt-highlight" style="position: absolute;margin-top: 10px;right: 15px;">-3元</div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="ui-row-flex" style="padding: 10px 0px 10px 0px; margin-bottom: 20px;">
+        <li class="ui-col ui-col-4 ui-flex ui-flex-pack-end">
+            <h4 style="padding-top: 7px;">订单金额</h4>
+        </li>
+        <li class="ui-col">
+            <h1 class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">17元</h1>
+        </li>
+    </ul>
+    <input type="submit" value="付款" class="weui_btn weui_btn_primary">
 </form>
 </div>
 </body>

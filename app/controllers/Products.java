@@ -33,16 +33,22 @@ public class Products extends Base {
 
         Logger.info("openId: %s, location: %s", getAccountOpenId(), location);
 
-        List<OrderM> orderList = null;
+        OrderM lastOrder = null;
 
         if (StringUtils.isBlank(location)) {
-            orderList = OrderM.find("accountId = ? order by createdDate desc", getAccountOpenId()).fetch();
+            lastOrder = OrderM.find("accountId = ? order by createdDate desc", getAccountOpenId()).first();
         } else {
             String[] longLat = location.split("-");
-            orderList = OrderM.find("accountId = ? order by power(longitude - ?, 2) + power(latitude - ?, 2), createdDate desc",
-                    getAccountOpenId(), Double.parseDouble(longLat[0]), Double.parseDouble(longLat[1])).fetch();
+
+            lastOrder = OrderM.find("accountId = ? order by " +
+                    "(6371 * acos( " +
+                        "cos( radians(?) ) * cos( radians(latitude) ) * " +
+                        "cos( radians(longitude) - radians(-?) ) + " +
+                        "sin( radians(?) ) * sin( radians(latitude) )" +
+                    ")), createdDate desc",
+                    getAccountOpenId(),  Double.parseDouble(longLat[1]), Double.parseDouble(longLat[0]), Double.parseDouble(longLat[1])).first();
         }
-        render(product, couponList, orderList);
+        render(product, couponList, lastOrder);
     }
 
 
