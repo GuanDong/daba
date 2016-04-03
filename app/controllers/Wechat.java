@@ -139,11 +139,9 @@ public class Wechat extends Base {
     }
 
     /*
-     * 微信消息路由
+     * 微信支付回调接口
      */
     public static void pay() {
-
-//        WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
         String xmlMsg = params.get("body");
         WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
         Logger.info("pay xml: %s", xmlMsg);
@@ -155,6 +153,7 @@ public class Wechat extends Base {
                 SoapInvoker.changeOrderStatus(orderNo, "已支付");
             } catch (RemoteException e) {
                 Logger.error(e, "订单支付信息处理失败: %s", xmlMsg);
+                return;
             }
         }
 
@@ -162,9 +161,7 @@ public class Wechat extends Base {
         response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
         response.append(String.format("<%s>%s</%s>", new Object[]{"return_msg", "<![CDATA[OK]]>", "return_msg"}));
         response.append("</xml>");
-        WxMpXmlOutTextMessage outMessage
-                = WxMpXmlOutMessage.TEXT().content(response.toString()).build();
-        renderXml(outMessage == null ? "" : outMessage.toXml());
+        renderXml(response.toString());
     }
 
     /*
