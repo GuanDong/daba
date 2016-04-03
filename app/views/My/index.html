@@ -192,13 +192,13 @@
                         "paySign": jssdkPayInfo.paySign
                     },
                     function (res) {
-                        $("body").empty();
-                        if (res.err_msg == "get_brand_wcpay_request：ok") {
-                            $("body").innerHTML($("#paySuccessTmpl").innerHTML);
-                        } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
-                            $("body").innerHTML($("#payCancelTmpl").innerHTML);
+                        alert(JSON.stringify(res));
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                            $("body").append($($("#paySuccessTmpl").html()));
+                        } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                            $("body").append($($("#payCancelTmpl").html()));
                         } else {
-                            $("body").innerHTML($("#payFailureTmpl").innerHTML);
+                            $("body").append($($("#payFailureTmpl").html()));
                         }
                     }
             );
