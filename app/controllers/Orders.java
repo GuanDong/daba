@@ -11,6 +11,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import play.Logger;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
+import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
 import java.rmi.RemoteException;
@@ -68,18 +69,24 @@ public class Orders extends Base {
         }
     }
 
-    public static void comment(String orderId, Integer score, String content) {
-        OrderM order = OrderM.find("accountId = ? and orderId = ?", getAccountOpenId(), orderId).first();
-//        if (order != null && order.evaluateScore != null) {
-//            order.evaluateScore = score;
-//            order.evaluateContent = content;
-//            HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(orderIt);
-//            if (StringUtils.equals("SUCCESS", output.getProcStatus())){
-//                renderJSON("SUCCESS");
-//            } else {
-//                renderJSON(output.getProcMsg());
-//            }
-//        }
+    public static void comment(String orderId, Integer score, String content) throws RemoteException {
+        OrderM order = OrderM.find("accountId = ? and id = ?", getAccountOpenId(), orderId).first();
+        if (order == null){
+            renderJSON("订单不存在");
+        }
+        HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input comment = new HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input();
+        comment.setAccntid(getAccountOpenId());
+        comment.setOrderid(orderId);
+        comment.setProdid("五花肉");
+        comment.setProdrate(score.toString());
+        comment.setProdevadesc(content);
+
+        HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output output = SoapInvoker.commentProduct(comment);
+        if (StringUtils.equals("S", output.getProcStatus())){
+            renderJSON("SUCCESS");
+        } else {
+            renderJSON(output.getProcMsg());
+        }
     }
 
 }

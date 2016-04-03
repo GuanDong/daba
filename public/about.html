@@ -1,101 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <title>达巴瓦拉</title>
-  <link rel="stylesheet" href="http://res.wx.qq.com/open/libs/weui/0.4.0/weui.css"/>
-  <link rel="stylesheet" href="/public/css/frozen.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<title>�Ա�����Ч��</title>
+	<style type="text/css">
+		ul, li {margin: 0; padding: 0; border: 0;}
+		.shop-rating {
+			height: 25px;
+			overflow: hidden;
+			zoom: 1;
+			padding: 2px 0;
+			position: relative;
+			z-index: 999;
+			font:12px Arial;
+			color:#000;
+			line-height:1.2em
+		}
+		.shop-rating span {
+			height: 23px;
+			display: block;
+			line-height: 23px;
+			float: left;
+		}
+		.shop-rating span.title {
+			width: 125px;
+			text-align: right;
+			margin-right: 5px;
+		}
+		.shop-rating ul {
+			float: left;
+		}
+		.shop-rating .result {
+			margin-left: 20px;
+			padding-top: 2px;
+		}
+		.shop-rating .result span {
+			color: #ff6d02;
+		}
+		.rating-level,
+		.rating-level a {
+			background: url(http://files.jb51.net/demoimg/201007/o_star.png) no-repeat scroll 1000px 1000px;
+		}
+		.rating-level {
+			background-position: 0px 0px;
+			width: 120px;
+			height: 23px;
+			position: relative;
+			z-index: 1000;
+		}
+		.shop-rating .result em {
+			color: #f60;
+			font-family: arial;
+			font-weight: bold;
+		}
+		.rating-level li {
+			display: inline;
+		}
+		.rating-level a {
+			line-height: 23px;
+			height: 23px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			text-indent: -999em;
+			*zoom: 1;
+			outline: none;
+		}
+		.rating-level a.one-star {
+			width: 20%;
+			z-index: 6;
+		}
+		.rating-level a.two-stars {
+			width: 40%;
+			z-index: 5;
+		}
+		.rating-level a.three-stars {
+			width: 60%;
+			z-index: 4;
+		}
+		.rating-level a.four-stars {
+			width: 80%;
+			z-index: 3;
+		}
+		.rating-level a.five-stars {
+			width: 100%;
+			z-index: 2;
+		}
+		.rating-level .current-rating, .rating-level a:hover {background-position:0 -28px}
+		.rating-level a.one-star:hover,.rating-level a.two-stars:hover,.rating-level a.one-star.current-rating,.rating-level a.two-stars.current-rating{background-position:0 -116px;}
+		.rating-level .three-stars .current-rating,.rating-level .four-stars .current-rating,.rating-level .five-stars .current-rating{background-position:0 -28px;}
+	</style>
 </head>
 <body>
-<footer class="weui_tabbar ui-footer ui-footer-btn">
-	<div class="weui_tabbar_item ui-row ui-border-r">
-	<a href="javascript:;" class="ui-col ui-col-50 ui-border-r">
-		<div class="weui_tabbar_icon">
-			<img src="/public/images/actor.jpeg" alt="">
-		</div>
-		<p class="weui_tabbar_label">收藏</p>
-	</a>
-	<a href="javascript:;" class="ui-col ui-col-50">
-		<div class="weui_tabbar_icon">
-			<img src="/public/images/actor.jpeg" alt="">
-		</div>
-		<p class="weui_tabbar_label">分享</p>
-	</a>
-	</div>
-	<button class="weui_tabbar_item ui-btn-primary">订餐</button>
-	<!--<button class="weui_tabbar_item" style="display: block; font-size: 18px; background-color: #ED1B24; color: #fff;">订餐</button> -->
-</footer>
-<section class="ui-container">
-	<div  class="ui-placehold-img" style="height:150px;">
-		<span style="background:url(/public/images/tfzg.jpg) no-repeat center;"></span>
-	</div>
-	<article class="weui_article">
-		<h1 style="color: #de7c23;">土匪猪肝</h1>
-		<section>
-			<h2 class="ui-border-b">简介</h2>
-			<section>
-				<p>土匪猪肝，属赣菜系列。在江西一带很是流传，其讲究鲜，辣，香。口感要滑嫩，略带点烫嘴的感觉。很适合无辣不欢的人群哦。</p>
-			</section>
-		</section>
-		<section>
-			<h2 class="ui-border-b">用料</h2>
-			<section>
-				<ul class="ui-row">
-					<li class="ui-col ui-col-50">猪肝</li>
-					<li class="ui-col ui-col-50">200g</li>
-					<li class="ui-col ui-col-50">青椒</li>
-					<li class="ui-col ui-col-50">50g</li>
-					<li class="ui-col ui-col-50">红椒</li>
-					<li class="ui-col ui-col-50">30g</li>
-					<li class="ui-col ui-col-50">姜丝</li>
-					<li class="ui-col ui-col-50">10g</li>
-				</ul>
-			</section>
-		</section>
-		<section>
-			<h2 class="ui-border-b">做法</h2>
-			<section>
-				<ul class="ui-list" style="background-color: inherit;">
-					<li style="margin-left: 0px;">
-						<h4>1、先把猪肝切片，用淀粉，鸡蛋把猪肝先腌制一下，让其变的嫩一点。青尖椒切薄段。</h4>
-					</li>
-					<li style="margin-left: 0px;">
-						<h4>2、起锅热油，下猪肝滑油（注意：猪肝下油略变色就倒出，一定要保证猪肝的嫩）。</h4>
-					</li>
-					<li style="margin-left: 0px;">
-						<h4>3、另取一锅，下油爆香姜蒜。把青尖椒下锅煸一下。</h4>
-					</li>
-					<li style="margin-left: 0px;">
-						<h4>4、下滑油后的猪肝，调味。放盐，生抽，料酒。翻炒均匀。</h4>
-					</li>
-					<li style="margin-left: 0px;">
-						<h4>5、勾欠起锅装盘。</h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-		<section>
-			<h2 class="ui-border-b">评论</h2>
-			<section>
-				<ul class="ui-list ui-list-pure" style="background-color: inherit;">
-					<li style="margin-left: 0px;">
-						<p><span>1.faycheng </span><span class="date"> 2月12日</span></p>
-						<h4>好吃好吃真好吃，达巴瓦拉就是好吃！</h4>
-					</li>
-					<li class="ui-border-t" style="margin-left: 0px;">
-						<p><span>2.faycheng </span><span class="date"> 2月12日</span></p>
-						<h4>好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！好吃好吃真好吃，达巴瓦拉就是好吃！</h4>
-					</li>
-					<li class="ui-border-t" style="margin-left: 0px;">
-						<p><span>3.faycheng </span><span class="date"> 2月12日</span></p>
-						<h4><好吃好吃真好吃，达巴瓦拉就是好吃！</h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-	</article>
-</section>
+<div class="shop-rating">
+	<span class="title">�������Ʒ������:</span>
+	<ul class="rating-level" id="stars2">
+		<li><a href="javascript:void(0);" class="one-star" star:value="20">20</a></li>
+		<li><a href="javascript:void(0);" class="two-stars" star:value="40">40</a></li>
+		<li><a href="javascript:void(0);" class="three-stars" star:value="60">60</a></li>
+		<li><a href="javascript:void(0);" class="four-stars" star:value="80">80</a></li>
+		<li><a href="javascript:void(0);" class="five-stars" star:value="100">100</a></li>
+	</ul>
+	<span id="stars2-tips" class="result"></span>
+	<input type="hidden" id="stars2-input" name="b" value="" size="2" />
+</div>
+<script>
+	var TB = function() {
+		var T$ = function(id) { return document.getElementById(id) }
+		var T$$ = function(r, t) { return (r || document).getElementsByTagName(t) }
+		var Stars = function(cid, rid, hid, config) {
+			var lis = T$$(T$(cid), 'li'), curA;
+			for (var i = 0, len = lis.length; i < len; i++) {
+				lis[i]._val = i;
+				lis[i].onclick = function() {
+					T$(rid).innerHTML = '<em>' + (T$(hid).value = T$$(this, 'a')[0].getAttribute('star:value')) + '��</em> - ' + config.info[this._val];
+					curA = T$$(T$(cid), 'a')[T$(hid).value / config.step - 1];
+				};
+				lis[i].onmouseout = function() {
+					curA && (curA.className += config.curcss);
+				}
+				lis[i].onmouseover = function() {
+					curA && (curA.className = curA.className.replace(config.curcss, ''));
+				}
+			}
+		};
+		return {Stars: Stars}
+	}().Stars('stars2', 'stars2-tips', 'stars2-input', {
+		'info' : ['��Ʒ����', '��Ʒ��զ��', '��Ʒһ���', '��Ʒ����', '��Ʒ���ð�'],
+		'curcss': ' current-rating',
+		'step': 20
+	});
+</script>
 </body>
-<script src="http://res.wx.qq.com/open/libs/zepto/1.1.6/zepto.js"></script>
 </html>

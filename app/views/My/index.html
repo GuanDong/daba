@@ -6,6 +6,41 @@
     <title>&{'appName'}</title>
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
+    <style>
+        .rating-wrapper{
+            display: inline-block;
+            position: relative;
+        }
+        .rating {
+            width: 130px;
+            height: 25px;
+            background: url("@{'/public/images/stars.png'}") no-repeat;
+            background-size: 100%;
+            cursor: pointer;
+        }
+        .rating-bg{
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 25px;
+            z-index: 2;
+            background: #F9FF00;
+            background: url("@{'/public/images/stars.png'}") no-repeat;
+            background-position: -1px -25px;
+        }
+
+        .rating-text{
+            color: #999;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .rating-text.rated{
+            color:  #00C3B6;
+        }
+
+    </style>
 </head>
 <body style="background: white;">
 <footer class="ui-footer" style="background-color: inherit;">
@@ -23,7 +58,7 @@
             </a>
         </li>
         <li>
-            <a href="@{'/public/about.html'}">
+            <a href="@{Application.subscribe()}">
                 <h1 class="icon-info ui-txt-red"></h1>
                 <h5 class="ui-txt-info">关于我们</h5>
             </a>
@@ -37,38 +72,112 @@
         <p class="ui-txt-info">快来准备明天的午餐吧！</p>
     </section>
 
-    <div class="ui-list ui-list-function ui-list-link">
+    <ul class="ui-list">
     #{list items:orderList, as:'order'}
-        <a href="" class="ui-border-t">
+        <li #{if order[0].status == "待定" || order[0].status == "已完成"}
+                onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
+                class="ui-border-t ui-arrowlink"#{/if}#{else}class="ui-border-t"#{/else}>
             <div class="ui-avatar">
                 <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
             </div>
             <div class="ui-list-info">
                 <ul class="ui-row">
-                    <li class="ui-col ui-col-50">
+                    <li class="ui-col ui-col-75">
                         <h4 class="ui-nowrap">${order[1]?.productName}1234
                         </h4>
-                        <p class="ui-nowrap">订单号:${order[0]?.no} 配送时间:${order[0]?.createdDate+1}</p>
+                        <p class="ui-nowrap">单号:${order[0]?.no} @今天</p>
                     </li>
                     <li class="ui-col ui-col-25">
                         <div class="ui-txt-highlight"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
-                        </div>
-                    </li>
-                    <li class="ui-col ui-col-25">
-                        <div class="ui-txt-default"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.status}
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}1元
                         </div>
                     </li>
                 </ul>
-
             </div>
-            <div class="ui-btn"
-               style="color: #04BE02;border: 0px;background: white;">支付</div>
-        </a>
+            <div href="" class="ui-btn"
+                 style="color: #04BE02;border: 0px;background: white;">${order[0]?.status}</div>
+        </li>
     #{/list}
-    </div>
+    </ul>
 </section>
+<div class="ui-actionsheet">
+    <div class="ui-actionsheet-cnt">
+    </div>
+</div>
+<div class="ui-dialog">
+    <form id="commentForm" action="@{Orders.comment()}" method="get">
+        <input type="hidden" name="orderId" value="1-AQGE">
+        <div class="ui-dialog-cnt">
+            <header class="ui-dialog-hd">
+            </header>
+            <div class="ui-form-item ui-border-b">
+                <div class="rating-wrapper" id="starEvaluate">
+                    <div class="rating-bg"></div>
+                    <div class="rating"></div>
+                </div>
+                <span class="ui-txt-tips ui-txt-highlight" style="position: absolute;margin-top: -5px;">*为您的厨师加星</span>
+                <input id="score" name="score" type="hidden">
+            </div>
+            <div class="ui-form-item ui-form-item-textarea ui-form-item-pure">
+                <textarea name="content" placeholder="写下您的评价"></textarea>
+            </div>
+            <div class="ui-dialog-ft">
+                <button type="submit" data-role="button">确定</button>
+                <button type="button" data-role="button">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
+<script src="@{'/public/javascripts/frozen.js'}"></script>
+<script type="text/javascript">
+    function showOptMenu(orderId, orderStatus, orderNo) {
+        $('.ui-actionsheet .ui-actionsheet-cnt').empty();
+        if (orderStatus == "待定") {
+            $('.ui-actionsheet .ui-actionsheet-cnt')
+                    .append("<h4>订单号: " + orderNo + "</h4>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); cancelOrder('" + orderId + "');\">取消订单</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); payOrder('" + orderId + "');\">付款</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); commentOrder('" + orderId + "');\">评论</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show');\">取消</button>");
+        } else if (orderStatus == "已完成") {
+            $('.ui-actionsheet .ui-actionsheet-cnt')
+                    .append("<h4>订单号: " + orderNo + "</h4>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); commentOrder('" + orderId + "');\">评论</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show');\">取消</button>");
+        }
+        $('.ui-actionsheet').addClass('show');
+    }
+
+    function cancelOrder(orderId) {
+        alert("取消");
+    }
+
+    function payOrder(orderId) {
+        alert("支付");
+    }
+
+    function commentOrder(orderId) {
+        $(".ui-dialog").dialog("show");
+    }
+
+    function submitComment(orderId) {
+        alert("评论");
+    }
+
+    $("#starEvaluate").on("click", function(){
+        var x = event.offsetX;
+        var y = event.offsetY;
+        console.log(x +  " " +y);
+        var score = Math.floor(x / 25 ) + 1;
+        renderStar(score);
+    });
+
+    function renderStar(score){
+        var w = (+score) * 25 + "px"
+        $("#starEvaluate .rating-bg").css("width",  w);
+        $("#score").val(score);
+    }
+</script>
 </html>
