@@ -349,7 +349,7 @@ public class Wechat extends Base {
             String openId = wxMpXmlMessage.getFromUserName();
             double lat = wxMpXmlMessage.getLatitude();
             double lon = wxMpXmlMessage.getLongitude();
-            Cache.set(openId + "_location", Double.toString(lat) + "-" + Double.toString(lon), "1d";
+            Cache.set(openId + "_location", Double.toString(lat) + "-" + Double.toString(lon), "1d");
 
             return null;
         }
