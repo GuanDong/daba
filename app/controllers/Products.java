@@ -32,7 +32,7 @@ public class Products extends Base {
 
     public static void book(String productId) {
         ProductM product = ProductM.findById(productId);
-        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'Y' order by endtDate", getAccountOpenId()).fetch();
+        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = 'N' order by endtDate", getAccountOpenId()).fetch();
 
         String location = Cache.get(getAccountOpenId() + "_location", String.class);
 
