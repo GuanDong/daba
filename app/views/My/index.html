@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
     <style>
@@ -193,7 +194,6 @@
                         "paySign": jssdkPayInfo.paySign
                     },
                     function (res) {
-                        alert(JSON.stringify(res));
                         $("#rootContainer").empty();
                         if (res.err_msg == "get_brand_wcpay_request:ok") {
                             $("#rootContainer").append($($("#paySuccessTmpl").html()));
