@@ -25,7 +25,7 @@ public class CouponM extends GenericModel {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date")
-    public Date endtDate;
+    public Date endDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")
