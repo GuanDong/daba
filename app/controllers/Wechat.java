@@ -144,7 +144,7 @@ public class Wechat extends Base {
     public static void pay() {
 
 //        WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
-        String xmlMsg = params.get("body")
+        String xmlMsg = params.get("body");
         WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
         Logger.info("pay xml: %s", xmlMsg);
         Logger.info("pay obj: %s", new Gson().toJson(wxMpPayCallback));
