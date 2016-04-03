@@ -46,24 +46,24 @@
             <div class="ui-list-info">
                 <ul class="ui-row">
                     <li class="ui-col ui-col-50">
-                        <h4 class="ui-nowrap">${order.productName}
+                        <h4 class="ui-nowrap">${order[1]?.productName}
                         </h4>
-                        <p class="ui-nowrap">订单号:${order.no} 配送时间:${order.createdDate+1}</p>
+                        <p class="ui-nowrap">订单号:${order[0]?.no} 配送时间:${order[0]?.createdDate+1}</p>
                     </li>
                     <li class="ui-col ui-col-25">
                         <div class="ui-txt-highlight"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order.price}元
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
                         </div>
                     </li>
                     <li class="ui-col ui-col-25">
                         <div class="ui-txt-default"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order.status}
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.status}
                         </div>
                     </li>
                 </ul>
 
             </div>
-            <a href="@{Orders.pay(order.id)}" class="ui-btn"
+            <a href="@{Orders.pay(order[0]?.id)}" class="ui-btn"
                style="border-radius: 0;color: #04BE02;border-color: #04BE02;background: white;">支付</a>
         </li>
     #{/list}
