@@ -37,9 +37,10 @@
         <p class="ui-txt-info">快来准备明天的午餐吧！</p>
     </section>
 
-    <ul class="ui-list">
+    <ul class="ui-list ui-list-function ui-list-link">
     #{list items:orderList, as:'order'}
         <li class="ui-border-t">
+            <a href="">
             <div class="ui-avatar">
                 <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
             </div>
@@ -63,8 +64,9 @@
                 </ul>
 
             </div>
-            <a href="@{Orders.pay(order[0]?.id)}" class="ui-btn"
-               style="border-radius: 0;color: #04BE02;border-color: #04BE02;background: white;">支付</a>
+            <div class="ui-btn"
+               style="color: #04BE02;border: 0px;background: white;">支付</div>
+            </a>
         </li>
     #{/list}
     </ul>
