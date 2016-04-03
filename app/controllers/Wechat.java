@@ -151,7 +151,7 @@ public class Wechat extends Base {
         OrderM order = OrderM.find("byNo", orderNo).first();
         if (StringUtils.equals(order.status, "待定")) {
             try {
-               HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output =  SoapInvoker.changeOrderStatus(orderNo, "已支付");
+               HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output =  SoapInvoker.changeOrderStatus(order.id, "已支付");
                 if (StringUtils.equals("S", output.getProcStatus())) {
                     StringBuilder response = new StringBuilder("<xml>");
                     response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
