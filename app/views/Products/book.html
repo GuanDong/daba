@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="@{'/public/css/frozen.css'}"/>
 </head>
 <body style="background-color: white;">
-<form action="@{Orders.create()}">
+<form id="bookForm" action="@{Orders.create()}">
 #{authenticityToken /}
     <ul class="ui-list ui-border-b">
         <li style="padding: 20px 0px 20px 0px; ">
@@ -220,7 +220,7 @@
             type: 'POST',
             url: '@{Orders.create()}',
             dataType: 'json',
-            data: $("#commentForm").serialize(),
+            data: $("#bookForm").serialize(),
             success: function (data) {
                 if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                     payOrder(data.result);
@@ -236,7 +236,7 @@
     }
 
     Zepto(function ($) {
-        $("#commentForm").submit(createOrder);
+        $("#bookForm").submit(createOrder);
     });
 </script>
 </html>
