@@ -42,4 +42,10 @@ public class DateUtils {
             return null;
         }
     }
+
+    public static int howManyDaysAgo(Date date){
+        Date start = toLastSecond(date);
+        Date end = toFirstSecond(new Date());
+        return (int) ((end.getTime() - start.getTime()) / (1000*60*60*24));
+    }
 }
