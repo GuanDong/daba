@@ -25,7 +25,7 @@ public class OrderItemM extends GenericModel {
     @Column(name = "prod_cd")
     public String productType;
 
-    @Column(name = "name")
+    @Column(name = "prod_name")
     public String productName;
 
     @Column(name = "net_pri")
