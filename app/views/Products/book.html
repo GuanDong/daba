@@ -118,6 +118,19 @@
     <input type="submit" value="付款" class="weui_btn weui_btn_primary">
 </form>
 </div>
+<div id="loading" class="ui-loading-block">
+    <div class="ui-loading-cnt">
+        <i class="ui-loading-bright"></i>
+        <p>加载中...</p>
+    </div>
+</div>
+<div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已完成</p>
+    </div>
+</div>
 </body>
 <script type="text/html" id="paySuccessTmpl">
     <div class="page slideIn msg">
@@ -170,6 +183,17 @@
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 <script>
     var senderRange = [{"name": "深圳", "block": [{"name": "软件产业基地", "unit": ["A栋", "B栋", "C栋", "D栋"]}]}];
+
+    var timeout;
+    function showMsg(type, msg){
+        clearTimeout(timeout);
+        $("#toast .weui_toast_content").text(msg);
+        $("#toast").show();
+        timeout = setTimeout(function(){
+            $("#toast").hide();
+        },2000);
+    }
+
     function payOrder(orderId) {
         $.ajax({
             type: 'GET',
@@ -177,14 +201,16 @@
             dataType: 'json',
             data: {"orderId": orderId},
             success: function (data) {
+                $("#loading").removeClass("show");
                 if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                     pay(data.result);
                 } else {
-                    alert(data.error);
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
                 }
             },
             error: function (xhr, type) {
-                alert("服务器错误")
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', "支付失败");
             }
         });
         function pay(jssdkPayInfo) {
@@ -223,13 +249,16 @@
                 if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                     payOrder(data.result);
                 } else {
-                    alert(data.error);
+                    $("#loading").removeClass("show");
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
                 }
             },
             error: function (xhr, type) {
-                alert("服务器错误")
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', '创建订单失败');
             }
         });
+        $("#loading").addClass("show");
         return false;
     }
 

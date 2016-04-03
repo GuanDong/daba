@@ -87,7 +87,7 @@
                         </div>
                     </li>
                     <li class="ui-col">
-                        <h6 id="status_${order[0]?.id}"  style="position: absolute;top: 50%;margin-top: -5px;">${order[0]?.status}</h6>
+                        <h5 id="status_${order[0]?.id}"  style="position: absolute;top: 50%;margin-top: -5px;">${order[0]?.status}</h5>
                     </li>
                 </ul>
             </div>
@@ -124,27 +124,30 @@
         </div>
     </form>
 </div>
-    <div id="toast" style="display: none;">
-        <div class="weui_mask_transparent"></div>
-        <div class="weui_toast">
-            <i class="weui_icon_toast"></i>
-            <p class="weui_toast_content">已完成</p>
-        </div>
+</div>
+div id="loading" class="ui-loading-block">
+<div class="ui-loading-cnt">
+    <i class="ui-loading-bright"></i>
+    <p>加载中...</p>
+</div>
+</div>
+<div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已完成</p>
     </div>
 </div>
 </body>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 <script src="@{'/public/javascripts/frozen.js'}"></script>
 <script type="text/javascript">
+    var timeout;
     function showMsg(type, msg){
-        if (type == 'S'){
-            $("#toast .weui_icon_toast").css(':before{content:&#xe802;}');
-        } else {
-            $("#toast .weui_icon_toast").css(':before{content:&#xe803;}');
-        }
+        clearTimeout(timeout);
         $("#toast .weui_toast_content").text(msg);
         $("#toast").show();
-        setTimeout(function(){
+        timeout = setTimeout(function(){
             $("#toast").hide();
         },2000);
     }
@@ -173,17 +176,20 @@
             dataType: 'json',
             data: {"orderId": orderId},
             success: function (data) {
+                $("#loading").removeClass("show");
                 if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                     $("#status_"+orderId).text("${consts.DabbawalConsts.ORDER_STATUS_CANCELD}");
-                    $("#toast").show();
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}', "已撤单");
                 } else {
-                    alert(data.error);
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
                 }
             },
             error: function (xhr, type) {
-                alert('Ajax error!');
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', "撤单失败");;
             }
         });
+        $("#loading").addClass("show");
     }
 
     function payOrder(orderId) {
@@ -193,16 +199,19 @@
             dataType: 'json',
             data: {"orderId": orderId},
             success: function (data) {
+                $("#loading").removeClass("show");
                 if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
                     pay(data.result);
                 } else {
-                    alert(data.error);
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
                 }
             },
             error: function (xhr, type) {
-                alert("服务器错误")
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', '支付失败');
             }
         });
+        $("#loading").addClass("show");
         function pay(jssdkPayInfo) {
 
             WeixinJSBridge.invoke(
@@ -269,15 +278,18 @@
                 dataType: 'json',
                 data: $("#commentForm").serialize(),
                 success: function (data) {
+                    $("#loading").removeClass("show");
                     if (data.status != '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
-                        alert(data.error);
+                        showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
                     }
                 },
                 error: function (xhr, type) {
-                    alert('Ajax error!');
+                    $("#loading").removeClass("show");
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', "评论失败");
                 }
             });
             resetCommentForm();
+            $("#loading").addClass("show");
             return false;
         });
     });

@@ -53,10 +53,13 @@ public class Orders extends Base {
             order.setLatitude(longLat[1]);
         }
 
-        AccountCouponM coupon = AccountCouponM.find("accountId = ? and couponId = ?", getAccountOpenId(), couponId).first();
+        if (!StringUtils.isBlank(couponId)) {
+            AccountCouponM coupon = AccountCouponM.find("accountId = ? and couponId = ?", getAccountOpenId(), couponId).first();
+            couponId = coupon.id;
+        }
 
         order.setAccntid(getAccountOpenId());
-        HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, coupon.id);
+        HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
         if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
             result.setResult(output.getOrderid());
             renderJSON(result);
