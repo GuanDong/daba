@@ -7,6 +7,7 @@ import models.*;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.cache.Cache;
+import play.data.validation.Required;
 import play.mvc.Util;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
@@ -14,26 +15,36 @@ import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.Map;
 
 public class Orders extends Base {
 
-    public static void evaluate(String productId, String couponId) {
+    public static void evaluate(@Required String productId, @Required String couponId) {
+        ResponseResult result = new ResponseResult();
+
         ProductM product = ProductM.findById(productId);
-        AccountCouponM myCoupon = AccountCouponM.findById(couponId);
-        if (product != null && myCoupon != null) {
-            CouponM coupon = CouponM.findById(myCoupon.couponId);
-            if (coupon != null) {
-                renderJSON(product.stdPrice - 3);
+        if (product != null) {
+            AccountCouponM myCoupon = AccountCouponM.findById(couponId);
+            if (myCoupon != null && StringUtils.equals(myCoupon.useFlag, DabbawalConsts.COUPON_USE_FLAG_NO) && myCoupon.endtDate.after(new Date())){
+                CouponM coupon = CouponM.findById(myCoupon.couponId);
+                if (coupon != null) {
+                    result.setResult(product.stdPrice - coupon.value);
+                    renderJSON(result);
+                }
             }
-            renderJSON(product.stdPrice);
+            result.setResult(product.stdPrice);
+            renderJSON(result);
         }
 
-        renderJSON(-1);
+        result.setError("产品不存在");
+        renderJSON(result);
     }
 
     public static void create(String productId, String couponId,
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
+        ResponseResult result = new ResponseResult();
+
         String location = Cache.get(getAccountOpenId() + "_location", String.class);
         if (!StringUtils.isBlank(location)) {
             String[] longLat = location.split("-");
@@ -43,35 +54,39 @@ public class Orders extends Base {
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
         if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
-            String orderId = output.getOrderid();
-            pay(orderId);
+            result.setResult(output.getOrderid());
+            renderJSON(result);
         } else {
-            Logger.error(output.getProcMsg());
-            Products.book(params.get("product"));
+            result.setResult(output.getProcMsg());
+            renderJSON(result);
         }
     }
 
     public static void pay(String orderId) {
-        OrderM order = OrderM.findById(orderId);
         ResponseResult result = new ResponseResult();
+
+        OrderM order = OrderM.findById(orderId);
         try {
             Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, order);
             result.setResult(jssdkPayInfo);
-//            renderJSON(result);
-            render(order, jssdkPayInfo);
+            renderJSON(result);
+//            render(order, jssdkPayInfo);
         } catch (WxErrorException e) {
-            render(e);
-//            result.setError(e.getError().getErrorMsg());
-//            renderJSON(result);
+//            render(e);
+            result.setError(e.getError().getErrorMsg());
+            renderJSON(result);
         }
     }
 
     public static void cancel(String orderId) throws RemoteException {
+        ResponseResult result = new ResponseResult();
 
-        String result = cancelOrder(orderId);
-        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, result)) {
-            renderJSON(DabbawalConsts.RESPONSE_RESULT_SUCCESS);
+        String msg = cancelOrder(orderId);
+        if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, msg)) {
+            result.setResult(orderId);
+            renderJSON(result);
         } else {
+            result.setError(msg);
             renderJSON(result);
         }
     }
@@ -83,9 +98,12 @@ public class Orders extends Base {
     }
 
     public static void comment(String orderId, Integer score, String content) throws RemoteException {
+        ResponseResult result = new ResponseResult();
+
         OrderM order = OrderM.find("accountId = ? and id = ?", getAccountOpenId(), orderId).first();
         if (order == null) {
-            renderText("订单不存在");
+            result.setError("订单不存在");
+            renderJSON(result);
         }
 
         OrderItemM orderItem = OrderItemM.find("orderId = ? and productType='产品'", orderId).first();
@@ -98,9 +116,11 @@ public class Orders extends Base {
 
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output output = SoapInvoker.commentProduct(comment);
         if (StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, output.getProcStatus())) {
-            renderText(DabbawalConsts.RESPONSE_RESULT_SUCCESS);
+            result.setResult(orderId);
+            renderJSON(result);
         } else {
-            renderText(output.getProcMsg());
+            result.setError(output.getProcMsg());
+            renderJSON(result);
         }
     }
 

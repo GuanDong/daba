@@ -17,7 +17,7 @@ public class My extends Base {
         Query query = JPA.em().createQuery("select o as order, " +
                 "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as product,  " +
                 "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as coupon " +
-                "from OrderM o where o.accountId = ? order by o.createdDate");
+                "from OrderM o where o.accountId = ? order by o.createdDate desc");
 
         query.setParameter(1, DabbawalConsts.PRODUCT_TYPE_PROD);
         query.setParameter(2, DabbawalConsts.PRODUCT_TYPE_COUPON);

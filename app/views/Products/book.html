@@ -121,9 +121,122 @@
     </div>
 </form>
 </body>
-
+<script type="text/html" id="paySuccessTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付成功</h2>
+                <p class="weui_msg_desc">欢迎享用您的健康午餐</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payFailureTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">请检查微信钱包是否余额不足</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payCancelTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">您取消了本次支付操作</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 <script>
     var senderRange = [{"name": "深圳", "block": [{"name": "软件产业基地", "unit": ["A栋", "B栋", "C栋", "D栋"]}]}];
+    function payOrder(orderId) {
+        $.ajax({
+            type: 'GET',
+            url: '@{Orders.pay()}',
+            dataType: 'json',
+            data: {"orderId": orderId},
+            success: function (data) {
+                if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                    pay(data.result);
+                } else {
+                    alert(data.error);
+                }
+            },
+            error: function (xhr, type) {
+                alert("服务器错误")
+            }
+        });
+        function pay(jssdkPayInfo) {
+
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {
+                        "appId": jssdkPayInfo.appId,
+                        "timeStamp": jssdkPayInfo.timeStamp,
+                        "nonceStr": jssdkPayInfo.nonceStr,
+                        "package": jssdkPayInfo.package,
+                        "signType": jssdkPayInfo.signType,
+                        "paySign": jssdkPayInfo.paySign
+                    },
+                    function (res) {
+                        $("body").empty();
+                        if (res.err_msg == "get_brand_wcpay_request：ok") {
+                            $("body").innerHTML($("#paySuccessTmpl").innerHTML);
+                        } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
+                            $("body").innerHTML($("#payCancelTmpl").innerHTML);
+                        } else {
+                            $("body").innerHTML($("#payFailureTmpl").innerHTML);
+                        }
+                    }
+            );
+        }
+    }
+
+    function createOrder(){
+        $.ajax({
+            type: 'POST',
+            url: '@{Orders.create()}',
+            dataType: 'json',
+            data: $("#commentForm").serialize(),
+            success: function (data) {
+                if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                    payOrder(data.result);
+                } else {
+                    alert(data.error);
+                }
+            },
+            error: function (xhr, type) {
+                alert("服务器错误")
+            }
+        });
+        return false;
+    }
+
+    Zepto(function ($) {
+        $("#commentForm").submit(createOrder);
+    });
 </script>
 </html>

@@ -16,6 +16,9 @@ public class CouponM extends GenericModel {
     @Column(name = "name")
     public String name;
 
+    @Column(name = "pri_adj_val")
+    public Float value;
+
     @Column(name = "desc_text")
     public String desc;
 

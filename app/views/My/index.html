@@ -166,12 +166,14 @@
         $.ajax({
             type: 'GET',
             url: '@{Orders.pay()}',
+            dataType: 'json',
             data: {"orderId": orderId},
             success: function (data) {
-                if (data.status == 'SUCCESS'){
-
+                if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                    pay(data.result);
+                } else {
+                    alert(data.error);
                 }
-                pay(data);
             },
             error: function (xhr, type) {
                 alert("服务器错误")
@@ -228,7 +230,7 @@
         $("#score").val(score);
     }
 
-    function resetCommentForm(){
+    function resetCommentForm() {
         $(".ui-dialog").removeClass("show");
         document.getElementById("commentForm").reset();
         renderStar(0);
@@ -240,12 +242,11 @@
             $.ajax({
                 type: 'POST',
                 url: $("#commentForm").attr("action"),
+                dataType: 'json',
                 data: $("#commentForm").serialize(),
                 success: function (data) {
-                    if (data == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
-                        alert("SUCCESS");
-                    } else {
-                        alert(data);
+                    if (data != '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                        alert(data.error);
                     }
                 },
                 error: function (xhr, type) {
