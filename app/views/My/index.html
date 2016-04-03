@@ -98,7 +98,7 @@
                         <div class="ui-list-info">
                             <ul class="ui-row-flex">
                                 <li class="ui-col ui-col-3">
-                                    <h5 class="ui-nowrap">${order[1]?.productName}</h5>
+                                    <h4 class="ui-nowrap">${order[1]?.productName}</h4>
                                     <p class="ui-nowrap" style="font-size: 12px;">订单号:${order[0]?.no} <i
                                             class="icon-clock"></i>#{if utils.DateUtils.howManyDaysAgo(order[0].createdDate) == 0}
                                         今天#{/if}#{else}${utils.DateUtils.howManyDaysAgo(order[0].createdDate)}天前#{/else}
