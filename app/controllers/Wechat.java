@@ -146,7 +146,8 @@ public class Wechat extends Base {
         WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
         String xmlMsg = inMessage.getContent();
         WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
-
+        Logger.info("pay xml: %s", xmlMsg);
+        Logger.info("pay obj: %s", new Gson().toJson(wxMpPayCallback));
         String orderNo = wxMpPayCallback.getOut_trade_no();
         OrderM order = OrderM.find("byNo", orderNo).first();
         if (StringUtils.equals(order.status, "待定")) {
