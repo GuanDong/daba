@@ -2,6 +2,7 @@ package controllers;
 
 import consts.DabbawalConsts;
 import models.AccountCouponM;
+import models.CouponM;
 import play.db.jpa.JPA;
 
 import javax.persistence.Query;
@@ -13,7 +14,7 @@ public class My extends Base {
     public static void index() {
 //        List<OrderM> orderList = OrderM.find("accountId = ? order by createdDate", getAccountOpenId()).fetch();
 //        List<OrderItemM> orderItemList = OrderItemM.find("accountId = ? order by orderId").fetch();
-        List<AccountCouponM> couponList = AccountCouponM.find("accountId = ? and useFlag = ? order by endtDate", getAccountOpenId(), DabbawalConsts.COUPON_USE_FLAG_NO).fetch();
+        List<CouponM> couponList = CouponM.find("id in (select couponId from AccountCouponM where accountId = ? and (useFlag is null or useFlag != ?)) order by endDate", getAccountOpenId(), DabbawalConsts.COUPON_USE_FLAG_YES).fetch();
         Query query = JPA.em().createQuery("select o as order, " +
                 "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as product,  " +
                 "(select i from OrderItemM i where i.orderId=o.id and i.productType=?) as coupon " +

@@ -34,6 +34,20 @@
             background-position: -1px -25px;
         }
 
+        .stamp {width: 90%;height: 100px;padding: 0 10px;position: relative;overflow: hidden;}
+        .stamp:before {content: '';position: absolute;top:0;bottom:0;left:10px;right:10px;z-index: -1;}
+        .stamp:after {content: '';position: absolute;left: 10px;top: 10px;right: 10px;bottom: 10px;box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);z-index: -2;}
+        .stamp i{position: absolute;left: 10%;top: 45px;height: 190px;width: 390px;background-color: rgba(255,255,255,.15);transform: rotate(-30deg);}
+        .stamp .par{float: left;padding: 6px 15px;width: 190px;border-right:2px dashed rgba(255,255,255,.3);text-align: left;}
+        .stamp .par p{color:#fff;}
+        .stamp .par span{font-size: 28px;color:#fff;margin-right: 5px;}
+        .stamp .par .sign{font-size: 16px;}
+        .stamp .par sub{position: relative;top:-5px;color:rgba(255,255,255,.8);}
+        .stamp .copy{display: inline-block;padding:10px 7px;width:100px;vertical-align: text-bottom;font-size: 18px;color:rgb(255,255,255);}
+        .stamp .copy p{font-size: 8px;margin-top: 5px;}
+
+        .stamp01{background: #F39B00;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);background-size: 15px 15px;background-position: 9px 3px;}
+        .stamp01:before{background-color:#F39B00;}
     </style>
 </head>
 <body style="background: white;">
@@ -66,34 +80,58 @@
         <h4>${authInfo.name}</h4>
         <p class="ui-txt-info">快来准备明天的午餐吧！</p>
     </section>
-
-    <ul class="ui-list">
-    #{list items:orderList, as:'order'}
-        <li #{if order[0].status == "待定" || order[0].status == "已完成"}
-                onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
-                class="ui-border-t ui-arrowlink"#{/if}#{else}class="ui-border-t"#{/else}>
-            <div class="ui-avatar">
-                <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
-            </div>
-            <div class="ui-list-info">
-                <ul class="ui-row-flex">
-                    <li class="ui-col ui-col-3">
-                        <h5 class="ui-nowrap">${order[1]?.productName}</h5>
-                        <p class="ui-nowrap" style="font-size: 12px;">订单号:${order[0]?.no} <i class="icon-clock"></i>#{if utils.DateUtils.howManyDaysAgo(order[0].createdDate) == 0}今天#{/if}#{else}${utils.DateUtils.howManyDaysAgo(order[0].createdDate)}天前#{/else}</p>
-                    </li>
-                    <li class="ui-col">
-                        <div class="ui-txt-highlight"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
+    <section class="ui-tab">
+        <ul class="ui-tab-nav ui-border-b">
+            <li class="current">我的订单</li>
+            <li>我的优惠券</li>
+        </ul>
+        <ul class="ui-tab-content" style="width:200%">
+            <li>
+                <ul class="ui-list">
+                #{list items:orderList, as:'order'}
+                    <li #{if order[0].status == "待定" || order[0].status == "已完成"}
+                            onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
+                            class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
+                        <div class="ui-avatar">
+                            <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
+                        </div>
+                        <div class="ui-list-info">
+                            <ul class="ui-row-flex">
+                                <li class="ui-col ui-col-3">
+                                    <h5 class="ui-nowrap">${order[1]?.productName}</h5>
+                                    <p class="ui-nowrap" style="font-size: 12px;">订单号:${order[0]?.no} <i
+                                            class="icon-clock"></i>#{if utils.DateUtils.howManyDaysAgo(order[0].createdDate) == 0}
+                                        今天#{/if}#{else}${utils.DateUtils.howManyDaysAgo(order[0].createdDate)}天前#{/else}
+                                    </p>
+                                </li>
+                                <li class="ui-col">
+                                    <div class="ui-txt-highlight"
+                                         style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
+                                    </div>
+                                </li>
+                                <li class="ui-col">
+                                    <h5 id="status_${order[0]?.id}"
+                                        style="position: absolute;top: 50%;margin-top: -7px;#{if order[0].status == "待定" || order[0].status == "已完成"}color: #00a5e0;#{/if}">${order[0]?.status}</h5>
+                                </li>
+                            </ul>
                         </div>
                     </li>
-                    <li class="ui-col">
-                        <h5 id="status_${order[0]?.id}"  style="position: absolute;top: 50%;margin-top: -5px;">${order[0]?.status}</h5>
-                    </li>
+                #{/list}
                 </ul>
+            </li>
+            <li>
+            #{list items:couponList, as:'coupon'}
+                <div class="ui-border-t" style="margin-top: 5px;">
+                <div class="stamp stamp01">
+                    <div class="par"><p class="ui-txt-sub">${coupon.name}</p><sub class="sign">￥</sub><span>5</span><sub>优惠券</sub><p class="ui-txt-sub">#{if coupon.desc}${coupon.desc}#{/if}#{else}达巴瓦拉工作餐#{/else}</p></div>
+                    <div class="copy">副券<p>${utils.DateUtils.format(coupon.startDate != null ? coupon.startDate : new java.util.Date(), "yyyy-MM-dd")}<br>#{if coupon.endDate}${utils.DateUtils.format(coupon.endDate, "yyyy-MM-dd")}#{/if}#{else}永久有效#{/else}</p></div>
+                    <i></i>
+                </div>
+                </div>
+            #{/list}
             </div>
-        </li>
-    #{/list}
-    </ul>
+        </ul>
+    </section>
 </section>
 <div class="ui-actionsheet">
     <div class="ui-actionsheet-cnt">
@@ -125,7 +163,7 @@
     </form>
 </div>
 </div>
-div id="loading" class="ui-loading-block">
+<div id="loading" class="ui-loading-block">
 <div class="ui-loading-cnt">
     <i class="ui-loading-bright"></i>
     <p>加载中...</p>
@@ -291,6 +329,11 @@ div id="loading" class="ui-loading-block">
             resetCommentForm();
             $("#loading").addClass("show");
             return false;
+        });
+
+        var tab = new fz.Scroll('.ui-tab', {
+            role: 'tab',
+            autoplay: false
         });
     });
 </script>
