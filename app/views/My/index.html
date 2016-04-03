@@ -193,6 +193,7 @@
                     },
                     function (res) {
                         alert(JSON.stringify(res));
+                        $("body").empty();
                         if (res.err_msg == "get_brand_wcpay_request:ok") {
                             $("body").append($($("#paySuccessTmpl").html()));
                         } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
