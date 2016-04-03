@@ -24,12 +24,10 @@ import play.mvc.Util;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
+import utils.DateUtils;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Wechat extends Base {
 
@@ -124,7 +122,6 @@ public class Wechat extends Base {
         String xmlMsg = params.get("body");
         WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
         Logger.info("pay xml: %s", xmlMsg);
-        Logger.info("pay obj: %s", new Gson().toJson(wxMpPayCallback));
         String orderNo = wxMpPayCallback.getOut_trade_no();
         OrderM order = OrderM.find("byNo", orderNo).first();
         if (StringUtils.equals(order.status, DabbawalConsts.ORDER_STATUS_NEW)) {
@@ -194,14 +191,14 @@ public class Wechat extends Base {
     }
 
     @Util
-    public static Map<String, String> getJSSDKPayInfo(String ip, OrderM order) throws WxErrorException {
+    public static Map<String, String> getJSSDKPayInfo(String ip, String productName, OrderM order) throws WxErrorException {
         Map<String, String> params = new HashMap<String, String>();
-        params.put("body", "健康午餐");
+        params.put("body", productName);
         params.put("out_trade_no", order.no);
         params.put("total_fee", "1");
         params.put("spbill_create_ip", ip);
-        params.put("time_start", "20160402185859");
-        params.put("time_expire", "20160405235859");
+        params.put("time_start", DateUtils.format(order.createdDate,"yyyyMMddhhmiss"));
+        params.put("time_expire", DateUtils.format(DateUtils.addMinutes(new Date(), -30),"yyyyMMddhhmiss"));
         params.put("notify_url", "http://www.dabbawal.cn/wechat/pay");
         params.put("trade_type", "JSAPI");
         params.put("openid", order.accountId);

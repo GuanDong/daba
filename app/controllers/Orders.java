@@ -66,8 +66,9 @@ public class Orders extends Base {
         ResponseResult result = new ResponseResult();
 
         OrderM order = OrderM.findById(orderId);
+        OrderItemM orderItem = OrderItemM.find("orderId = ? and productType='产品'", orderId).first();
         try {
-            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, order);
+            Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, orderItem.productName, order);
             result.setResult(jssdkPayInfo);
             renderJSON(result);
 //            render(order, jssdkPayInfo);

@@ -2,14 +2,12 @@ package jobs;
 
 import consts.DabbawalConsts;
 import controllers.Orders;
-import controllers.Wechat;
-import me.chanjar.weixin.common.exception.WxErrorException;
 import models.OrderM;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
+import utils.DateUtils;
 
 import java.rmi.RemoteException;
 import java.util.Date;

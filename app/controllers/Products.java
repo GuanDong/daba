@@ -4,10 +4,10 @@ import models.AccountCouponM;
 import models.OrderM;
 import models.ProductM;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import play.Logger;
 import play.cache.Cache;
 import play.mvc.With;
+import utils.DateUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,10 +19,7 @@ public class Products extends Base {
         if (orderDay == null) {
             orderDay = new Date();
         }
-        DateUtils.setHours(orderDay, 0);
-        DateUtils.setMinutes(orderDay, 0);
-        DateUtils.setSeconds(orderDay, 0);
-        DateUtils.setMilliseconds(orderDay, 0);
+        orderDay = DateUtils.toFirstSecond(orderDay);
 
         List<ProductM> productList = ProductM.find("startDate <= ? and endDate >= ? order by hotLevel desc", orderDay, orderDay).fetch();
         render(productList);
