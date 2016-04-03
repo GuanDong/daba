@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="@{'/public/css/frozen.css'}"/>
 </head>
 <body style="background-color: white;">
+<div id="rootContainer">
 <form id="bookForm" action="@{Orders.create()}">
 #{authenticityToken /}
     <ul class="ui-list ui-border-b">
@@ -120,6 +121,7 @@
         </input>
     </div>
 </form>
+</div>
 </body>
 <script type="text/html" id="paySuccessTmpl">
     <div class="page slideIn msg">
@@ -203,13 +205,13 @@
                     },
                     function (res) {
                         alert(JSON.stringify(res));
-                        $("body").empty();
+                        $("#rootContainer").empty();
                         if (res.err_msg == "get_brand_wcpay_request:ok") {
-                            $("body").append($($("#paySuccessTmpl").html()));
+                            $("#rootContainer").append($($("#paySuccessTmpl").html()));
                         } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                            $("body").append($($("#payCancelTmpl").html()));
+                            $("#rootContainer").append($($("#payCancelTmpl").html()));
                         } else {
-                            $("body").append($($("#payFailureTmpl").html()));
+                            $("#rootContainer").append($($("#payFailureTmpl").html()));
                         }
                     }
             );
