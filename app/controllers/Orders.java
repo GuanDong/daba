@@ -10,6 +10,7 @@ import models.ProductM;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import play.Logger;
+import play.cache.Cache;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub;
@@ -38,10 +39,14 @@ public class Orders extends Base {
 
     public static void create(String productId, String couponId,
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
-        Logger.info("productId: %s, couponId:%s, params: %s", productId, couponId, new Gson().toJson(params.data));
+        String location = Cache.get(getAccountOpenId() + "_location", String.class);
+        if (!StringUtils.isBlank(location)) {
+            String[] longLat = location.split("-");
+            order.setLongtitude(longLat[0]);
+            order.setLatitude(longLat[1]);
+        }
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
-        Logger.info("SAOP status: %s", output.getProcStatus());
         if (StringUtils.equals("S", output.getProcStatus())) {
             String orderId = output.getOrderid();
             pay(orderId);
