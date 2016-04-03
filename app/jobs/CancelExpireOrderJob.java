@@ -25,10 +25,10 @@ public class CancelExpireOrderJob extends Job {
             try {
                 String result = Orders.cancelOrder(order.id);
                 if (!StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, result)) {
-                    Logger.error("自动取消过期订单失败: %s", result);
+                    Logger.error("自动取消过期订单失败: %s, 订单号: %s", result, order.id);
                 }
             } catch (RemoteException e) {
-                Logger.error(e, "自动取消过期订单失败.");
+                Logger.error(e, "自动取消过期订单失败.订单号: %s", order.id);
             }
         }
     }
