@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
     <style>
-        .rating-wrapper{
+        .rating-wrapper {
             display: inline-block;
             position: relative;
         }
+
         .rating {
             width: 130px;
             height: 25px;
@@ -18,7 +19,8 @@
             background-size: 100%;
             cursor: pointer;
         }
-        .rating-bg{
+
+        .rating-bg {
             position: absolute;
             content: "";
             left: 0;
@@ -31,13 +33,14 @@
             background-position: -1px -25px;
         }
 
-        .rating-text{
+        .rating-text {
             color: #999;
             font-size: 14px;
             margin-left: 20px;
         }
-        .rating-text.rated{
-            color:  #00C3B6;
+
+        .rating-text.rated {
+            color: #00C3B6;
         }
 
     </style>
@@ -109,6 +112,7 @@
         <input type="hidden" name="orderId" value="1-AQGE">
         <div class="ui-dialog-cnt">
             <header class="ui-dialog-hd">
+                <h5>订单号: 1111</h5>
             </header>
             <div class="ui-form-item ui-border-b">
                 <div class="rating-wrapper" id="starEvaluate">
@@ -116,18 +120,22 @@
                     <div class="rating"></div>
                 </div>
                 <span class="ui-txt-tips ui-txt-highlight" style="position: absolute;margin-top: -5px;">*为您的厨师加星</span>
-                <input id="score" name="score" type="hidden">
+                <input id="score" name="score" type="hidden" value="0">
             </div>
             <div class="ui-form-item ui-form-item-textarea ui-form-item-pure">
                 <textarea name="content" placeholder="写下您的评价"></textarea>
             </div>
             <div class="ui-dialog-ft">
                 <button type="submit" data-role="button">确定</button>
-                <button type="button" data-role="button">取消</button>
+                <button type="reset" data-role="button">取消</button>
             </div>
         </div>
     </form>
 </div>
+<div id="successInfo" class="ui-poptips ui-poptips-success">
+    <div class="ui-poptips-cnt"><i></i>温馨提示内容</div>
+</div>
+
 </body>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
 <script src="@{'/public/javascripts/frozen.js'}"></script>
@@ -155,29 +163,141 @@
     }
 
     function payOrder(orderId) {
-        alert("支付");
+        $.ajax({
+            type: 'GET',
+            url: @{Orders.pay()},
+            data: {"orderId": orderId},
+            success: function (data) {
+                if (data.status == 'SUCCESS'){
+
+                }
+                pay(data);
+            },
+            error: function (xhr, type) {
+                alert("服务器错误")
+            }
+        });
+        function pay(jssdkPayInfo) {
+
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {
+                        "appId": jssdkPayInfo.appId,
+                        "timeStamp": jssdkPayInfo.timeStamp,
+                        "nonceStr": jssdkPayInfo.nonceStr,
+                        "package": jssdkPayInfo.package,
+                        "signType": jssdkPayInfo.signType,
+                        "paySign": jssdkPayInfo.paySign
+                    },
+                    function (res) {
+                        $("body").empty();
+                        if (res.err_msg == "get_brand_wcpay_request：ok") {
+                            $("body").innerHTML($("#paySuccessTmpl").innerHTML);
+                        } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
+                            $("body").innerHTML($("#payCancelTmpl").innerHTML);
+                        } else {
+                            $("body").innerHTML($("#payFailureTmpl").innerHTML);
+                        }
+                    }
+            );
+        }
     }
 
     function commentOrder(orderId) {
-        $(".ui-dialog").dialog("show");
+        $("#orderId").val(orderId);
+        $(".ui-dialog").addClass("show");
     }
 
-    function submitComment(orderId) {
-        alert("评论");
-    }
-
-    $("#starEvaluate").on("click", function(){
+    $("#starEvaluate").on("click", function () {
         var x = event.offsetX;
         var y = event.offsetY;
-        console.log(x +  " " +y);
-        var score = Math.floor(x / 25 ) + 1;
+        console.log(x + " " + y);
+        var score = Math.floor(x / 25) + 1;
         renderStar(score);
     });
 
-    function renderStar(score){
-        var w = (+score) * 25 + "px"
-        $("#starEvaluate .rating-bg").css("width",  w);
+    function renderStar(score) {
+        var w = (+score) * 25 + "px";
+        $("#starEvaluate .rating-bg").css("width", w);
         $("#score").val(score);
     }
+
+    function showMsg(type, msg) {
+        var w = (+score) * 25 + "px";
+        $("#starEvaluate .rating-bg").css("width", w);
+        $("#score").val(score);
+    }
+
+    Zepto(function ($) {
+        $("#commentForm").submit(function () {
+            $.ajax({
+                type: 'POST',
+                url: $("#commentForm").attr("action"),
+                data: $("#commentForm").serialize(),
+                success: function (data) {
+                    if (data == 'SUCCESS') {
+                        alert("SUCCESS");
+                        $(".ui-dialog").removeClass("show");
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (xhr, type) {
+                    alert('Ajax error!');
+                    $(".ui-dialog").removeClass("show");
+                }
+            });
+            $("#commentForm").reset();
+            return false;
+        });
+    });
+</script>
+<script type="text/html" id="paySuccessTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付成功</h2>
+                <p class="weui_msg_desc">欢迎享用您的健康午餐</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payFailureTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">请检查微信钱包是否余额不足</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payCancelTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">您取消了本次支付操作</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </script>
 </html>

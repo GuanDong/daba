@@ -1,5 +1,6 @@
 package controllers;
 
+import beans.ResponseResult;
 import com.google.gson.Gson;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.AccountCouponM;
@@ -52,11 +53,16 @@ public class Orders extends Base {
 
     public static void pay(String orderId) {
         OrderM order = OrderM.findById(orderId);
+        ResponseResult result = new ResponseResult();
         try {
             Map<String, String> jssdkPayInfo = Wechat.getJSSDKPayInfo(request.remoteAddress, order);
+            result.setResult(jssdkPayInfo);
+//            renderJSON(result);
             render(order, jssdkPayInfo);
         } catch (WxErrorException e) {
             render(e);
+//            result.setError(e.getError().getErrorMsg());
+//            renderJSON(result);
         }
     }
 
@@ -72,7 +78,7 @@ public class Orders extends Base {
     public static void comment(String orderId, Integer score, String content) throws RemoteException {
         OrderM order = OrderM.find("accountId = ? and id = ?", getAccountOpenId(), orderId).first();
         if (order == null){
-            renderJSON("订单不存在");
+            renderText("订单不存在");
         }
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input comment = new HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input();
         comment.setAccntid(getAccountOpenId());
@@ -83,9 +89,9 @@ public class Orders extends Base {
 
         HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output output = SoapInvoker.commentProduct(comment);
         if (StringUtils.equals("S", output.getProcStatus())){
-            renderJSON("SUCCESS");
+            renderText("SUCCESS");
         } else {
-            renderJSON(output.getProcMsg());
+            renderText(output.getProcMsg());
         }
     }
 

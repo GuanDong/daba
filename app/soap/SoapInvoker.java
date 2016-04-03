@@ -42,14 +42,14 @@ public class SoapInvoker {
         ListOfHuhuOrderLineMessage lineMessage = new ListOfHuhuOrderLineMessage();
         ListOforderEntryLineItems orderEntryLineItems = new ListOforderEntryLineItems();
         OrderEntryLineItems product = new OrderEntryLineItems();
-        product.setItemid(productId);
+        product.setProdid(productId);
         product.setProducttype("产品");
         product.setDeliverydate("2017/07/01 00:00:00");
         orderEntryLineItems.addOrderEntryLineItems(product);
         if (!StringUtils.isBlank(couponId)) {
             Logger.info("couponId:%s", couponId);
             OrderEntryLineItems coupon = new OrderEntryLineItems();
-            coupon.setItemid(couponId);
+            coupon.setProdid(couponId);
             coupon.setProducttype("促销");
             orderEntryLineItems.addOrderEntryLineItems(coupon);
         }

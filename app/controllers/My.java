@@ -25,7 +25,7 @@ public class My extends Base {
 
         query.setParameter(1, getAccountOpenId());
         List orderList = query.getResultList();
-        Logger.info("orderImtes: %s", new Gson().toJson(orderList));
+//        Logger.info("orderImtes: %s", new Gson().toJson(orderList));
         render(orderList, couponList);
     }
 
