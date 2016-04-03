@@ -37,10 +37,9 @@
         <p class="ui-txt-info">快来准备明天的午餐吧！</p>
     </section>
 
-    <ul class="ui-list ui-list-function ui-list-link">
+    <div class="ui-list ui-list-function ui-list-link">
     #{list items:orderList, as:'order'}
-        <li class="ui-border-t">
-            <a href="">
+        <a href="" class="ui-border-t">
             <div class="ui-avatar">
                 <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
             </div>
@@ -66,10 +65,9 @@
             </div>
             <div class="ui-btn"
                style="color: #04BE02;border: 0px;background: white;">支付</div>
-            </a>
-        </li>
+        </a>
     #{/list}
-    </ul>
+    </div>
 </section>
 </body>
 <script src="@{'/public/javascripts/zepto.min.js'}"></script>
