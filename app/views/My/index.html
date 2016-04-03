@@ -86,16 +86,18 @@
                 <span style="background-image:url(@{'/public/images/tfzg.jpg'})"></span>
             </div>
             <div class="ui-list-info">
-                <ul class="ui-row">
-                    <li class="ui-col ui-col-75">
-                        <h4 class="ui-nowrap">${order[1]?.productName}1234
-                        </h4>
+                <ul class="ui-row-flex">
+                    <li class="ui-col ui-col-3">
+                        <h4 class="ui-nowrap">${order[1]?.productName}</h4>
                         <p class="ui-nowrap">单号:${order[0]?.no} @今天</p>
                     </li>
-                    <li class="ui-col ui-col-25">
+                    <li class="ui-col">
                         <div class="ui-txt-highlight"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}1元
+                             style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
                         </div>
+                    </li>
+                    <li class="ui-col">
+                        <div id="status_${order[0]?.id}"  style="color: #04BE02;">${order[0]?.status}</div>
                     </li>
                 </ul>
             </div>
