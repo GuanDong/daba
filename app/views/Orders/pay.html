@@ -63,9 +63,9 @@
                 function (res) {
                     alert(JSON.stringify(res));
                     $("body").empty();
-                    if (res.err_msg == "get_brand_wcpay_request：ok") {
+                    if (res.err_msg == "get_brand_wcpay_requestok") {
                         $("body").innerHTML($("#paySuccessTmpl").innerHTML);
-                    } else if (res.err_msg == "get_brand_wcpay_request：cancel") {
+                    } else if (res.err_msg == "get_brand_wcpay_requestcancel") {
                         $("body").innerHTML($("#payCancelTmpl").innerHTML);
                     } else {
                         $("body").innerHTML($("#payFailureTmpl").innerHTML);
