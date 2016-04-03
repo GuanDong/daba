@@ -10,7 +10,7 @@ import java.util.List;
 public class Coupons extends Base {
 
     public static void index() {
-        List<CouponM> coupons = CouponM.find("effectiveDate >= ? order by endDate", DateFormatUtils.format(new Date(), "MM/dd/yyyy")).fetch();
+        List<CouponM> coupons = CouponM.find("endDate >= ? order by endDate", DateFormatUtils.format(new Date(), "MM/dd/yyyy")).fetch();
         List<AccountCouponM> myCoupons = AccountCouponM.find("accountId = ?", getAccountOpenId()).fetch();
         render(coupons, myCoupons);
     }
