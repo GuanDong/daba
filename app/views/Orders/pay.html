@@ -65,13 +65,13 @@
                     $("body").empty();
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
                         alert(1);
-                        $("body").append($("#paySuccessTmpl").children);
+                        $("body").html($("#paySuccessTmpl").html());
                     } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
                         alert(2);
-                        $("body").append($("#payCancelTmpl").children);
+                        $("body").html($("#payCancelTmpl").html());
                     } else {
                         alert(3);
-                        $("body").append($("#payFailureTmpl").children);
+                        $("body").html($("#payFailureTmpl").html());
                     }
                 }
         )
