@@ -64,11 +64,14 @@
                     alert(JSON.stringify(res));
                     $("body").empty();
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
-                        $("body").innerHTML($("#paySuccessTmpl").innerHTML);
+                        alert(1);
+                        $("body").append($("#paySuccessTmpl").children);
                     } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                        $("body").innerHTML($("#payCancelTmpl").innerHTML);
+                        alert(2);
+                        $("body").append($("#payCancelTmpl").children);
                     } else {
-                        $("body").innerHTML($("#payFailureTmpl").innerHTML);
+                        alert(3);
+                        $("body").append($("#payFailureTmpl").children);
                     }
                 }
         )

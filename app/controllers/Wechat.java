@@ -20,6 +20,7 @@ import play.Play;
 import play.cache.Cache;
 import play.mvc.Before;
 import play.mvc.Util;
+import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub;
 import soap.SoapInvoker;
 
@@ -150,38 +151,22 @@ public class Wechat extends Base {
         OrderM order = OrderM.find("byNo", orderNo).first();
         if (StringUtils.equals(order.status, "待定")) {
             try {
-                SoapInvoker.changeOrderStatus(orderNo, "已支付");
+               HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output =  SoapInvoker.changeOrderStatus(orderNo, "已支付");
+                if (StringUtils.equals("S", output.getProcStatus())) {
+                    StringBuilder response = new StringBuilder("<xml>");
+                    response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
+                    response.append(String.format("<%s>%s</%s>", new Object[]{"return_msg", "<![CDATA[OK]]>", "return_msg"}));
+                    response.append("</xml>");
+                    renderXml(response.toString());
+                } else {
+                    Logger.error("订单支付信息SOAP处理失败: %s", output.getProcMsg());
+                    return;
+                }
             } catch (RemoteException e) {
-                Logger.error(e, "订单支付信息处理失败: %s", xmlMsg);
+                Logger.error(e, "订单支付信息SOAP处理失败: %s", xmlMsg);
                 return;
             }
         }
-
-        StringBuilder response = new StringBuilder("<xml>");
-        response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
-        response.append(String.format("<%s>%s</%s>", new Object[]{"return_msg", "<![CDATA[OK]]>", "return_msg"}));
-        response.append("</xml>");
-        renderXml(response.toString());
-    }
-
-    /*
-     * 接收支付结果消息
-     */
-    public static void receivePayMessage(String toUserId, String templateId, String orderId) throws WxErrorException {
-
-        AccountM user = AccountM.findById(toUserId);
-        OrderM order = OrderM.findById(orderId);
-
-        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-        templateMessage.setToUser(user.openId);
-        templateMessage.setTemplateId(templateId);
-        templateMessage.setUrl("/my/order/" + orderId);
-//        templateMessage.setTopColor(...);
-        templateMessage.getDatas().add(new WxMpTemplateData("name", user.name, "green"));
-        templateMessage.getDatas().add(new WxMpTemplateData("orderNo", order.no, "green"));
-
-        wxMpService.templateSend(templateMessage);
-        renderText("Ok");
     }
 
     /*
@@ -272,24 +257,6 @@ public class Wechat extends Base {
         button3.setType(WxConsts.BUTTON_VIEW);
         button3.setUrl(Application.BASE_URL + "/subscribe");
 
-//        WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
-//        buttons.add(button3);
-//        button3.setName("评价");
-//        List<WxMenu.WxMenuButton> subButtons = new ArrayList<WxMenu.WxMenuButton>();
-//        button3.setSubButtons(subButtons);
-//
-//        WxMenu.WxMenuButton button4 = new WxMenu.WxMenuButton();
-//        subButtons.add(button4);
-//        button4.setName("点赞");
-//        button4.setType(WxConsts.BUTTON_VIEW);
-//        button4.setUrl(callBackOpenIdUrl("/my/comments", "good"));
-//
-//        WxMenu.WxMenuButton button5 = new WxMenu.WxMenuButton();
-//        subButtons.add(button5);
-//        button5.setName("吐槽");
-//        button5.setType(WxConsts.BUTTON_VIEW);
-//        button5.setUrl(callBackOpenIdUrl("/my/comments", "bad"));
-
         wxMpService.menuCreate(wxMenu);
     }
 
@@ -322,7 +289,6 @@ public class Wechat extends Base {
             } catch (RemoteException e) {
                 e.printStackTrace();
                 Logger.info(e, "创建账号出错");
-                ;
             }
 
             WxMpXmlOutTextMessage m
@@ -354,59 +320,6 @@ public class Wechat extends Base {
             return null;
         }
 
-    }
-
-    public static class PaySuccessHandler implements WxMpMessageHandler {
-        @Override
-        public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
-            String xmlMsg = wxMpXmlMessage.getContent();
-            WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
-
-            String orderNo = wxMpPayCallback.getOut_trade_no();
-            OrderM order = OrderM.find("byNo", orderNo).first();
-            if (StringUtils.equals(order.status, "已下单")) {
-                try {
-                    SoapInvoker.changeOrderStatus(orderNo, "已支付");
-                } catch (RemoteException e) {
-                    Logger.error(e, "订单支付信息处理失败: %s", xmlMsg);
-                }
-            }
-
-            StringBuilder response = new StringBuilder("<xml>");
-            response.append(String.format("<%s>%s</%s>", new Object[]{"return_code", "<![CDATA[SUCCESS]]>", "return_code"}));
-            response.append(String.format("<%s>%s</%s>", new Object[]{"return_msg", "<![CDATA[OK]]>", "return_msg"}));
-            response.append("</xml>");
-            WxMpXmlOutTextMessage m
-                    = WxMpXmlOutMessage.TEXT().content(response.toString()).build();
-
-            return m;
-        }
-
-    }
-
-    public static class PayMessageMatcher implements WxMpMessageMatcher {
-
-        @Override
-        public boolean match(WxMpXmlMessage wxMpXmlMessage) {
-            String xmlMsg = wxMpXmlMessage.getContent();
-            WxMpPayCallback wxMpPayCallback = wxMpService.getJSSDKCallbackData(xmlMsg);
-            Map payCallbackMap = new HashMap();
-            try {
-                payCallbackMap = BeanUtils.describe(wxMpPayCallback);
-            } catch (Exception e) {
-            }
-            if (wxMpService.checkJSSDKCallbackDataSignature(payCallbackMap, wxMpPayCallback.getSign())) {
-
-                if (!(StringUtils.equals(wxMpPayCallback.getResult_code(), "SUCCESS")
-                        || StringUtils.isBlank(wxMpPayCallback.getTransaction_id())
-                        || StringUtils.isBlank(wxMpPayCallback.getOut_trade_no())
-                        || StringUtils.equals(wxMpPayCallback.getAppid(), wxMpConfigStorage.getAppId()))) {
-                    return true;
-
-                }
-            }
-            return false;
-        }
     }
 
 }
