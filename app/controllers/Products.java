@@ -24,7 +24,13 @@ public class Products extends Base {
         orderDay = DateUtils.toFirstSecond(orderDay);
 
         List<ProductM> productList = ProductM.find("startDate <= ? and endDate >= ? order by hotLevel desc", orderDay, orderDay).fetch();
-        render(productList);
+
+        Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+        if (productCount == null){
+            productCount = 100;
+        }
+
+        render(productList,productCount);
     }
 
     public static void book(String productId) {
@@ -51,6 +57,8 @@ public class Products extends Base {
                     "(power(longitude - ?, 2) + power(latitude - ?, 2)), createdDate desc",
                     getAccountOpenId(), Double.parseDouble(longLat[0]), Double.parseDouble(longLat[1])).first();
         }
+
+
         render(product, couponList, lastOrder);
     }
 

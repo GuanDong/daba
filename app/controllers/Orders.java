@@ -46,6 +46,18 @@ public class Orders extends Base {
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
         ResponseResult result = new ResponseResult();
 
+        Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+        if (productCount == null){
+            productCount = 100;
+        }
+
+        if(productCount < 1){
+            result.setError("限额已售完");
+            renderJSON(result);
+        }
+
+        Cache.set("dabbawal_product_count", productCount-1);
+
         String location = Cache.get(getAccountOpenId() + "_location", String.class);
         if (!StringUtils.isBlank(location)) {
             String[] longLat = location.split("-");
@@ -64,7 +76,7 @@ public class Orders extends Base {
             result.setResult(output.getOrderid());
             renderJSON(result);
         } else {
-            result.setResult(output.getProcMsg());
+            result.setError(output.getProcMsg());
             renderJSON(result);
         }
     }
@@ -102,6 +114,11 @@ public class Orders extends Base {
     @Util
     public static String cancelOrder(String orderId) throws RemoteException {
         HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(orderId, "已取消");
+
+        if(StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS)) {
+            Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+            Cache.set("dabbawal_product_count", productCount + 1);
+        }
         return StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS) ? DabbawalConsts.RESPONSE_RESULT_SUCCESS : output.getProcMsg();
     }
 
