@@ -41,7 +41,7 @@ public class Orders extends Base {
         order.setAccntid(getAccountOpenId());
         HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Output output = SoapInvoker.saveOrder(order, productId, couponId);
         Logger.info("SAOP status: %s", output.getProcStatus());
-        if (StringUtils.equals("SUCCESS", output.getProcStatus())) {
+        if (StringUtils.equals("S", output.getProcStatus())) {
             String orderId = output.getOrderid();
             pay(orderId);
         } else {
@@ -62,7 +62,7 @@ public class Orders extends Base {
 
     public static void cancel(String orderId) throws RemoteException {
         HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(orderId, "已取消");
-        if (StringUtils.equals("SUCCESS", output.getProcStatus())) {
+        if (StringUtils.equals("S", output.getProcStatus())) {
             renderJSON("SUCCESS");
         } else {
             renderJSON(output.getProcMsg());
