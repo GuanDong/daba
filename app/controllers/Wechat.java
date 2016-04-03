@@ -203,7 +203,7 @@ public class Wechat extends Base {
         params.put("trade_type", "JSAPI");
         params.put("openid", order.accountId);
 
-//        Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params)));
+        Logger.info("prePayInfo: %s", new Gson().toJson(wxMpService.getPrepayId(params)));
         return wxMpService.getJSSDKPayInfo(params);
     }
 
