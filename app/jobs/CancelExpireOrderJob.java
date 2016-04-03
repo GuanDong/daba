@@ -6,6 +6,7 @@ import controllers.Wechat;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import models.OrderM;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import play.Logger;
 import play.jobs.Every;
 import play.jobs.Job;
@@ -18,7 +19,7 @@ import java.util.List;
 public class CancelExpireOrderJob extends Job {
 
     public void doJob() {
-        List<OrderM> orderList = OrderM.find("createdDate <= ? and status = ?", new Date(), DabbawalConsts.ORDER_STATUS_NEW).fetch();
+        List<OrderM> orderList = OrderM.find("createdDate <= ? and status = ?", DateUtils.addMinutes(new Date(), -30), DabbawalConsts.ORDER_STATUS_NEW).fetch();
 
         for (OrderM order : orderList){
             try {
