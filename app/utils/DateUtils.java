@@ -1,5 +1,7 @@
 package utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,10 +30,16 @@ public class DateUtils {
     }
 
     public static String format(Date date, String pattern){
-        return org.apache.http.client.utils.DateUtils.formatDate(date, pattern);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
     }
 
-    public static Date parse(String dateValue, String... patterns){
-        return org.apache.http.client.utils.DateUtils.parseDate(dateValue, patterns);
+    public static Date parse(String dateValue, String pattern){
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        try {
+            return sdf.parse(dateValue);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 }
