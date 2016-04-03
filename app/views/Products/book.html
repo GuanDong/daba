@@ -202,6 +202,7 @@
                         "paySign": jssdkPayInfo.paySign
                     },
                     function (res) {
+                        alert(JSON.stringify(res));
                         $("body").empty();
                         if (res.err_msg == "get_brand_wcpay_request：ok") {
                             $("body").innerHTML($("#paySuccessTmpl").innerHTML);
