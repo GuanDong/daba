@@ -1,5 +1,6 @@
 package controllers;
 
+import consts.DabbawalConsts;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -9,7 +10,8 @@ public class Application extends Controller {
     }
 
     public static void subscribe() {
-        render();
+        redirect(DabbawalConsts.ABOUT_PAGE_URL);
+//        render();
     }
 
     public static void login() {

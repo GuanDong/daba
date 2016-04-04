@@ -252,12 +252,14 @@ public class Wechat extends Controller {
             account.setIntegrationid(user.getOpenId());
             account.setAliasname(user.getNickname());
             account.setLoc(user.getCity());
+            account.setReserve1(user.getSex());
 
-            if (StringUtils.equals(user.getSex(), "1")) {
-                account.setReserve1("男");
-            } else if (StringUtils.equals(user.getSex(), "2")) {
-                account.setReserve1("女");
-            }
+//            if (StringUtils.equals(user.getSex(), "1")) {
+//                account.setReserve1("男");
+//            } else if (StringUtils.equals(user.getSex(), "2")) {
+//                account.setReserve1("女");
+//            }
+
             account.setReserve2(user.getHeadImgUrl());
             try {
                 HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Output ouput = SoapInvoker.saveAccount(account);
@@ -268,6 +270,7 @@ public class Wechat extends Controller {
                 Logger.error(e, "创建账号出错");
             }
 
+            Logger.error("1");
             WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 1);
             if (batchNews.getItemCount() == 0) {
                 WxMpXmlOutTextMessage m
@@ -277,13 +280,17 @@ public class Wechat extends Controller {
                 return m;
             }
 
+            Logger.error("2");
             WxMpMaterialNews.WxMpMaterialNewsArticle article =  batchNews.getItems().get(0).getContent().getArticles().get(0);
             WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
+            Logger.error("3");
             item.setDescription(article.getContent());
+            Logger.error("4");
             item.setPicUrl(article.getThumbUrl());
             item.setTitle(article.getTitle());
             item.setUrl(article.getUrl());
 
+            Logger.error("5");
             WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
                     .fromUser(wxMpXmlMessage.getToUserName())
                     .toUser(wxMpXmlMessage.getFromUserName())
