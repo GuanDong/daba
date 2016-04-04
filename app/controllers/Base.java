@@ -51,7 +51,7 @@ public class Base extends Controller {
 
     @Util
     public static String getAccountOpenId() {
-        Application.AuthenticityInfo authInfo = renderArgs.get("authInfo", Application.AuthenticityInfo.class);
+        AuthenticityInfo authInfo = renderArgs.get("authInfo", AuthenticityInfo.class);
         if (authInfo == null) return null;
         return authInfo.openId;
     }
