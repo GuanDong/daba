@@ -9,10 +9,7 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.crypto.WxCryptUtil;
 import me.chanjar.weixin.mp.api.*;
 import me.chanjar.weixin.mp.bean.*;
-import me.chanjar.weixin.mp.bean.result.WxMpMaterialNewsBatchGetResult;
-import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
-import me.chanjar.weixin.mp.bean.result.WxMpPayCallback;
-import me.chanjar.weixin.mp.bean.result.WxMpUser;
+import me.chanjar.weixin.mp.bean.result.*;
 import models.OrderM;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
@@ -192,6 +189,16 @@ public class Wechat extends Controller {
     @Util
     public static String getJsapiTicket() throws WxErrorException {
         return wxMpService.getJsapiTicket();
+    }
+
+    @Util
+    public static WxMpUserList getUserList(String nextId) throws WxErrorException {
+        return wxMpService.userList(nextId);
+    }
+
+    @Util
+    public static WxMpUser getUserInfo(String opendId) throws WxErrorException {
+        return wxMpService.userInfo(opendId, "zh_CN");
     }
 
     @Util
