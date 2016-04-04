@@ -287,6 +287,8 @@ public class Wechat extends Controller {
             item.setTitle(article.getTitle());
             item.setUrl(article.getUrl());
 
+            Logger.info("pic url: %s", article.getThumbUrl());
+
             WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
                     .fromUser(wxMpXmlMessage.getToUserName())
                     .toUser(wxMpXmlMessage.getFromUserName())
