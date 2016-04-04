@@ -43,16 +43,15 @@
                 </div>
                 <div class="ui-select">
                     <select id="block" name="order.block">
-                        <option #{if lastOrder?.addressBlock == "科兴科技园"}selected#{/if}>科兴科技园</option>
-                        <option #{if lastOrder?.addressBlock == "软件创业园"}selected#{/if}>软件创业园</option>
-                        <option #{if lastOrder?.addressBlock == "深圳大学"}selected#{/if}>深圳大学</option>
+                        <option #{if lastOrder?.addressBlock == "软件创业园"}selected#{/if}>软件产业基地园</option>
                     </select>
                 </div>
                 <div class="ui-select">
                     <select id="unit" name="order.unit">
-                        <option #{if lastOrder?.addressUnit == "A座"}selected#{/if}>A座</option>
-                        <option #{if lastOrder?.addressUnit == "B座"}selected#{/if}>B座</option>
-                        <option #{if lastOrder?.addressUnit == "C座"}selected#{/if}>C座</option>
+                        <option #{if lastOrder?.addressUnit == "4A"}selected#{/if}>4A</option>
+                        <option #{if lastOrder?.addressUnit == "4B"}selected#{/if}>4B</option>
+                        <option #{if lastOrder?.addressUnit == "4C"}selected#{/if}>4C</option>
+                        <option #{if lastOrder?.addressUnit == "4D"}selected#{/if}>4D</option>
                     </select>
                 </div>
             </div>
