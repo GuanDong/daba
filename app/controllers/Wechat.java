@@ -101,6 +101,7 @@ public class Wechat extends Controller {
             // 明文传输的消息
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
+            Logger.info("return weixin: %s", outMessage == null ? "" : outMessage.toXml());
             renderXml(outMessage == null ? "" : outMessage.toXml());
         }
 
@@ -296,6 +297,7 @@ public class Wechat extends Controller {
                     .toUser(wxMpXmlMessage.getFromUserName())
                     .addArticle(item)
                     .build();
+            Logger.error(m.toString());
             return m;
         }
     }
