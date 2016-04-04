@@ -89,7 +89,7 @@
                 <li class="ui-col ui-col-3" style="margin-right: 25px;">
                     <div class="ui-select ui-form-item ui-border-tb">
                         <select id="couponId" name="couponId">
-                            <option value="">不使用</option>
+                            <option value="" data-value="0">不使用</option>
                         #{list items:couponList, as:'coupon'}
                             <option value="${coupon.id}" data-value="${coupon.value}">${coupon.name}</option>
                         #{/list}
