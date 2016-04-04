@@ -23,7 +23,7 @@ public class Products extends Base {
         }
         orderDay = DateUtils.toFirstSecond(orderDay);
 
-        List<ProductM> productList = ProductM.find("startDate <= ? and endDate >= ? order by hotLevel desc", orderDay, orderDay).fetch();
+        List<ProductM> productList = ProductM.find("startDate <= ? and endDate >= ? order by productNo desc", orderDay, orderDay).fetch();
 
         Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
         if (productCount == null){
