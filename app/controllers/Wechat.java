@@ -20,6 +20,7 @@ import play.Logger;
 import play.Play;
 import play.cache.Cache;
 import play.mvc.Before;
+import play.mvc.Controller;
 import play.mvc.Util;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub;
 import soap.HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub;
@@ -29,7 +30,7 @@ import utils.DateUtils;
 import java.rmi.RemoteException;
 import java.util.*;
 
-public class Wechat extends Base {
+public class Wechat extends Controller {
 
     private static WxMpConfigStorage wxMpConfigStorage;
     private static WxMpService wxMpService;
@@ -218,20 +219,20 @@ public class Wechat extends Base {
         buttons.add(button1);
         button1.setName("订餐");
         button1.setType(WxConsts.BUTTON_VIEW);
-        button1.setUrl(BASE_URL + "/");
+        button1.setUrl(Base.BASE_URL + "/");
 
 
         WxMenu.WxMenuButton button2 = new WxMenu.WxMenuButton();
         buttons.add(button2);
         button2.setName("我的订单");
         button2.setType(WxConsts.BUTTON_VIEW);
-        button2.setUrl(BASE_URL + "/my");
+        button2.setUrl(Base.BASE_URL + "/my");
 
         WxMenu.WxMenuButton button3 = new WxMenu.WxMenuButton();
         buttons.add(button3);
         button3.setName("帮助");
         button3.setType(WxConsts.BUTTON_VIEW);
-        button3.setUrl(BASE_URL + "/subscribe");
+        button3.setUrl(Base.BASE_URL + "/subscribe");
 
         wxMpService.menuCreate(wxMenu);
     }
