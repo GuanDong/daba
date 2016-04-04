@@ -195,7 +195,8 @@ public class Wechat extends Controller {
         Map<String, String> params = new HashMap<String, String>();
         params.put("body", productName);
         params.put("out_trade_no", order.no);
-        params.put("total_fee", String.valueOf(order.price*100));
+        params.put("total_fee", "1");
+//        params.put("total_fee", String.valueOf(order.price*100));
         params.put("spbill_create_ip", ip);
         params.put("time_start", DateUtils.format(order.createdDate,"yyyyMMddHHmmss"));
         params.put("time_expire", DateUtils.format(DateUtils.addMinutes(order.createdDate, 30),"yyyyMMddHHmmss"));
