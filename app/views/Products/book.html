@@ -35,12 +35,8 @@
                 送餐片区
             </label>
             <input name="order.state" type="hidden" value="广东">
+            <input name="order.city" type="hidden" value="深圳">
             <div class="ui-select-group">
-                <div class="ui-select">
-                    <select id="city" name="order.city">
-                        <option #{if lastOrder?.addressCity == "深圳"}selected#{/if}>深圳</option>
-                    </select>
-                </div>
                 <div class="ui-select">
                     <select id="block" name="order.block">
                         <option #{if lastOrder?.addressBlock == "软件创业园"}selected#{/if}>软件产业基地</option>
