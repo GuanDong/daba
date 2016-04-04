@@ -27,7 +27,10 @@ import soap.SoapInvoker;
 import utils.DateUtils;
 
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Wechat extends Controller {
 
@@ -197,10 +200,10 @@ public class Wechat extends Controller {
         params.put("body", productName);
         params.put("out_trade_no", order.no);
 //        params.put("total_fee", "1");
-        params.put("total_fee", String.valueOf(order.price*100));
+        params.put("total_fee", String.valueOf(order.price * 100));
         params.put("spbill_create_ip", ip);
-        params.put("time_start", DateUtils.format(order.createdDate,"yyyyMMddHHmmss"));
-        params.put("time_expire", DateUtils.format(DateUtils.addMinutes(order.createdDate, 30),"yyyyMMddHHmmss"));
+        params.put("time_start", DateUtils.format(order.createdDate, "yyyyMMddHHmmss"));
+        params.put("time_expire", DateUtils.format(DateUtils.addMinutes(order.createdDate, 30), "yyyyMMddHHmmss"));
         params.put("notify_url", "http://www.dabbawal.cn/wechat/pay");
         params.put("trade_type", "JSAPI");
         params.put("openid", order.accountId);
@@ -280,11 +283,11 @@ public class Wechat extends Controller {
                 return m;
             }
 
-            WxMpMaterialNews.WxMpMaterialNewsArticle article =  batchNews.getItems().get(0).getContent().getArticles().get(0);
+            WxMpMaterialNews.WxMpMaterialNewsArticle article = batchNews.getItems().get(0).getContent().getArticles().get(0);
             WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
             item.setDescription(article.getDigest());
             item.setPicUrl(StringUtils.isBlank(article.getThumbUrl()) ?
-                    "https://mmbiz.qlogo.cn/mmbiz/6KAHbdYYvbpdFqb8Ohc1zMzObuhlDnkIbhaJ10cj6Kw7avGSjtmIYcaWqedapwg2s2frT5SgXTxicaKSGd19qtQ/0?wx_fmt=jpeg" : article.getThumbUrl();
+                    "https://mmbiz.qlogo.cn/mmbiz/6KAHbdYYvbpdFqb8Ohc1zMzObuhlDnkIbhaJ10cj6Kw7avGSjtmIYcaWqedapwg2s2frT5SgXTxicaKSGd19qtQ/0?wx_fmt=jpeg" : article.getThumbUrl());
             item.setTitle(article.getTitle());
             item.setUrl(article.getUrl());
 
