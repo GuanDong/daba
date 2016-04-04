@@ -44,8 +44,8 @@ public class DateUtils {
     }
 
     public static int howManyDaysAgo(Date date){
-        Date start = toLastSecond(date);
-        Date end = toFirstSecond(new Date());
+        Date start = toFirstSecond(date);
+        Date end = toLastSecond(new Date());
         return (int) ((end.getTime() - start.getTime()) / (1000*60*60*24));
     }
 }
