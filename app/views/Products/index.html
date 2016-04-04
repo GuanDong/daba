@@ -36,11 +36,11 @@
         <h4>${authInfo.name}</h4>
         <p class="ui-txt-info">快来准备明天的午餐吧！</p>
     </section>
-    <div class="ui-tooltips ui-tooltips-warn">
-        <div class="ui-tooltips-cnt ui-border-b">
-            <i></i>试行期每天售100份，还剩${productCount}份。
-        </div>
-    </div>
+    *{<div class="ui-tooltips ui-tooltips-warn">}*
+        *{<div class="ui-tooltips-cnt ui-border-b">}*
+            *{<i></i>试行期每天售100份，还剩${productCount}份。}*
+        *{</div>}*
+    *{</div>}*
 
     <ul class="ui-list ui-list-function">
     #{list items:productList, as:'product'}
