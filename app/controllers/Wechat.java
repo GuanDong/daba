@@ -272,33 +272,33 @@ public class Wechat extends Controller {
             }
 
             Logger.error("1");
-            WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 1);
-            if (batchNews.getItemCount() == 0) {
+//            WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 1);
+//            if (batchNews.getItemCount() == 0) {
                 WxMpXmlOutTextMessage m
                         = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
                         .toUser(wxMpXmlMessage.getFromUserName()).build();
 
                 return m;
-            }
-
-            Logger.error("2");
-            WxMpMaterialNews.WxMpMaterialNewsArticle article =  batchNews.getItems().get(0).getContent().getArticles().get(0);
-            WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
-            Logger.error("3");
-            item.setDescription(article.getContent());
-            Logger.error("4");
-            item.setPicUrl(article.getThumbUrl());
-            item.setTitle(article.getTitle());
-            item.setUrl(article.getUrl());
-
-            Logger.error("5");
-            WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
-                    .fromUser(wxMpXmlMessage.getToUserName())
-                    .toUser(wxMpXmlMessage.getFromUserName())
-                    .addArticle(item)
-                    .build();
-            Logger.error(m.toString());
-            return m;
+//            }
+//
+//            Logger.error("2");
+//            WxMpMaterialNews.WxMpMaterialNewsArticle article =  batchNews.getItems().get(0).getContent().getArticles().get(0);
+//            WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
+//            Logger.error("3");
+//            item.setDescription(article.getContent());
+//            Logger.error("4");
+//            item.setPicUrl(article.getThumbUrl());
+//            item.setTitle(article.getTitle());
+//            item.setUrl(article.getUrl());
+//
+//            Logger.error("5");
+//            WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
+//                    .fromUser(wxMpXmlMessage.getToUserName())
+//                    .toUser(wxMpXmlMessage.getFromUserName())
+//                    .addArticle(item)
+//                    .build();
+//            Logger.error(m.toString());
+//            return m;
         }
     }
 
