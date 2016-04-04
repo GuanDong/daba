@@ -16,8 +16,8 @@ import soap.SoapInvoker;
 import java.rmi.RemoteException;
 import java.util.List;
 
-@OnApplicationStart
-//@On("0 0 3 * * ?")
+//@OnApplicationStart
+@On("0 0 3 * * ?")
 public class SyncAccountNotInDBJob extends Job {
 
     public void doJob() {
