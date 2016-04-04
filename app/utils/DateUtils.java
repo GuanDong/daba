@@ -29,6 +29,10 @@ public class DateUtils {
         return org.apache.commons.lang.time.DateUtils.addMinutes(date, amount);
     }
 
+    public static Date addDays(Date date, int amount){
+        return org.apache.commons.lang.time.DateUtils.addDays(date, amount);
+    }
+
     public static String format(Date date, String pattern){
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);

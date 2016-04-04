@@ -8,9 +8,8 @@ import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.crypto.WxCryptUtil;
 import me.chanjar.weixin.mp.api.*;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
+import me.chanjar.weixin.mp.bean.*;
+import me.chanjar.weixin.mp.bean.result.WxMpMaterialNewsBatchGetResult;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpPayCallback;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
@@ -268,10 +267,27 @@ public class Wechat extends Controller {
                 Logger.error(e, "创建账号出错");
             }
 
-            WxMpXmlOutTextMessage m
-                    = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
-                    .toUser(wxMpXmlMessage.getFromUserName()).build();
+            WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 1);
+            if (batchNews.getItemCount() == 0) {
+                WxMpXmlOutTextMessage m
+                        = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
+                        .toUser(wxMpXmlMessage.getFromUserName()).build();
 
+                return m;
+            }
+
+            WxMpMaterialNews.WxMpMaterialNewsArticle article =  batchNews.getItems().get(0).getContent().getArticles().get(0);
+            WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
+            item.setDescription(article.getContent());
+            item.setPicUrl(article.getThumbUrl());
+            item.setTitle(article.getTitle());
+            item.setUrl(article.getUrl());
+
+            WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
+                    .fromUser(wxMpXmlMessage.getToUserName())
+                    .toUser(wxMpXmlMessage.getFromUserName())
+                    .addArticle(item)
+                    .build();
             return m;
         }
     }

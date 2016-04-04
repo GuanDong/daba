@@ -1,5 +1,6 @@
 package soap;
 
+import consts.DabbawalConsts;
 import me.chanjar.weixin.common.util.StringUtils;
 import play.Logger;
 import soap.HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Input;
@@ -15,8 +16,10 @@ import soap.HUHU_spcCreate_spcContact_spcWeb_spcServiceStub.CreatedContact_Outpu
 import soap.HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.*;
 import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Input;
 import soap.HUHU_spcCreate_spcProduct_spcEvaluate_spcWeb_spcServiceStub.CreatedProdEva_Output;
+import utils.DateUtils;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 
 /**
@@ -43,14 +46,14 @@ public class SoapInvoker {
         ListOforderEntryLineItems orderEntryLineItems = new ListOforderEntryLineItems();
         OrderEntryLineItems product = new OrderEntryLineItems();
         product.setProdid(productId);
-        product.setProducttype("产品");
-        product.setDeliverydate("2017/07/01 00:00:00");
+        product.setProducttype(DabbawalConsts.PRODUCT_TYPE_PROD);
+        product.setDeliverydate(DateUtils.format(DateUtils.addDays(new Date(), 1), "yyyy/MM/dd HH:mm:ss"));
         orderEntryLineItems.addOrderEntryLineItems(product);
         if (!StringUtils.isBlank(couponId)) {
             Logger.info("couponId:%s", couponId);
             OrderEntryLineItems coupon = new OrderEntryLineItems();
             coupon.setProdid(couponId);
-            coupon.setProducttype("促销");
+            coupon.setProducttype(DabbawalConsts.PRODUCT_TYPE_COUPON);
             orderEntryLineItems.addOrderEntryLineItems(coupon);
         }
         lineMessage.setListOforderEntryLineItems(orderEntryLineItems);
