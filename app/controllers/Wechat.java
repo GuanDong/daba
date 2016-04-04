@@ -243,8 +243,10 @@ public class Wechat extends Base {
         @Override
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 
+            Logger.info("user msg: %s", new Gson().toJson(wxMpXmlMessage.getContent()));
             WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
 
+            Logger.info("user: %s", new Gson().toJson(user));
             HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input account = new HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Input();
             account.setIntegrationid(user.getOpenId());
             account.setAliasname(user.getNickname());
@@ -259,10 +261,10 @@ public class Wechat extends Base {
             try {
                 HUHU_spcCreate_spcAccount_spcWeb_spcServiceStub.CreatedAccount_Output ouput = SoapInvoker.saveAccount(account);
                 if (!StringUtils.equals(DabbawalConsts.RESPONSE_RESULT_SUCCESS, ouput.getProcStatus())) {
-                    Logger.info("创建账号出错: %s", ouput.getProcMsg());
+                    Logger.error("创建账号出错: %s", ouput.getProcMsg());
                 }
             } catch (RemoteException e) {
-                Logger.info(e, "创建账号出错");
+                Logger.error(e, "创建账号出错");
             }
 
             WxMpXmlOutTextMessage m
