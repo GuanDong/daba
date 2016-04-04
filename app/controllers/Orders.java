@@ -117,6 +117,9 @@ public class Orders extends Base {
 
         if(StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS)) {
             Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+            if (productCount == null){
+                productCount = 100;
+            }
             Cache.set("dabbawal_product_count", productCount + 1);
         }
         return StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS) ? DabbawalConsts.RESPONSE_RESULT_SUCCESS : output.getProcMsg();
