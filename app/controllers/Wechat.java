@@ -95,13 +95,10 @@ public class Wechat extends Controller {
                 "raw" :
                 params.get("encrypt_type");
 
-        Logger.info("weixin post: %s", params.get("body"));
-
         if ("raw".equals(encryptType)) {
             // 明文传输的消息
             WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(params.get("body"));
             WxMpXmlOutMessage outMessage = wxMpMessageRouter.route(inMessage);
-            Logger.info("return weixin: %s", outMessage == null ? "" : outMessage.toXml());
             renderXml(outMessage == null ? "" : outMessage.toXml());
         }
 
@@ -255,7 +252,6 @@ public class Wechat extends Controller {
         @Override
         public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 
-            Logger.info("user msg: %s", new Gson().toJson(wxMpXmlMessage.getContent()));
             WxMpUser user = wxMpService.userInfo(wxMpXmlMessage.getFromUserName(), "zh_CN");
 
             Logger.info("user: %s", new Gson().toJson(user));
@@ -297,8 +293,6 @@ public class Wechat extends Controller {
                     "https://mmbiz.qlogo.cn/mmbiz/6KAHbdYYvbpdFqb8Ohc1zMzObuhlDnkIbhaJ10cj6Kw7avGSjtmIYcaWqedapwg2s2frT5SgXTxicaKSGd19qtQ/0?wx_fmt=jpeg" : article.getThumbUrl());
             item.setTitle(article.getTitle());
             item.setUrl(article.getUrl());
-
-            Logger.info("pic url: %s", article.getThumbUrl());
 
             WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
                     .fromUser(wxMpXmlMessage.getToUserName())
