@@ -1,6 +1,8 @@
 package controllers;
 
-public class Application extends Base {
+import play.mvc.Controller;
+
+public class Application extends Controller {
 
     public static void index() {
         Products.index(null);

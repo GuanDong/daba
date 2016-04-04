@@ -142,7 +142,7 @@
         <input type="hidden" id="orderId" name="orderId" value="1-AQGE">
         <div class="ui-dialog-cnt">
             <header class="ui-dialog-hd">
-                <h5>订单号: 1111</h5>
+                <h5 id="orderNo">订单号: 1111</h5>
             </header>
             <div class="ui-form-item ui-border-b">
                 <div class="rating-wrapper" id="starEvaluate">
@@ -201,7 +201,7 @@
         } else if (orderStatus == "已完成") {
             $('.ui-actionsheet .ui-actionsheet-cnt')
                     .append("<h4>订单号: " + orderNo + "</h4>")
-                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); commentOrder('" + orderId + "');\">评论</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); commentOrder('" + orderId + ", " + orderNo + "');\">评论</button>")
                     .append("<button onclick=\"$('.ui-actionsheet').removeClass('show');\">取消</button>");
         }
         $('.ui-actionsheet').addClass('show');
@@ -276,8 +276,9 @@
         }
     }
 
-    function commentOrder(orderId) {
+    function commentOrder(orderId, orderNo) {
         $("#orderId").val(orderId);
+        $("#orderNo").text("订单号: " + orderNo);
         $(".ui-dialog").addClass("show");
     }
 
