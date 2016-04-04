@@ -38,21 +38,21 @@
             <div class="ui-select-group">
                 <div class="ui-select">
                     <select id="city" name="order.city">
-                        <option #{if lastOrder.addressCity == "深圳"}selected#{/if}>深圳</option>
+                        <option #{if lastOrder?.addressCity == "深圳"}selected#{/if}>深圳</option>
                     </select>
                 </div>
                 <div class="ui-select">
                     <select id="block" name="order.block">
-                        <option #{if lastOrder.addressBlock == "科兴科技园"}selected#{/if}>科兴科技园</option>
-                        <option #{if lastOrder.addressBlock == "软件创业园"}selected#{/if}>软件创业园</option>
-                        <option #{if lastOrder.addressBlock == "深圳大学"}selected#{/if}>深圳大学</option>
+                        <option #{if lastOrder?.addressBlock == "科兴科技园"}selected#{/if}>科兴科技园</option>
+                        <option #{if lastOrder?.addressBlock == "软件创业园"}selected#{/if}>软件创业园</option>
+                        <option #{if lastOrder?.addressBlock == "深圳大学"}selected#{/if}>深圳大学</option>
                     </select>
                 </div>
                 <div class="ui-select">
                     <select id="unit" name="order.unit">
-                        <option #{if lastOrder.addressUnit == "A座"}selected#{/if}>A座</option>
-                        <option #{if lastOrder.addressUnit == "B座"}selected#{/if}>B座</option>
-                        <option #{if lastOrder.addressUnit == "C座"}selected#{/if}>C座</option>
+                        <option #{if lastOrder?.addressUnit == "A座"}selected#{/if}>A座</option>
+                        <option #{if lastOrder?.addressUnit == "B座"}selected#{/if}>B座</option>
+                        <option #{if lastOrder?.addressUnit == "C座"}selected#{/if}>C座</option>
                     </select>
                 </div>
             </div>
