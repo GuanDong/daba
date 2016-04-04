@@ -22,6 +22,9 @@ public class OrderItemM extends GenericModel {
     @Column(name = "prod_id")
     public String productId;
 
+    @Column(name = "PROD_PART_NUM")
+    public String productNo;
+
     @Column(name = "prod_cd")
     public String productType;
 
