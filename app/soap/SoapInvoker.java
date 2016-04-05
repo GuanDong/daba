@@ -48,7 +48,7 @@ public class SoapInvoker {
         product.setProdid(productId);
         product.setProducttype(DabbawalConsts.PRODUCT_TYPE_PROD);
 //        product.setDeliverydate("2016/4/5 00:00:00");
-        product.setDeliverydate(DateUtils.format(DateUtils.addDays(new Date(), 1), "yyyy-MM-dd HH:mm:ss"));
+        product.setDeliverydate(DateUtils.format(DateUtils.addDays(new Date(), 1), "yyyy-MM-dd"));
         orderEntryLineItems.addOrderEntryLineItems(product);
         if (!StringUtils.isBlank(couponId)) {
             Logger.info("couponId:%s", couponId);
