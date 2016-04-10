@@ -14,7 +14,7 @@ import java.util.List;
 public class Coupons extends Base {
 
     public static void index() {
-        List<CouponM> coupons = CouponM.find("endDate >= ? order by endDate", new Date()).fetch();
+        List<CouponM> coupons = CouponM.find("endDate >= ? order by sortNum", new Date()).fetch();
         List<AccountCouponM> myCoupons = AccountCouponM.find("accountId = ?", getAccountOpenId()).fetch();
         render(coupons, myCoupons);
     }

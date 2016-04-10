@@ -58,4 +58,7 @@ public class ProductM extends GenericModel {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_upd")
     public Date lastUpdatedDate;
+
+    @Column(name = "sort_num")
+    public Integer sortNum;
 }
