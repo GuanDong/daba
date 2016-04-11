@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
+    <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
+    <style>
+        .rating-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .rating {
+            width: 130px;
+            height: 25px;
+            background: url("@{'/public/images/stars.png'}") no-repeat;
+            background-size: 100%;
+            cursor: pointer;
+        }
+
+        .rating-bg {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 25px;
+            z-index: 2;
+            background: #F9FF00;
+            background: url("@{'/public/images/stars.png'}") no-repeat;
+            background-position: -1px -25px;
+        }
+
+        .stamp {width: 90%;height: 100px;padding: 0 10px;position: relative;overflow: hidden;}
+        .stamp:before {content: '';position: absolute;top:0;bottom:0;left:10px;right:10px;z-index: -1;}
+        .stamp:after {content: '';position: absolute;left: 10px;top: 10px;right: 10px;bottom: 10px;box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);z-index: -2;}
+        .stamp i{position: absolute;left: 10%;top: 45px;height: 190px;width: 390px;background-color: rgba(255,255,255,.15);transform: rotate(-30deg);}
+        .stamp .par{float: left;padding: 6px 15px;width: 190px;border-right:2px dashed rgba(255,255,255,.3);text-align: left;}
+        .stamp .par p{color:#fff;}
+        .stamp .par span{font-size: 28px;color:#fff;margin-right: 5px;}
+        .stamp .par .sign{font-size: 16px;}
+        .stamp .par sub{position: relative;top:-5px;color:rgba(255,255,255,.8);}
+        .stamp .copy{display: inline-block;padding:10px 7px;width:100px;vertical-align: text-bottom;font-size: 18px;color:rgb(255,255,255);}
+        .stamp .copy p{font-size: 8px;margin-top: 5px;}
+
+        .stamp01{background: #F39B00;background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #F39B00 5px);background-size: 15px 15px;background-position: 9px 3px;}
+        .stamp01:before{background-color:#F39B00;}
+    </style>
+</head>
+<body style="background: white;">
+<div id="rootContainer" style="background-color: inherit;">
+<footer class="ui-footer" style="background-color: inherit;">
+    <ul class="ui-tiled ui-border-t">
+        <li class="ui-border-r">
+            <a href="@{Application.index()}">
+                <h1 class="icon-home ui-txt-red"></h1>
+                <h5 class="ui-txt-info">首页</h5>
+            </a>
+        </li>
+        <li class="ui-border-r" disabled>
+            <a href="@{My.index()}">
+                <h1 class="icon-user ui-txt-red"></h1>
+                <h5 class="ui-txt-info">个人中心</h5>
+            </a>
+        </li>
+        <li>
+            <a href="@{Application.subscribe()}">
+                <h1 class="icon-info ui-txt-red"></h1>
+                <h5 class="ui-txt-info">关于我们</h5>
+            </a>
+        </li>
+    </ul>
+</footer>
+<section class="ui-container">
+    <section class="ui-container ui-center">
+        <img class="ui-avatar-lg" src="${authInfo.headimgurl}" alt="">
+        <h4>${authInfo.name}</h4>
+        <p class="ui-txt-info">快来准备明天的午餐吧！</p>
+    </section>
+    <section class="ui-tab">
+        <ul class="ui-tab-nav ui-border-b">
+            <li class="current">我的订单</li>
+            <li>我的优惠券</li>
+        </ul>
+        <ul class="ui-tab-content" style="width:200%">
+            <li>
+                <ul class="ui-list">
+                #{list items:orderList, as:'order'}
+                    <li #{if order[0].status == "待定" || order[0].status == "已完成"}
+                            onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
+                            class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
+                        <div class="ui-avatar">
+                            <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg')"></span>
+                        </div>
+                        <div class="ui-list-info">
+                            <ul class="ui-row-flex">
+                                <li class="ui-col ui-col-3">
+                                    <h4 class="ui-nowrap">${order[1]?.productName}</h4>
+                                    <p class="ui-nowrap" style="font-size: 12px;">订单号:${order[0]?.no} <i
+                                            class="icon-clock"></i>#{if utils.DateUtils.howManyDaysAgo(order[0].createdDate) == 0}
+                                        今天#{/if}#{else}${utils.DateUtils.howManyDaysAgo(order[0].createdDate)}天前#{/else}
+                                    </p>
+                                </li>
+                                <li class="ui-col">
+                                    <div class="ui-txt-highlight"
+                                         style="position: absolute;top: 50%;margin-top: -10px;">${order[0]?.price}元
+                                    </div>
+                                </li>
+                                <li class="ui-col">
+                                    <h5 id="status_${order[0]?.id}"
+                                        style="position: absolute;top: 50%;margin-top: -7px;#{if order[0].status == "待定" || order[0].status == "已完成"}color: #00a5e0;#{/if}">${order[0]?.status}</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                #{/list}
+                </ul>
+            </li>
+            <li>
+            #{list items:couponList, as:'coupon'}
+                <div class="ui-border-t" style="margin-top: 5px;">
+                <div class="stamp stamp01">
+                    <div class="par"><p class="ui-txt-sub">${coupon.name}</p><sub class="sign">￥</sub><span>5</span><sub>优惠券</sub><p class="ui-txt-sub">#{if coupon.desc}${coupon.desc}#{/if}#{else}达巴瓦拉工作餐#{/else}</p></div>
+                    <div class="copy">副券<p>${utils.DateUtils.format(coupon.startDate != null ? coupon.startDate : new java.util.Date(), "yyyy-MM-dd")}<br>#{if coupon.endDate}${utils.DateUtils.format(coupon.endDate, "yyyy-MM-dd")}#{/if}#{else}永久有效#{/else}</p></div>
+                    <i></i>
+                </div>
+                </div>
+            #{/list}
+            </div>
+        </ul>
+    </section>
+</section>
+<div class="ui-actionsheet">
+    <div class="ui-actionsheet-cnt">
+    </div>
+</div>
+<div class="ui-dialog">
+    <form id="commentForm" action="@{Orders.comment()}" method="get">
+        <input type="hidden" id="orderId" name="orderId" value="1-AQGE">
+        <div class="ui-dialog-cnt">
+            <header class="ui-dialog-hd">
+                <h5 id="orderNo">订单号: 1111</h5>
+            </header>
+            <div class="ui-form-item ui-border-b">
+                <div class="rating-wrapper" id="starEvaluate">
+                    <div class="rating-bg"></div>
+                    <div class="rating"></div>
+                </div>
+                <span class="ui-txt-tips ui-txt-highlight" style="position: absolute;margin-top: -5px;">*为您的厨师加星</span>
+                <input id="score" name="score" type="hidden" value="0">
+            </div>
+            <div class="ui-form-item ui-form-item-textarea ui-form-item-pure">
+                <textarea name="content" placeholder="写下您的评价"></textarea>
+            </div>
+            <div class="ui-dialog-ft">
+                <button type="submit" class="selected" data-role="button">确定</button>
+                <button class="resetForm" type="reset" data-role="button">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<div id="loading" class="ui-loading-block">
+<div class="ui-loading-cnt">
+    <i class="ui-loading-bright"></i>
+    <p>加载中...</p>
+</div>
+</div>
+<div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content">已完成</p>
+    </div>
+</div>
+</body>
+<script src="@{'/public/javascripts/zepto.min.js'}"></script>
+<script src="@{'/public/javascripts/frozen.js'}"></script>
+<script type="text/javascript">
+    var timeout;
+    function showMsg(type, msg){
+        clearTimeout(timeout);
+        $("#toast .weui_toast_content").text(msg);
+        $("#toast").show();
+        timeout = setTimeout(function(){
+            $("#toast").hide();
+        },2000);
+    }
+
+    function showOptMenu(orderId, orderStatus, orderNo) {
+        $('.ui-actionsheet .ui-actionsheet-cnt').empty();
+        if (orderStatus == "待定") {
+            $('.ui-actionsheet .ui-actionsheet-cnt')
+                    .append("<h4>订单号: " + orderNo + "</h4>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); cancelOrder('" + orderId + "');\">撤单</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); payOrder('" + orderId + "');\">付款</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show');\">取消</button>");
+        } else if (orderStatus == "已完成") {
+            $('.ui-actionsheet .ui-actionsheet-cnt')
+                    .append("<h4>订单号: " + orderNo + "</h4>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show'); commentOrder('" + orderId + ", " + orderNo + "');\">评论</button>")
+                    .append("<button onclick=\"$('.ui-actionsheet').removeClass('show');\">取消</button>");
+        }
+        $('.ui-actionsheet').addClass('show');
+    }
+
+    function cancelOrder(orderId) {
+        $.ajax({
+            type: 'POST',
+            url: "@{Orders.cancel()}",
+            dataType: 'json',
+            data: {"orderId": orderId},
+            success: function (data) {
+                $("#loading").removeClass("show");
+                if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                    $("#status_"+orderId).text("${consts.DabbawalConsts.ORDER_STATUS_CANCELD}");
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}', "已撤单");
+                } else {
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
+                }
+            },
+            error: function (xhr, type) {
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', "撤单失败");;
+            }
+        });
+        $("#loading").addClass("show");
+    }
+
+    function payOrder(orderId) {
+        $.ajax({
+            type: 'GET',
+            url: '@{Orders.pay()}',
+            dataType: 'json',
+            data: {"orderId": orderId},
+            success: function (data) {
+                $("#loading").removeClass("show");
+                if (data.status == '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                    pay(data.result);
+                } else {
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
+                }
+            },
+            error: function (xhr, type) {
+                $("#loading").removeClass("show");
+                showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', '支付失败');
+            }
+        });
+        $("#loading").addClass("show");
+        function pay(jssdkPayInfo) {
+
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {
+                        "appId": jssdkPayInfo.appId,
+                        "timeStamp": jssdkPayInfo.timeStamp,
+                        "nonceStr": jssdkPayInfo.nonceStr,
+                        "package": jssdkPayInfo.package,
+                        "signType": jssdkPayInfo.signType,
+                        "paySign": jssdkPayInfo.paySign
+                    },
+                    function (res) {
+                        $("#rootContainer").empty();
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                            $("#rootContainer").append($($("#paySuccessTmpl").html()));
+                        } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                            $("#rootContainer").append($($("#payCancelTmpl").html()));
+                        } else {
+                            $("#rootContainer").append($($("#payFailureTmpl").html()));
+                        }
+                    }
+            );
+        }
+    }
+
+    function commentOrder(orderId, orderNo) {
+        $("#orderId").val(orderId);
+        $("#orderNo").text("订单号: " + orderNo);
+        $(".ui-dialog").addClass("show");
+    }
+
+    $("#starEvaluate").on("click", function () {
+        var x = event.offsetX;
+        var y = event.offsetY;
+        console.log(x + " " + y);
+        var score = Math.floor(x / 25) + 1;
+        renderStar(score);
+    });
+
+    function renderStar(score) {
+        var w = (+score) * 25 + "px";
+        $("#starEvaluate .rating-bg").css("width", w);
+        $("#score").val(score);
+    }
+
+    function showMsg(type, msg) {
+        var w = (+score) * 25 + "px";
+        $("#starEvaluate .rating-bg").css("width", w);
+        $("#score").val(score);
+    }
+
+    function resetCommentForm() {
+        $(".ui-dialog").removeClass("show");
+        document.getElementById("commentForm").reset();
+        renderStar(0);
+    }
+
+    Zepto(function ($) {
+        $("#commentForm .resetForm").click(resetCommentForm);
+        $("#commentForm").submit(function () {
+            $.ajax({
+                type: 'POST',
+                url: $("#commentForm").attr("action"),
+                dataType: 'json',
+                data: $("#commentForm").serialize(),
+                success: function (data) {
+                    $("#loading").removeClass("show");
+                    if (data.status != '${consts.DabbawalConsts.RESPONSE_RESULT_SUCCESS}') {
+                        showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', data.error);
+                    }
+                },
+                error: function (xhr, type) {
+                    $("#loading").removeClass("show");
+                    showMsg('${consts.DabbawalConsts.RESPONSE_RESULT_ERROR}', "评论失败");
+                }
+            });
+            resetCommentForm();
+            $("#loading").addClass("show");
+            return false;
+        });
+
+        var tab = new fz.Scroll('.ui-tab', {
+            role: 'tab',
+            autoplay: false
+        });
+    });
+</script>
+<script type="text/html" id="paySuccessTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付成功</h2>
+                <p class="weui_msg_desc">欢迎享用您的健康午餐</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payFailureTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">请检查微信钱包是否余额不足</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="payCancelTmpl">
+    <div class="page slideIn msg">
+        <div class="weui_msg">
+            <div class="weui_icon_area"><i class="weui_icon_warn weui_icon_msg"></i></div>
+            <div class="weui_text_area">
+                <h2 class="weui_msg_title">支付失败</h2>
+                <p class="weui_msg_desc">您取消了本次支付操作</p>
+            </div>
+            <div class="weui_opr_area">
+                <p class="weui_btn_area">
+                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+</html>
