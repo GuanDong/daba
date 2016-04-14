@@ -46,17 +46,17 @@ public class Orders extends Base {
                               HUHU_spcCreate_spcOrder_spcWeb_spcServiceStub.CreatedOrder_Input order) throws RemoteException {
         ResponseResult result = new ResponseResult();
 
-        Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
-        if (productCount == null){
-            productCount = 100;
-        }
+        //Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+        //if (productCount == null){
+        //    productCount = 100;
+        //}
 
-        if(productCount < 1){
-            result.setError("限额已售完");
-            renderJSON(result);
-        }
+        //if(productCount < 1){
+        //    result.setError("限额已售完");
+        //    renderJSON(result);
+        //}
 
-        Cache.set("dabbawal_product_count", productCount-1);
+//        Cache.set("dabbawal_product_count", productCount-1);
 
         String location = Cache.get(getAccountOpenId() + "_location", String.class);
         if (!StringUtils.isBlank(location)) {
@@ -116,11 +116,11 @@ public class Orders extends Base {
         HUHU_spcChange_spcOrder_spcStatus_spcWeb_spcServiceStub.ChangeOrderstatus_Output output = SoapInvoker.changeOrderStatus(orderId, "已取消");
 
         if(StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS)) {
-            Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
-            if (productCount == null){
-                productCount = 100;
-            }
-            Cache.set("dabbawal_product_count", productCount + 1);
+//            Integer productCount = Cache.get("dabbawal_product_count", Integer.class);
+//            if (productCount == null){
+//                productCount = 100;
+//            }
+//            Cache.set("dabbawal_product_count", productCount + 1);
         }
         return StringUtils.equals(output.getProcStatus(), DabbawalConsts.RESPONSE_RESULT_SUCCESS) ? DabbawalConsts.RESPONSE_RESULT_SUCCESS : output.getProcMsg();
     }
