@@ -85,8 +85,8 @@
         <li #{if order[0].status == "待定" || order[0].status == "已完成"}
                 onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
                 class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
-            <div class="ui-avatar" style="-webkit-border-radius: 0;">
-                <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg')"></span>
+            <div class="ui-avatar">
+                <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg'); -webkit-border-radius: 0;"></span>
             </div>
             <div class="ui-list-info">
                 <ul class="ui-row-flex">
@@ -120,7 +120,7 @@
         <input type="hidden" id="orderId" name="orderId" value="1-AQGE">
         <div class="ui-dialog-cnt">
             <header class="ui-dialog-hd">
-                <h5 id="orderNo">订单号: 1111</h5>
+                <h5 id="orderNo">订单号: </h5>
             </header>
             <div class="ui-form-item ui-border-b">
                 <div class="rating-wrapper" id="starEvaluate">
