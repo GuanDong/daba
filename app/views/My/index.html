@@ -84,7 +84,7 @@
     #{list items:orderList, as:'order'}
         <li #{if order[0].status == "待定" || order[0].status == "已完成"}
                 onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
-                class="ui-border-t"#{/if}#{else}class="ui-border-tb"#{/else}>
+                class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
             <div class="ui-avatar" style="-webkit-border-radius: 0; width: 70px; height: 70px;">
                 <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg'); -webkit-border-radius: 0;"></span>
             </div>
