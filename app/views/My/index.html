@@ -56,19 +56,19 @@
     <ul class="ui-tiled ui-border-t">
         <li class="ui-border-r">
             <a href="@{Application.index()}">
-                <h1 class="icon-home ui-txt-red"></h1>
+                <h1 class="icon-home"></h1>
                 <h5 class="ui-txt-info">首页</h5>
             </a>
         </li>
         <li class="ui-border-r" disabled>
             <a href="@{My.index()}">
-                <h1 class="icon-user ui-txt-red"></h1>
+                <h1 class="icon-user" style="color: #04BE02;"></h1>
                 <h5 class="ui-txt-info">个人中心</h5>
             </a>
         </li>
         <li>
             <a href="@{Application.subscribe()}">
-                <h1 class="icon-info ui-txt-red"></h1>
+                <h1 class="icon-info"></h1>
                 <h5 class="ui-txt-info">关于我们</h5>
             </a>
         </li>
@@ -85,7 +85,7 @@
         <li #{if order[0].status == "待定" || order[0].status == "已完成"}
                 onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
                 class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
-            <div class="ui-avatar">
+            <div class="ui-avatar" style="-webkit-border-radius: 0;">
                 <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg')"></span>
             </div>
             <div class="ui-list-info">
