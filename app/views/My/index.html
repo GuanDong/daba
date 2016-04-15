@@ -85,7 +85,7 @@
         <li #{if order[0].status == "待定" || order[0].status == "已完成"}
                 onclick="showOptMenu('${order[0]?.id}', '${order[0]?.status}', '${order[0]?.no}');"
                 class="ui-border-t"#{/if}#{else}class="ui-border-t"#{/else}>
-            <div class="ui-avatar">
+            <div class="ui-list-img">
                 <span style="background-image:url('/products/images/${order[1]?.productNo}_001.jpg')"></span>
             </div>
             <div class="ui-list-info">
@@ -342,7 +342,7 @@
             </div>
             <div class="weui_opr_area">
                 <p class="weui_btn_area">
-                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                    <a href="@{My.index()}" class="weui_btn weui_btn_warn">确定</a>
                 </p>
             </div>
         </div>
@@ -358,7 +358,7 @@
             </div>
             <div class="weui_opr_area">
                 <p class="weui_btn_area">
-                    <a href="@{My.index()}" class="weui_btn weui_btn_primary">确定</a>
+                    <a href="@{My.index()}" class="weui_btn weui_btn_warn">确定</a>
                 </p>
             </div>
         </div>
