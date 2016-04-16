@@ -277,7 +277,7 @@ public class Wechat extends Controller {
                 Logger.error(e, "创建账号出错");
             }
 
-            WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 1);
+            WxMpMaterialNewsBatchGetResult batchNews = wxMpService.materialNewsBatchGet(0, 10);
             if (batchNews.getItemCount() == 0) {
                 WxMpXmlOutTextMessage m
                         = WxMpXmlOutMessage.TEXT().content("欢迎关注").fromUser(wxMpXmlMessage.getToUserName())
@@ -285,6 +285,8 @@ public class Wechat extends Controller {
 
                 return m;
             }
+
+            Logger.error("media_id: %s, %s", batchNews.getItems().get(0).getMediaId(), batchNews.getItems().get(1).getMediaId());
 
 //            WxMpMaterialNews.WxMpMaterialNewsArticle article = batchNews.getItems().get(0).getContent().getArticles().get(0);
             WxMpMaterialNews news = wxMpService.materialNewsInfo(DabbawalConsts.SUBSCRIBE_NEWS_ID);
