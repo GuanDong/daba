@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>&{'appName'}</title>
+    <link rel="stylesheet" href="@{'/public/stylesheets/weui.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
 </head>
@@ -42,33 +43,25 @@
         </div>
     </div>
 
-    <ul class="ui-list">
+    <ul class="ui-grid-trisect" style="padding-left: 10px;padding-right: 0;">
     #{list items:productList, as:'product'}
-        <li class="ui-border-t">
-            <a class="ui-list-img" href="@{Products.book(product.id)}" style="display: block; width: 120px; height: 82px;">
-
-                <span style="background-image:url('/products/images/${product.productNo}_001.jpg')"></span>
-                    *{<span style="background-image:url(@{'/public/images/actor.jpeg'})"></span>}*
+        <li style="width: 50%; padding-right: 10px;">
+            <a href="@{Products.book(product.id)}">
+                <div class="ui-grid-trisect-img" style="padding-top: 100%;">
+                    <span style="background-image:url('/products/images/${product.productNo}_001.jpg')"></span>
+                </div>
+                <h5 class="ui-txt-default">${product.productName}
+                    #{if product.laLevel > 0}
+                        <label class="ui-label-s"
+                               style="position: absolute;margin-top: 5px; margin-left: 2px;">辣</label>
+                    #{/if}
+                </h5>
+                <h6 class="ui-nowrap ui-txt-info">${product.productDesc}</h6>
+                <h5 class="ui-txt-highlight">${product.stdPrice}元
+                    <span style="color: #04BE02; padding-left: 5px;">订餐</span>
+                </h5>
             </a>
-            <div class="ui-list-info" style="padding-right: 0;">
-                <a href="@{Products.book(product.id)}">
-                <ul class="ui-row-flex">
-                    <li class="ui-col ui-col-4">
-                        <h4 class="ui-nowrap-multi ui-txt-default" style="padding-bottom: 5px;">
-                            ${product.productName}#{if product.laLevel > 0}
-                                <label class="ui-label-s" style="position: absolute;margin-top: 5px; margin-left: 2px;">辣</label>
-                            #{/if}
-                        </h4>
-                        <p class="ui-nowrap-multi">${product.productDesc}</p>
-                    </li>
-                    <li class="ui-col">
-                        <div class="ui-txt-highlight"
-                             style="position: absolute;top: 50%;margin-top: -10px;">${product.stdPrice}元
-                        </div>
-                    </li>
-                </ul>
-                </a>
-            </div>
+
         </li>
     #{/list}
     </ul>
