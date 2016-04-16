@@ -286,7 +286,9 @@ public class Wechat extends Controller {
                 return m;
             }
 
-            WxMpMaterialNews.WxMpMaterialNewsArticle article = batchNews.getItems().get(0).getContent().getArticles().get(0);
+//            WxMpMaterialNews.WxMpMaterialNewsArticle article = batchNews.getItems().get(0).getContent().getArticles().get(0);
+            WxMpMaterialNews news = wxMpService.materialNewsInfo(DabbawalConsts.SUBSCRIBE_NEWS_ID);
+            WxMpMaterialNews.WxMpMaterialNewsArticle article = news.getArticles().get(0);
             WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
             item.setDescription(article.getDigest());
             item.setPicUrl(StringUtils.isBlank(article.getThumbUrl()) ?
