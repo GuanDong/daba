@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="@{'/public/stylesheets/frozen.css'}"/>
     <link rel="stylesheet" href="@{'/public/stylesheets/fontello-embedded.css'}"/>
     <style>
-        .clickli:hover {background-color: #f3ffec;
+        .clickli:hover {background-color: #f3ffec;}
     </style>
 </head>
 <body style="background: white;">
@@ -47,7 +47,7 @@
 
     <ul class="ui-list">
     #{list items:productList, as:'product'}
-        <li class="ui-border-t">
+        <li class="ui-border-t clickli">
             <a class="ui-list-img" href="@{Products.book(product.id)}" style="display: block; width: 120px; height: 82px;">
 
                 <span style="background-image:url('/products/images/${product.productNo}_001.jpg')"></span>
