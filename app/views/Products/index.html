@@ -41,7 +41,7 @@
     </section>
     <div class="ui-tooltips ui-tooltips-warn">
         <div class="ui-tooltips-cnt ui-border-b">
-            <i></i>请每晚10点前订餐。
+            <i></i>请每晚22:00前订餐。
         </div>
     </div>
 
@@ -50,7 +50,7 @@
         <li class="ui-border-t clickli">
             <a class="ui-list-img" href="@{Products.book(product.id)}" style="display: block; width: 120px; height: 82px;">
 
-                <span style="background-image:url('/products/images/${product.productNo}_001.jpg')"></span>
+                <span style="background-image:url('/products/images/${product.productNo}_001.jpg?_=${consts.DabbawalConsts.RESOURCE_VERSION}')"></span>
                     *{<span style="background-image:url(@{'/public/images/actor.jpeg'})"></span>}*
             </a>
             <div class="ui-list-info">

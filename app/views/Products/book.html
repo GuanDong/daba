@@ -65,7 +65,7 @@
             <input name="productId" type="hidden" value="${product.productId}">
             <input name="order.pricelstid" type="hidden" value="${product.priceId}">
             <div class="ui-list-img" style="width: 70px; height: 48px;">
-                <span style="background-image:url('/products/images/${product.productNo}_001.jpg');"></span>
+                <span style="background-image:url('/products/images/${product.productNo}_001.jpg?_=${consts.DabbawalConsts.RESOURCE_VERSION}');"></span>
             </div>
             <div class="ui-list-info">
                 <ul class="ui-row-flex">
@@ -110,7 +110,13 @@
             <h1 id="orderPrice" class="ui-txt-highlight" style="position: absolute;right: 15px; font-size: 24px;">${product.stdPrice}元</h1>
         </li>
     </ul>
-    <input type="submit" value="付款" class="weui_btn weui_btn_primary">
+    #{if java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY) >= 22 || java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY) < 5}
+        <p class="ui-txt-info ui-txt-red">* 请在22:00前订餐.</p>
+        <a href="@{controllers.Products.index()}" class="weui_btn weui_btn_plain_primary">返回</a>
+    #{/if}
+    #{else}
+        <input type="submit" value="付款" class="weui_btn weui_btn_primary">
+    #{/else}
 </form>
 </div>
 <div id="loading" class="ui-loading-block">

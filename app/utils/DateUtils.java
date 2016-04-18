@@ -52,4 +52,5 @@ public class DateUtils {
         Date end = toLastSecond(new Date());
         return (int) ((end.getTime() - start.getTime()) / (1000*60*60*24));
     }
+
 }
