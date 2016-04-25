@@ -292,8 +292,7 @@ public class Wechat extends Controller {
             WxMpMaterialNews.WxMpMaterialNewsArticle article = news.getArticles().get(0);
             WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
             item.setDescription(article.getDigest());
-            item.setPicUrl(StringUtils.isBlank(article.getThumbUrl()) ?
-                    "https://mmbiz.qlogo.cn/mmbiz/6KAHbdYYvbpdFqb8Ohc1zMzObuhlDnkIbhaJ10cj6Kw7avGSjtmIYcaWqedapwg2s2frT5SgXTxicaKSGd19qtQ/0?wx_fmt=jpeg" : article.getThumbUrl());
+            item.setPicUrl(StringUtils.isBlank(article.getThumbUrl()) ? DabbawalConsts.SUBSCRIBE_NEWS_THUMB_URL : article.getThumbUrl());
             item.setTitle(article.getTitle());
             item.setUrl(article.getUrl());
 

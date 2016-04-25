@@ -2,3 +2,6 @@
 
 require:
     - play
+    - org.apache.axis2 -> axis2-kernel 1.7.1
+    - org.apache.axis2 -> axis2-adb 1.7.1
+    - me.chanjar -> weixin-java-mp 1.3.3

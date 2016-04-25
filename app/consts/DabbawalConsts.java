@@ -22,6 +22,7 @@ public class DabbawalConsts {
     public static final String PRODUCT_TYPE_COUPON="促销";
 
     public static final String SUBSCRIBE_NEWS_ID = "VeIz1NC9aohU2iHDYgE2lLII9NPWVT-9LTPaKgkHLS4";
+    public static final String SUBSCRIBE_NEWS_THUMB_URL = "https://mmbiz.qlogo.cn/mmbiz/6KAHbdYYvbpdFqb8Ohc1zMzObuhlDnkIbhaJ10cj6Kw7avGSjtmIYcaWqedapwg2s2frT5SgXTxicaKSGd19qtQ/0?wx_fmt=jpeg";
     public static final String ABOUT_PAGE_URL = "http://mp.weixin.qq.com/s?__biz=MzAxMjgwMDQ5Ng==&mid=404065631&idx=1&sn=bf4726e2eaf5ea40fb2cd3a8f2049e3f&scene=1&srcid=03303cuqBlcvYmovASd9JV38#rd";
 
     public static final String RESOURCE_VERSION = Play.configuration.getProperty("resource.version");;

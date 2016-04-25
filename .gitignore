@@ -2,4 +2,5 @@ tmp
 dabbawala.iml
 dabbawala.ipr
 dabbawala.iws
-conf/application.conf
+precompiled
+.DS_Store
