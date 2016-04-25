@@ -77,6 +77,9 @@ public class Wechat extends Controller {
      * 微信消息路由
      */
     public static void index() {
+        Logger.info("wechat query string: %s", request.querystring);
+        Logger.info("wechat post: %s", params.get("body"));
+
         String signature = params.get("signature");     // 微信加密签名
         String echostr = params.get("echostr");         // 随机字符串
         String timestamp = params.get("timestamp");     // 时间戳
